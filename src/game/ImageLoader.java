@@ -1,11 +1,14 @@
 package game;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-
-
 
 final public class ImageLoader {
 
@@ -46,25 +49,6 @@ final public class ImageLoader {
 	public static BufferedImage yellowSpriteBig;
 	public static BufferedImage yellowSpriteReallyBig;
 	public static BufferedImage yellowSpriteAll;
-	
-//	public static BufferedImage exp1;
-//	public static BufferedImage exp2;
-//	public static BufferedImage exp3;
-//	public static BufferedImage exp4;
-//	public static BufferedImage exp5;
-//	public static BufferedImage exp6;
-//	public static BufferedImage exp7;
-//	public static BufferedImage exp8;
-//	public static BufferedImage exp9;
-//	public static BufferedImage exp10;
-//	public static BufferedImage exp11;
-//	public static BufferedImage exp12;
-//	public static BufferedImage exp13;
-//	public static BufferedImage exp14;
-//	public static BufferedImage exp15;
-//	public static BufferedImage exp16;
-//	public static BufferedImage exp17;
-
 
 	public static InputStream load(String path) {
 		InputStream input = ImageLoader.class.getResourceAsStream(path);
@@ -76,68 +60,55 @@ final public class ImageLoader {
 
 	public static void loadImages() {
 		try {
-			blueSprite= ImageIO.read(ImageLoader.load("explosionSheetBlueShort.png"));
-			yellowSprite= ImageIO.read(ImageLoader.load("explosionSheetYellowShort.png"));
-			enemyAIEasy = ImageIO.read(ImageLoader.load("enemyAIEasy.png"));
-			EnemyAIEasySlave= ImageIO.read(ImageLoader.load("enemyAIEasySlave.png"));
-			EnemyAIMediumSlave= ImageIO.read(ImageLoader.load("enemyAIMediumSlave.png"));
-			enemyBeamEasy= ImageIO.read(ImageLoader.load("enemyBeamEasy.png"));
-			enemyCarrierEasy= ImageIO.read(ImageLoader.load("carrierEasy.png"));
-			EnemyEasy1= ImageIO.read(ImageLoader.load("enemyType1.png")); 
-			EnemyEasy2= ImageIO.read(ImageLoader.load("enemyType2.png"));
-			enemyEasy3= ImageIO.read(ImageLoader.load("enemyType2.png")); 
-			enemyMedium1= ImageIO.read(ImageLoader.load("enemyMedium1.png"));
-			enemyMedium3= ImageIO.read(ImageLoader.load("enemyMedium3.png"));
-			enemySuicide= ImageIO.read(ImageLoader.load("enemyTypeSuicide.png"));
-			beamDown= ImageIO.read(ImageLoader.load("beam.png"));
-			bulletUp= ImageIO.read(ImageLoader.load("bulletUp.png")); 
-			bulletDown= ImageIO.read(ImageLoader.load("bulletDown.png"));
-			purpImageSmall= ImageIO.read(ImageLoader.load("upgradePurpleSmall.png"));
-			yellowImageSmall = ImageIO.read(ImageLoader.load("upgradeYellowSmall.png"));
-			greenImageSmall= ImageIO.read(ImageLoader.load("upgradeGreenSmall.png"));
-			menuBackground= ImageIO.read(ImageLoader.load("menuBackground.png"));
-			missileLeft= ImageIO.read(ImageLoader.load("bulletLeft.png"));
-			missileRight= ImageIO.read(ImageLoader.load("bulletRight.png"));
-			myShip0= ImageIO.read(ImageLoader.load("myShipAnim1.png"));
-			myShip1= ImageIO.read(ImageLoader.load("myShipAnim2.png"));
-			myShip2= ImageIO.read(ImageLoader.load("myShipAnim3.png"));
-			myShip3= ImageIO.read(ImageLoader.load("myShipAnim4.png"));
-			myShip4= ImageIO.read(ImageLoader.load("myShipAnim5.png"));
-			myShip5= ImageIO.read(ImageLoader.load("myShipAnim6.png"));
-			spaceBackground= ImageIO.read(ImageLoader.load("background.png"));
-			yellowUpgrade= ImageIO.read(ImageLoader.load("upgradeYellow.png"));
-			purpleUpgrade= ImageIO.read(ImageLoader.load("upgradePurple.png"));
-			greenUpgrade= ImageIO.read(ImageLoader.load("upgradeGreen.png"));
-			healthPack= ImageIO.read(ImageLoader.load("healthPack.png"));
-			//yellowSpriteBig= ImageIO.read(ImageLoader.load("explosionSheetYellowShortBig.png"));
-			//yellowSpriteReallyBig= ImageIO.read(ImageLoader.load("explosionSheetYellowShortBigger.png"));
-			yellowSpriteBig= ImageIO.read(ImageLoader.load("shipExplosion.png"));
-			
-			
-//			exp1=ImageIO.read(ImageLoader.load("exp1.png"));
-//			exp2=ImageIO.read(ImageLoader.load("exp2.png"));
-//			exp3=ImageIO.read(ImageLoader.load("exp3.png"));
-//			exp4=ImageIO.read(ImageLoader.load("exp4.png"));
-//			exp5=ImageIO.read(ImageLoader.load("exp5.png"));
-//			exp6=ImageIO.read(ImageLoader.load("exp6.png"));
-//			exp7=ImageIO.read(ImageLoader.load("exp7.png"));
-//			exp8=ImageIO.read(ImageLoader.load("exp8.png"));
-//			exp9=ImageIO.read(ImageLoader.load("exp9.png"));
-//			exp10=ImageIO.read(ImageLoader.load("exp10.png"));
-//			exp11=ImageIO.read(ImageLoader.load("exp11.png"));
-//			exp12=ImageIO.read(ImageLoader.load("exp12.png"));
-//			exp13=ImageIO.read(ImageLoader.load("exp13.png"));
-//			exp14=ImageIO.read(ImageLoader.load("exp14.png"));
-//			exp15=ImageIO.read(ImageLoader.load("exp15.png"));
-//			exp16=ImageIO.read(ImageLoader.load("exp16.png"));
-//			exp17=ImageIO.read(ImageLoader.load("exp17.png"));
-		
-	
-			
-			
+			menuBackground= ImageIO.read(new File("images//menuBackground.png"));
+			blueSprite= ImageIO.read(new File("images//explosionSheetBlueShort.png"));
+			yellowSprite= ImageIO.read(new File("images//explosionSheetYellowShort.png"));
+			enemyAIEasy = ImageIO.read(new File("images//enemyAIEasy.png"));
+			EnemyAIEasySlave= ImageIO.read(new File("images//enemyAIEasySlave.png"));
+			EnemyAIMediumSlave= ImageIO.read(new File("images//enemyAIMediumSlave.png"));
+			enemyBeamEasy= ImageIO.read(new File("images//enemyBeamEasy.png"));
+			enemyCarrierEasy= ImageIO.read(new File("images//carrierEasy.png"));
+			EnemyEasy1= ImageIO.read(new File("images//enemyType1.png")); 
+			EnemyEasy2= ImageIO.read(new File("images//enemyType2.png"));
+			enemyEasy3= ImageIO.read(new File("images//enemyType2.png")); 
+			enemyMedium1= ImageIO.read(new File("images//enemyMedium1.png"));
+			enemyMedium3= ImageIO.read(new File("images//enemyMedium3.png"));
+			enemySuicide= ImageIO.read(new File("images//enemyTypeSuicide.png"));
+			beamDown= ImageIO.read(new File("images//beam.png"));
+			bulletUp= ImageIO.read(new File("images//bulletUp.png")); 
+			bulletDown= ImageIO.read(new File("images//bulletDown.png"));
+			purpImageSmall= ImageIO.read(new File("images//upgradePurpleSmall.png"));
+			yellowImageSmall = ImageIO.read(new File("images//upgradeYellowSmall.png"));
+			greenImageSmall= ImageIO.read(new File("images//upgradeGreenSmall.png"));
+			missileLeft= ImageIO.read(new File("images//bulletLeft.png"));
+			missileRight= ImageIO.read(new File("images//bulletRight.png"));
+			myShip0= ImageIO.read(new File("images//myShipAnim1.png"));
+			myShip1= ImageIO.read(new File("images//myShipAnim2.png"));
+			myShip2= ImageIO.read(new File("images//myShipAnim3.png"));
+			myShip3= ImageIO.read(new File("images//myShipAnim4.png"));
+			myShip4= ImageIO.read(new File("images//myShipAnim5.png"));
+			myShip5= ImageIO.read(new File("images//myShipAnim6.png"));
+			spaceBackground= ImageIO.read(new File("images//background.png"));
+			yellowUpgrade= ImageIO.read(new File("images//upgradeYellow.png"));
+			purpleUpgrade= ImageIO.read(new File("images//upgradePurple.png"));
+			greenUpgrade= ImageIO.read(new File("images//upgradeGreen.png"));
+			healthPack= ImageIO.read(new File("images//healthPack.png"));
+			//yellowSpriteBig= ImageIO.read(new File("images//explosionSheetYellowShortBig.png"));
+			//yellowSpriteReallyBig= ImageIO.read(new File("images//explosionSheetYellowShortBigger.png"));
+			yellowSpriteBig= ImageIO.read(new File("images//shipExplosion.png"));
+				
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "ERROR LOADING IMAGES.  CONTACT ADMIN FOR SUPPORT");
 				e.printStackTrace();
+		}
+		
+		try {
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("ARDESTINE.ttf")));
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

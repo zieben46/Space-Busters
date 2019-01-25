@@ -7,7 +7,7 @@ public class Start {
 	
 	public static void main(String[] args) throws LineUnavailableException {
 		ImageLoader.loadImages();	
-		//Sound.load();
+		Sound.load();
 		Game game=new Game();
 		JFrame window=new JFrame("Space Busters");
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

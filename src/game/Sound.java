@@ -2,7 +2,6 @@ package game;
 
 import game.Game.STATE;
 
-
 public class Sound {
 	private static AudioClip multiShoot;
 	private static AudioClip bigExplosion;
@@ -13,11 +12,14 @@ public class Sound {
 
 	public static Thread thread;
 
+//cannot figure out WHY AudioClip.createAudioClip() won't read .wav files if .wav files are placed in Sound folder...
+//Audio slows down the game from time to time too...
+	
 	public static void load() {
+		buttonHover=AudioClip.createAudioClip("buttonHover.wav");
 		multiShoot=AudioClip.createAudioClip("multiShoot.wav");
 		bigExplosion=AudioClip.createAudioClip("bigExplosion.wav");
 		smallExplosion=AudioClip.createAudioClip("smallExplosion.wav");
-		buttonHover=AudioClip.createAudioClip("buttonHover.wav");
 		buttonSelect=AudioClip.createAudioClip("buttonSelect.wav");
 		backgroundMusic=AudioClip.createAudioClip("backgroundMusic.wav");
 		thread=new Thread();
@@ -53,28 +55,28 @@ public class Sound {
 		playClip(presentClip);
 	}
 
-	//	private static void playClip(AudioClip presentClip) {
-	//		//presentClip.play();
-	//		try{
-	//			new Thread(){ public void run(){ presentClip.play();
-	//			}
-	//			}.start();
-	//		}catch(Throwable e){
-	//			e.printStackTrace();
-	//		}
-	//	}
-
-	private static void playClip(AudioClip presentClip) {
-		//presentClip.play();
-		try {
-			
-			new Thread(() -> presentClip.play()		
-			).start();
-			
-		}catch(Throwable e){
-			e.printStackTrace();
+		private static void playClip(AudioClip presentClip) {
+			//presentClip.play();
+			try{
+				new Thread(){ public void run(){ presentClip.play();
+				}
+				}.start();
+			}catch(Throwable e){
+				e.printStackTrace();
+			}
 		}
-	}
+
+//	private static void playClip(AudioClip presentClip) {
+//
+//		try {
+//			
+//			new Thread(() -> presentClip.play()		
+//			).start();
+//			
+//		}catch(Throwable e){
+//			e.printStackTrace();
+//		}
+//	}
 
 	public static void playBackgroundMusic() {
 		if (Game.state.equals(STATE.GAME)) {
@@ -90,6 +92,8 @@ public class Sound {
 	}
 
 
+	//Need to stop background music if pauses then exits
+	
 	@SuppressWarnings("deprecation")
 	public static void stopBackgroundMusic() {
 		//			//backgroundMusic.stop();

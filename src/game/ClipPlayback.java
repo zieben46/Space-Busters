@@ -2,7 +2,10 @@
  *	ClipPlayback.java
  *
  */
-package jig.engine.audio.jsound;
+
+package game;
+
+//package jig.engine.audio.jsound;
 
 import java.util.concurrent.ExecutorService;
 

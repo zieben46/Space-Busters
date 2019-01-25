@@ -2,8 +2,12 @@ package level;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
 
 import game.Game;
 
@@ -15,8 +19,9 @@ public class Popup {
 
 	public Popup(int levelNumber) {
 		this.levelNumber=levelNumber;
+		
 	}
-
+	
 	public void renderWarning(Graphics2D g) {
 		GradientPaint gradient=null;
 		if (counter%60<30) {
@@ -52,7 +57,7 @@ public class Popup {
 		g.setFont(new Font("AR DESTINE",Font.BOLD, 20 ));
 		g.drawString("SIDE BULLETS AQUIRED", 327, 350);
 		g.setFont(new Font("AR DESTINE",Font.BOLD, 16 ));
-		g.drawString("USE S AND D KEYS TO FIRE SIDE BULLETS", 258, 380);
+		g.drawString("USE THE 'S' AND 'F' KEYS TO FIRE SIDE BULLETS", 258, 380);
 	}
 
 

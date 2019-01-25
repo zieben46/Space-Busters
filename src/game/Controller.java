@@ -83,9 +83,6 @@ public class Controller {
 	public synchronized void update() {
 		if (!paused) {
 			myShip.update();
-			//		projectileEntities.stream().forEach(e -> {
-			//		projectileHit(e);
-			//		projectileBounds(e)});
 
 			for (int i=0; i<projectileEntities.size(); i++) {
 				ProjectileEntity projectileEntity=projectileEntities.get(i);

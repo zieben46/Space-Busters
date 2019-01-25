@@ -2,7 +2,10 @@
  *	AudioClip.java
  *
  */
-package jig.engine.audio.jsound;
+//package jig.engine.audio.jsound;
+
+package game;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
