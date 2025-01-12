@@ -1,6 +1,7 @@
 package main.java.game;
 
 import main.java.game.Game.STATE;
+import jig.engine.audio.jsound.AudioClip;
 
 public class Sound {
 	private static AudioClip multiShoot;
