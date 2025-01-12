@@ -1,7 +1,7 @@
 package main.java.game;
 import java.awt.Rectangle;
 
-import main.java.classes.Entity;
+import main.java.entity.Entity;
 
 public class Physics {
 

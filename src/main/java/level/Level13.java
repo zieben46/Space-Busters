@@ -3,8 +3,8 @@ package main.java.level;
 import java.util.LinkedList;
 import java.util.Random;
 
-import main.java.classes.EnemyEntity;
-import main.java.classes.EnemyEntity.EnemyType;
+import main.java.entity.EnemyEntity;
+import main.java.entity.EnemyEntity.EnemyType;
 import main.java.game.MyShip;
 
 public class Level13 extends Level {

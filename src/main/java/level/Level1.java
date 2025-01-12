@@ -2,8 +2,8 @@ package main.java.level;
 
 import java.util.LinkedList;
 
-import main.java.classes.EnemyEntity;
-import main.java.classes.EnemyEntity.EnemyType;
+import main.java.entity.EnemyEntity;
+import main.java.entity.EnemyEntity.EnemyType;
 import main.java.game.MyShip;
 
 public class Level1 extends Level {

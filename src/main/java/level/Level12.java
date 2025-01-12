@@ -2,10 +2,10 @@ package main.java.level;
 
 import java.util.LinkedList;
 
-import main.java.classes.EnemyEntity;
-import main.java.classes.EnemyEntity.EnemyType;
-import main.java.enemies.EnemyAIEasySlave;
-import main.java.enemies.EnemyCarrierEasy;
+import main.java.enemy.EnemyAIEasySlave;
+import main.java.enemy.EnemyCarrierEasy;
+import main.java.entity.EnemyEntity;
+import main.java.entity.EnemyEntity.EnemyType;
 import main.java.game.MyShip;
 
 public class Level12 extends Level {

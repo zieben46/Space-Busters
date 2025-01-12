@@ -2,7 +2,7 @@ package main.java.level;
 
 import java.util.LinkedList;
 
-import main.java.classes.EnemyEntity;
+import main.java.entity.EnemyEntity;
 import main.java.game.EnemyFactory;
 import main.java.game.MyShip;
 

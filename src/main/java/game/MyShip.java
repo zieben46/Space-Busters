@@ -4,9 +4,8 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import main.java.EntityBehaviors.*;
-
-import main.java.classes.*;
+import main.java.bulletbehavior.*;
+import main.java.entity.*;
 
 public class MyShip extends GameObject implements Entity {
 	protected BufferedImage[] shipImage;

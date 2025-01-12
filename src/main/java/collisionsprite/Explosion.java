@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import main.java.classes.ExplosionEntity;
+import main.java.entity.ExplosionEntity;
 
 public abstract class Explosion implements ExplosionEntity {
 	BufferedImage images;

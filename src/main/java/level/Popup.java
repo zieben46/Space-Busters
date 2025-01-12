@@ -15,7 +15,6 @@ public class Popup {
 
 	public Popup(int levelNumber) {
 		this.levelNumber=levelNumber;
-		
 	}
 	
 	public void renderWarning(Graphics2D g) {
@@ -55,7 +54,6 @@ public class Popup {
 		g.setFont(new Font("AR DESTINE",Font.BOLD, 16 ));
 		g.drawString("USE THE 'S' AND 'F' KEYS TO FIRE SIDE BULLETS", 258, 380);
 	}
-
 
 	public void renderDeadMessage(Graphics2D g) {
 		if (!rendering) {

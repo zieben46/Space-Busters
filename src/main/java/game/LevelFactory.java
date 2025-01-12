@@ -2,7 +2,7 @@ package main.java.game;
 
 import java.util.LinkedList;
 
-import main.java.classes.EnemyEntity;
+import main.java.entity.EnemyEntity;
 import main.java.level.*;
 
 public class LevelFactory {
@@ -62,4 +62,3 @@ public class LevelFactory {
 		return null;
 	}
 }
-

@@ -12,16 +12,15 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import main.java.classes.EnemyEntity;
-
-import main.java.classes.ExplosionEntity;
-import main.java.classes.ProjectileEntity;
-import main.java.classes.UpgradeEntity;
-import main.java.classes.ProjectileEntity.Team;
-import main.java.classes.UpgradeEntity.UpgradeType;
 import main.java.collisionsprite.BigYellowExplosion;
 import main.java.collisionsprite.BlueExplosion;
 import main.java.collisionsprite.YellowExplosion;
+import main.java.entity.EnemyEntity;
+import main.java.entity.ExplosionEntity;
+import main.java.entity.ProjectileEntity;
+import main.java.entity.UpgradeEntity;
+import main.java.entity.ProjectileEntity.Team;
+import main.java.entity.UpgradeEntity.UpgradeType;
 import main.java.game.Sound.soundEnum;
 import main.java.level.LevelEntity;
 import main.java.level.Popup;

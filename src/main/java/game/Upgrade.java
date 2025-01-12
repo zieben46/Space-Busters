@@ -2,7 +2,7 @@ package main.java.game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import main.java.classes.UpgradeEntity;
+import main.java.entity.UpgradeEntity;
 
 public class Upgrade extends GameObject implements UpgradeEntity {
 

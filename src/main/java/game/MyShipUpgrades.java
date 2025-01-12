@@ -1,6 +1,6 @@
 package main.java.game;
 
-import main.java.EntityBehaviors.*;
+import main.java.bulletbehavior.*;
 
 public class MyShipUpgrades {
 

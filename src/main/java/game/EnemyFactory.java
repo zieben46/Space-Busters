@@ -1,8 +1,8 @@
 package main.java.game;
 
-import main.java.classes.EnemyEntity;
-import main.java.classes.EnemyEntity.EnemyType;
-import main.java.enemies.*;
+import main.java.enemy.*;
+import main.java.entity.EnemyEntity;
+import main.java.entity.EnemyEntity.EnemyType;
 
 public class EnemyFactory {
 	

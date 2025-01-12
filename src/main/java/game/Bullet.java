@@ -3,7 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import main.java.classes.ProjectileEntity;
+import main.java.entity.ProjectileEntity;
 
 public class Bullet extends GameObject implements ProjectileEntity {
 
