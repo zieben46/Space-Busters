@@ -66,18 +66,6 @@ public class Sound {
 			}
 		}
 
-//	private static void playClip(AudioClip presentClip) {
-//
-//		try {
-//			
-//			new Thread(() -> presentClip.play()		
-//			).start();
-//			
-//		}catch(Throwable e){
-//			e.printStackTrace();
-//		}
-//	}
-
 	public static void playBackgroundMusic() {
 		if (Game.state.equals(STATE.GAME)) {
 			try{
