@@ -52,7 +52,6 @@ public class Menu {
 		g.draw(quitButton);
 	}
 	
-	
 
 	public Color setStartColor() {
 		if (mouseInStart) {

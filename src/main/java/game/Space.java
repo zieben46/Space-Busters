@@ -29,7 +29,7 @@ public class Space {
 		Graphics2D g2=(Graphics2D) foregroundImage.getGraphics();
 		g2.drawImage(spaceImage, 0, 0, null);		
 		controller.render(g2);	
-		g.drawImage(foregroundImage, x, x, null);
+		g.drawImage(foregroundImage, x, y, null);
 		g2.dispose();
 	}
 

@@ -189,7 +189,5 @@ public class Game extends JPanel implements KeyListener, Runnable {
 		
 		g.setColor(Color.lightGray);
 		g.drawString("Current Level: "+StatsTracker.level, 400, HEIGHT-10);
-	}
-
-	
+	}	
 }
