@@ -118,6 +118,7 @@ public class Controller {
 			inGap=level.getInGap();
 
 			if (myShip.isDead()) {
+
 				if (!explosionRendered) {
 					explosionEntities.add(new BigYellowExplosion(new Point
 							(myShip.getX()+myShip.getWidth()/2, myShip.getY()+myShip.getHeight()/2)));
@@ -195,7 +196,7 @@ public class Controller {
 				}
 			}
 		} else if (projectileEntity.team().equals(Team.ENEMY)){   //test enemy hits player
-			if (Physics.Collision(myShip, projectileEntity)) {
+			if (Physics.Collision(myShip, projectileEntity) && !myShip.isDead()) {
 				projectileEntities.remove(projectileEntity);
 				myShip.decreaseHealth();
 				explosionEntities.add(new BlueExplosion(new Point
@@ -215,7 +216,7 @@ public class Controller {
 	}
 
 	private void testCollision(EnemyEntity enemyEntity) {    //test for enemy player collision
-		if (Physics.Collision(myShip, enemyEntity)) {
+		if (Physics.Collision(myShip, enemyEntity) && !myShip.isDead()) {
 			Sound.playSound(soundEnum.SMALLEXPLOSION);
 			myShip.decreaseHealth();
 			Rectangle union=Physics.getIntersection(myShip, enemyEntity);

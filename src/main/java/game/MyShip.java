@@ -99,7 +99,7 @@ public class MyShip extends GameObject implements Entity {
 	public void setGunSpeedUps(int gunSpeedUps) {
 		this.gunSpeedUps=gunSpeedUps;
 		coolDownTime=0.5*1000*Math.pow(0.85, gunSpeedUps);
-		StatsTracker.gunRateUpgs=gunSpeedUps;
+		StatsTracker.gunRateUpgs=this.gunSpeedUps;
 	}
 
 	public void setBulletSpeedUps(int bulletSpeedUps) {
