@@ -3,8 +3,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import javax.swing.JOptionPane;
-
 import main.java.game.Sound.soundEnum;
 
 public class MouseInput implements MouseListener, MouseMotionListener  {
@@ -13,8 +11,6 @@ public class MouseInput implements MouseListener, MouseMotionListener  {
 	private boolean inStart;
 	private boolean inLoad;
 	private boolean inQuit;
-
-	private boolean makeSound;
 
 	public MouseInput(Game game) {
 		this.game=game;

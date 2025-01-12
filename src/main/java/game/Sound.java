@@ -13,8 +13,7 @@ public class Sound {
 
 	public static Thread thread;
 
-//cannot figure out WHY AudioClip.createAudioClip() won't read .wav files if .wav files are placed in Sound folder...
-//Audio slows down the game from time to time too...
+//Audio slows down the game from time to time...
 	
 	public static void load() {
 		buttonHover=AudioClip.createAudioClip("sound/buttonHover.wav");
@@ -95,7 +94,6 @@ public class Sound {
 
 	//Need to stop background music if pauses then exits
 	
-	@SuppressWarnings("deprecation")
 	public static void stopBackgroundMusic() {
 		//			//backgroundMusic.stop();
 		//	

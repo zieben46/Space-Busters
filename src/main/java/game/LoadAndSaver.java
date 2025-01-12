@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 public class LoadAndSaver {
 	private static BufferedReader reader;
 	private static FileWriter fw;
-	private static String line;
 	private static String levelNumber="1";
 
 	public static int Load() {

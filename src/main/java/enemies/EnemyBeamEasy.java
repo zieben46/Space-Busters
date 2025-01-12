@@ -1,20 +1,13 @@
 package main.java.enemies;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
-import javax.imageio.ImageIO;
 
 import main.java.EntityBehaviors.SingleBeamBehavior;
-import main.java.classes.EnemyEntity;
-import main.java.classes.ProjectileEntity;
 import main.java.game.ImageLoader;
 
-public class EnemyBeamEasy extends Enemy implements EnemyEntity {
+public class EnemyBeamEasy extends Enemy {
 	int health=30;
 	Random random=new Random();
-	private ArrayList<ProjectileEntity> tempBeam;
 	
 	public EnemyBeamEasy() {
 		super();

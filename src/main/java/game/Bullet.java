@@ -2,10 +2,6 @@ package main.java.game;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import main.java.classes.ProjectileEntity;
 
@@ -15,7 +11,6 @@ public class Bullet extends GameObject implements ProjectileEntity {
 	protected int Vx;
 	private int Vy;
 	protected Team team;
-	//private int damage;
 
 	public Bullet(int x, int y, int Vx, int Vy, Team team) {
 		super(x, y);

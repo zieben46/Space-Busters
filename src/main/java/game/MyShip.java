@@ -26,8 +26,6 @@ public class MyShip extends GameObject implements Entity {
 	private int gunSpeedUps=0;
 	private int bulletSpeedUps;
 	private int health=200;
-	private BufferedImage explosions[];
-	private int explosionCounter;
 
 	public MyShip(int x, int y) { 
 		super(x, y);

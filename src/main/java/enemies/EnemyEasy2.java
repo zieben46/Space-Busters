@@ -1,14 +1,9 @@
 package main.java.enemies;
 
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 import main.java.EntityBehaviors.DuoBulletBehavior;
-import main.java.classes.EnemyEntity;
 import main.java.game.ImageLoader;
 
-public class EnemyEasy2 extends Enemy implements EnemyEntity {
+public class EnemyEasy2 extends Enemy {
 	public EnemyEasy2() {
 		super();
 		Vx=random.nextInt(5)-3;

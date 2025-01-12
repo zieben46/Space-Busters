@@ -1,15 +1,11 @@
 package main.java.enemies;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
-import javax.imageio.ImageIO;
 
 import main.java.EntityBehaviors.SingleBulletBehavior;
-import main.java.classes.EnemyEntity;
 import main.java.game.ImageLoader;
 
-public class EnemyEasy1 extends Enemy implements EnemyEntity {
+public class EnemyEasy1 extends Enemy {
 	int health=30;
 	Random random=new Random();
 	

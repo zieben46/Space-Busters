@@ -14,11 +14,11 @@ public class Keyboard {
 			prev[KeyEvent.VK_UP]=pressed[KeyEvent.VK_UP];
 			prev[KeyEvent.VK_DOWN]=pressed[KeyEvent.VK_DOWN];
 			prev[KeyEvent.VK_SPACE]=pressed[KeyEvent.VK_SPACE];
-			prev[KeyEvent.VK_S]=pressed[KeyEvent.VK_S];
-			prev[KeyEvent.VK_F]=pressed[KeyEvent.VK_F];
+			prev[KeyEvent.VK_A]=pressed[KeyEvent.VK_A];
+			prev[KeyEvent.VK_D]=pressed[KeyEvent.VK_D];
 			prev[KeyEvent.VK_ENTER]=pressed[KeyEvent.VK_ENTER];
 			prev[KeyEvent.VK_P]=pressed[KeyEvent.VK_P];
-			prev[KeyEvent.VK_S]=pressed[KeyEvent.VK_S];
+			prev[KeyEvent.VK_A]=pressed[KeyEvent.VK_A];
 			prev[KeyEvent.VK_R]=pressed[KeyEvent.VK_R];
 			prev[KeyEvent.VK_ESCAPE]=pressed[KeyEvent.VK_ESCAPE];
 	}
@@ -43,13 +43,17 @@ public class Keyboard {
 		return pressed[KeyEvent.VK_P]&&!prev[KeyEvent.VK_P];
 	}
 	
+	public static boolean APressed() {
+		return pressed[KeyEvent.VK_A]&&!prev[KeyEvent.VK_A];
+	}
+
 	public static boolean SPressed() {
 		return pressed[KeyEvent.VK_S]&&!prev[KeyEvent.VK_S];
 	}
 	
 	//JOption pane messing with this
 	public static void resetS() {
-		pressed[KeyEvent.VK_S]=false;
+		pressed[KeyEvent.VK_A]=false;
 	}
 
 	public static boolean RPressed() {

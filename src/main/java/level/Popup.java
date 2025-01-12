@@ -2,12 +2,8 @@ package main.java.level;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
-import java.awt.GraphicsEnvironment;
-import java.io.File;
-import java.io.IOException;
 
 import main.java.game.Game;
 

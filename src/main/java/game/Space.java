@@ -1,9 +1,6 @@
 package main.java.game;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 public class Space {
 	public static final int WIDTH=Game.WIDTH;
@@ -38,8 +35,5 @@ public class Space {
 
 	public void update() {
 		controller.update();
-		//if (controller.reset()) {
-			//controller=new Controller();
-		//}
 	}
 }

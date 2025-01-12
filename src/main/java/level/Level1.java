@@ -6,7 +6,7 @@ import main.java.classes.EnemyEntity;
 import main.java.classes.EnemyEntity.EnemyType;
 import main.java.game.MyShip;
 
-public class Level1 extends Level implements LevelEntity {
+public class Level1 extends Level {
 
 	public Level1(LinkedList<EnemyEntity> enemyEntities, MyShip myShip) {
 		super(enemyEntities, myShip);

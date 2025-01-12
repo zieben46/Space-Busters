@@ -17,7 +17,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
 	private Thread game;
 	private boolean running;
 	private BufferedImage image=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-	private BufferedImage purpImage=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+	// private BufferedImage purpImage=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage yellowImage=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage greenImage=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private Space space;
@@ -163,7 +163,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
 	}
 	
 	private void loadImages() {
-		purpImage = ImageLoader.purpImageSmall;
+		// purpImage = ImageLoader.purpImageSmall;
 		yellowImage = ImageLoader.yellowImageSmall;
 		greenImage = ImageLoader.greenImageSmall;
 	}

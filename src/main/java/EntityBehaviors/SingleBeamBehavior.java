@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import main.java.classes.ProjectileEntity;
 import main.java.classes.ProjectileEntity.Team;
 import main.java.game.Beam;
-import main.java.game.Bullet;
 
 public class SingleBeamBehavior implements BulletBehavior {
 

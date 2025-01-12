@@ -1,10 +1,9 @@
 package main.java.enemies;
 
 import main.java.EntityBehaviors.SpreadBulletBehavior;
-import main.java.classes.EnemyEntity;
 import main.java.game.ImageLoader;
 
-public class EnemyMedium3 extends Enemy implements EnemyEntity {
+public class EnemyMedium3 extends Enemy {
 	private long movedTime;
 	private double moveCoolTime;
 

@@ -1,13 +1,6 @@
 package main.java.game;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import main.java.classes.ProjectileEntity;
-
-public class Missile extends Bullet implements ProjectileEntity {
+public class Missile extends Bullet {
 
 	public Missile(int x, int y, int Vx, int Vy, Team team) {
 		super(x-13, y+20, Vx, Vy, team);

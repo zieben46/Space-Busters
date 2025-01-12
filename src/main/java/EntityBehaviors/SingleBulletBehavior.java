@@ -1,8 +1,6 @@
 package main.java.EntityBehaviors;
 import java.util.ArrayList;
 
-import javax.sound.sampled.LineUnavailableException;
-
 import main.java.classes.ProjectileEntity;
 import main.java.classes.ProjectileEntity.Team;
 import main.java.game.Bullet;

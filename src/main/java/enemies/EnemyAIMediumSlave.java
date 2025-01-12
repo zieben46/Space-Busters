@@ -1,21 +1,15 @@
 package main.java.enemies;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-
-import main.java.EntityBehaviors.DuoBulletBehavior;
 import main.java.EntityBehaviors.NullBulletBehavior;
-import main.java.classes.EnemyEntity;
 import main.java.classes.ProjectileEntity;
 import main.java.classes.ProjectileEntity.Team;
 import main.java.game.EnemyAI;
 import main.java.game.ImageLoader;
 
-public class EnemyAIMediumSlave extends EnemyAIEasy implements EnemyEntity {
+public class EnemyAIMediumSlave extends EnemyAIEasy {
 	private Random random=new Random();
 	protected boolean canRandomMove=true;
 	protected double movedTime;

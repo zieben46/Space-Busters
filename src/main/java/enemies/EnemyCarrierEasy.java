@@ -1,17 +1,12 @@
 package main.java.enemies;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-
 import main.java.EntityBehaviors.NullBulletBehavior;
-import main.java.classes.EnemyEntity;
 import main.java.game.EnemyAI;
 import main.java.game.ImageLoader;
 
-public class EnemyCarrierEasy extends Enemy implements EnemyEntity {
+public class EnemyCarrierEasy extends Enemy {
 	private Random random=new Random();
 	protected boolean canRandomMove=true;
 	protected double movedTime;

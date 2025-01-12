@@ -6,16 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
-import static java.util.stream.Collectors.*;
 
 import javax.swing.JOptionPane;
 
 import main.java.classes.EnemyEntity;
-import main.java.classes.Entity;
+
 import main.java.classes.ExplosionEntity;
 import main.java.classes.ProjectileEntity;
 import main.java.classes.UpgradeEntity;
@@ -119,7 +117,6 @@ public class Controller {
 			EnemyAI.update();
 			checkComplete();
 			inGap=level.getInGap();
-			tester();
 
 			if (myShip.isDead()) {
 				if (!explosionRendered) {
@@ -145,22 +142,11 @@ public class Controller {
 	}
 
 	public void render(Graphics2D g) {
-		projectileEntities.stream()
-		.forEach(e -> e.render(g));
-
-		//		projectileEntities.stream()
-		//		                  .forEach(Entity::render(g));
-
-		enemyEntities.stream()
-		.forEach(e -> e.render(g));
-
-		upgradeEntities.stream()
-		.forEach(e -> e.render(g));
-
+		projectileEntities.stream().forEach(e -> e.render(g));
+		enemyEntities.stream().forEach(e -> e.render(g));
+		upgradeEntities.stream().forEach(e -> e.render(g));
 		myShip.render(g);
-
-		explosionEntities.stream()
-		.forEach(e -> e.render(g));
+		explosionEntities.stream().forEach(e -> e.render(g));
 
 		if (inGap) {
 			popup.renderWarning(g);
@@ -181,8 +167,6 @@ public class Controller {
 		}
 
 		renderKillCounter(g);
-
-		//g.drawLine(Game.WIDTH/2-6, 0, Game.WIDTH/2-6, 800);
 	}
 
 	private void renderKillCounter(Graphics2D g) {
@@ -197,25 +181,6 @@ public class Controller {
 			projectileEntities.addAll(newProjectiles);
 		}
 	}
-
-	private void tester() {
-		//		projectileEntities=new LinkedList<ProjectileEntity>(
-		//				projectileEntities.stream()
-		//								  .filter(Controller::isFriendly)
-		//								  .filter(Controller::collision)
-		//								  .collect(toCollection(LinkedList::new))
-		//				);	
-	}
-
-	//
-	//	private static boolean collision(ProjectileEntity projectileEntity) {
-	//		return !enemyEntities.stream().anyMatch(enemy -> Physics.Collision(projectileEntity, enemy));
-	//	}
-	//	
-	//	private static boolean isFriendly(ProjectileEntity projectileEntity) {
-	//		return projectileEntities.equals(Team.FRIENDLY);
-	//	}
-
 
 	private void  projectileHit(ProjectileEntity projectileEntity) {    //test player hits enemy
 		if (projectileEntity.team().equals(Team.FRIENDLY)) {
@@ -240,46 +205,6 @@ public class Controller {
 			}
 		}
 	}
-
-	private void  projectileHit2(ProjectileEntity projectileEntity) {    //test player hits enemy
-		System.out.print(
-				projectileEntities.stream().filter(projectile -> projectile.equals(Team.FRIENDLY))
-				.count()
-
-
-				//			.filter(enemy -> Physics.Collision(projectileEntity, enemy))
-				//			.count();
-				//.forEach(enemy -> enemyEntities.remove(enemy));
-				);
-
-		//					
-		//			for (int i=0; i<enemyEntities.size(); i++) {
-		//				EnemyEntity enemyEntity=enemyEntities.get(i);
-		//				if (Physics.Collision(projectileEntity, enemyEntity)) {
-		//
-		//					renderCollision=true;
-		//					enemyEntity.takeDamage(projectileEntity.getDamage());
-		//					collisionSprite=new CollisionSpriteYellow(new Point
-		//							(projectileEntity.getX(), projectileEntity.getY()));
-		//					Sound.playSound(soundEnum.SMALLEXPLOSION);
-		//					projectileEntities.remove(projectileEntity);
-		//				}
-		//			}
-		//		} else if (projectileEntity.team().equals(Team.ENEMY)){   //test enemy hits player
-		//			if (Physics.Collision(myShip, projectileEntity)) {
-		//				projectileEntities.remove(projectileEntity);
-		//				myShip.decreaseHealth();
-		//				renderCollision=true;
-		//				collisionSprite=new CollisionSpriteBlue(new Point
-		//						(myShip.getX()+myShip.getWidth()/2, myShip.getY()+myShip.getHeight()/2));
-		//				Sound.playSound(soundEnum.SMALLEXPLOSION);
-		//			}
-		//		}
-	}
-
-	//public boolean reset() {
-	//	return reset;
-	//}
 
 	private void checkDeadEnemy(EnemyEntity enemyEntity) {
 		if (enemyEntity.isDead()) {
@@ -366,7 +291,6 @@ public class Controller {
 		}
 	}
 
-
 	private void checkKeys() {
 		if (Keyboard.typed(KeyEvent.VK_LEFT)&&!paused&&!playerDead) {
 			myShip.moveLeft();
@@ -388,14 +312,14 @@ public class Controller {
 			}
 		}
 
-		if (Keyboard.typed(KeyEvent.VK_S)&&!paused&&!playerDead) {
+		if (Keyboard.typed(KeyEvent.VK_A)&&!paused&&!playerDead) {
 			ArrayList<ProjectileEntity> newProjectiles=myShip.shootMissile(-30);
 			if (newProjectiles!=null) {
 				projectileEntities.addAll(newProjectiles);
 			}
 		}
 
-		if (Keyboard.typed(KeyEvent.VK_F)&&!paused&&!playerDead) {
+		if (Keyboard.typed(KeyEvent.VK_D)&&!paused&&!playerDead) {
 			ArrayList<ProjectileEntity> newProjectiles=myShip.shootMissile(30);
 			if (newProjectiles!=null) {
 				projectileEntities.addAll(newProjectiles);

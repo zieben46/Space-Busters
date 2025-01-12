@@ -1,17 +1,11 @@
 package main.java.enemies;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import main.java.EntityBehaviors.NullBulletBehavior;
-import main.java.classes.EnemyEntity;
 import main.java.game.EnemyAI;
 import main.java.game.Game;
 import main.java.game.ImageLoader;
 
-public class EnemySuicide extends Enemy implements EnemyEntity {
+public class EnemySuicide extends Enemy {
 	private int velocity;
 
 	public EnemySuicide(int velocity, int health) {
