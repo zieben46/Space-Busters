@@ -146,6 +146,8 @@ public class Controller {
 		enemyEntities.stream().forEach(e -> e.render(g));
 		upgradeEntities.stream().forEach(e -> e.render(g));
 		myShip.render(g);
+
+
 		explosionEntities.stream().forEach(e -> e.render(g));
 
 		if (inGap) {
