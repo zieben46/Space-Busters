@@ -1,13 +1,13 @@
-package main.java.enemy;
+package enemy;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import main.java.bulletbehavior.DuoBulletBehavior;
-import main.java.entity.ProjectileEntity;
-import main.java.entity.ProjectileEntity.Team;
-import main.java.game.EnemyAI;
-import main.java.game.ImageLoader;
+import bulletbehavior.DuoBulletBehavior;
+import entity.ProjectileEntity;
+import entity.ProjectileEntity.Team;
+import game.assets.ImageLoader;
+import game.entities.EnemyAI;
 
 public class EnemyAIEasySlave extends EnemyAIEasy {
 	private Random random=new Random();

@@ -1,9 +1,9 @@
-package main.java.bulletbehavior;
+package bulletbehavior;
 import java.util.ArrayList;
 
-import main.java.entity.ProjectileEntity;
-import main.java.entity.ProjectileEntity.Team;
-import main.java.game.Beam;
+import entity.ProjectileEntity;
+import entity.ProjectileEntity.Team;
+import game.projectiles.Beam;
 
 public class SingleBeamBehavior implements BulletBehavior {
 

@@ -1,12 +1,12 @@
-package main.java.level;
+package level;
 
 import java.util.LinkedList;
 
-import main.java.enemy.EnemyAIEasySlave;
-import main.java.enemy.EnemyCarrierEasy;
-import main.java.entity.EnemyEntity;
-import main.java.entity.EnemyEntity.EnemyType;
-import main.java.game.MyShip;
+import enemy.EnemyAIEasySlave;
+import enemy.EnemyCarrierEasy;
+import entity.EnemyEntity;
+import entity.EnemyEntity.EnemyType;
+import game.entities.MyShip;
 
 public class Level14 extends Level {
 	private int totalSlaves;

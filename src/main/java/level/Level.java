@@ -1,10 +1,10 @@
-package main.java.level;
+package level;
 
 import java.util.LinkedList;
 
-import main.java.entity.EnemyEntity;
-import main.java.game.EnemyFactory;
-import main.java.game.MyShip;
+import entity.EnemyEntity;
+import game.entities.EnemyFactory;
+import game.entities.MyShip;
 
 public abstract class Level implements LevelEntity {
 	protected EnemyFactory enemyFactory;

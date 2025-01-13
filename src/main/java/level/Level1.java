@@ -1,10 +1,10 @@
-package main.java.level;
+package level;
 
 import java.util.LinkedList;
 
-import main.java.entity.EnemyEntity;
-import main.java.entity.EnemyEntity.EnemyType;
-import main.java.game.MyShip;
+import entity.EnemyEntity;
+import entity.EnemyEntity.EnemyType;
+import game.entities.MyShip;
 
 public class Level1 extends Level {
 

@@ -1,10 +1,10 @@
 {
     "java.project.sourcePaths": [
-        "resources",
-        "src"
+        "src/main/java",
+        "src/main/resources"
     ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-       "lib/*.jar"
+        "lib/*.jar"
     ]
 }

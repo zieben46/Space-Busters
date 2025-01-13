@@ -1,13 +1,13 @@
-package main.java.collisionsprite;
+package collisionsprite;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import main.java.game.Game;
-import main.java.game.ImageLoader;
-import main.java.game.Sound;
-import main.java.game.Sound.soundEnum;
+import game.assets.ImageLoader;
+import game.assets.Sound;
+import game.assets.Sound.soundEnum;
+import game.core.Game;
 
 public class BigYellowExplosion extends Explosion {
 	private int frame=0;

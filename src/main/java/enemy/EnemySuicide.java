@@ -1,9 +1,9 @@
-package main.java.enemy;
+package enemy;
 
-import main.java.bulletbehavior.NullBulletBehavior;
-import main.java.game.EnemyAI;
-import main.java.game.Game;
-import main.java.game.ImageLoader;
+import bulletbehavior.NullBulletBehavior;
+import game.assets.ImageLoader;
+import game.core.Game;
+import game.entities.EnemyAI;
 
 public class EnemySuicide extends Enemy {
 	private int velocity;

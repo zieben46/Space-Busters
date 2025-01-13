@@ -1,5 +1,4 @@
-package main.java.enemy;
-
+package enemy;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -7,12 +6,12 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-import main.java.bulletbehavior.BulletBehavior;
-import main.java.entity.EnemyEntity;
-import main.java.entity.ProjectileEntity;
-import main.java.entity.ProjectileEntity.Team;
-import main.java.game.Game;
-import main.java.game.GameObject;
+import bulletbehavior.BulletBehavior;
+import entity.EnemyEntity;
+import entity.ProjectileEntity;
+import entity.ProjectileEntity.Team;
+import game.core.Game;
+import game.entities.GameObject;
 
 public abstract class Enemy extends GameObject implements EnemyEntity {
 	protected BufferedImage shipImage;

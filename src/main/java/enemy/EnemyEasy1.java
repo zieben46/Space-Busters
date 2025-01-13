@@ -1,9 +1,9 @@
-package main.java.enemy;
+package enemy;
 
 import java.util.Random;
 
-import main.java.bulletbehavior.SingleBulletBehavior;
-import main.java.game.ImageLoader;
+import bulletbehavior.SingleBulletBehavior;
+import game.assets.ImageLoader;
 
 public class EnemyEasy1 extends Enemy {
 	int health=30;

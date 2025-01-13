@@ -1,7 +1,7 @@
-package main.java.enemy;
+package enemy;
 
-import main.java.bulletbehavior.SpreadBulletBehavior;
-import main.java.game.ImageLoader;
+import bulletbehavior.SpreadBulletBehavior;
+import game.assets.ImageLoader;
 
 public class EnemyMedium3 extends Enemy {
 	private long movedTime;

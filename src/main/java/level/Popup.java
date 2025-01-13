@@ -1,11 +1,11 @@
-package main.java.level;
+package level;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
-import main.java.game.Game;
+import game.core.Game;
 
 public class Popup {
 	private int levelNumber;

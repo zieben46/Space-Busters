@@ -1,7 +1,7 @@
-package main.java.enemy;
+package enemy;
 
-import main.java.bulletbehavior.DuoBulletBehavior;
-import main.java.game.ImageLoader;
+import bulletbehavior.DuoBulletBehavior;
+import game.assets.ImageLoader;
 
 public class EnemyEasy2 extends Enemy {
 	public EnemyEasy2() {

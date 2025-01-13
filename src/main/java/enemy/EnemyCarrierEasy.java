@@ -1,10 +1,10 @@
-package main.java.enemy;
+package enemy;
 
 import java.util.Random;
 
-import main.java.bulletbehavior.NullBulletBehavior;
-import main.java.game.EnemyAI;
-import main.java.game.ImageLoader;
+import bulletbehavior.NullBulletBehavior;
+import game.assets.ImageLoader;
+import game.entities.EnemyAI;
 
 public class EnemyCarrierEasy extends Enemy {
 	private Random random=new Random();

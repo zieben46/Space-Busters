@@ -1,4 +1,4 @@
-package main.java.level;
+package level;
 
 public interface LevelEntity {
 	

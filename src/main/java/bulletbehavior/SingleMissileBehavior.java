@@ -1,12 +1,12 @@
-package main.java.bulletbehavior;
+package bulletbehavior;
 
 import java.util.ArrayList;
 
-import main.java.entity.ProjectileEntity;
-import main.java.entity.ProjectileEntity.Team;
-import main.java.game.Missile;
-import main.java.game.Sound;
-import main.java.game.Sound.soundEnum;
+import entity.ProjectileEntity;
+import entity.ProjectileEntity.Team;
+import game.assets.Sound;
+import game.assets.Sound.soundEnum;
+import game.projectiles.Missile;
 
 public class SingleMissileBehavior implements MissileBehavior {
 

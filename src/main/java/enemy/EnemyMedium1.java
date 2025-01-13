@@ -1,7 +1,7 @@
-package main.java.enemy;
+package enemy;
 
-import main.java.bulletbehavior.NullBulletBehavior;
-import main.java.game.ImageLoader;
+import bulletbehavior.NullBulletBehavior;
+import game.assets.ImageLoader;
 
 public class EnemyMedium1 extends Enemy {
 	int health=30;

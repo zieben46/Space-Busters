@@ -1,8 +1,8 @@
-package main.java.collisionsprite;
+package collisionsprite;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import main.java.game.ImageLoader;
+import game.assets.ImageLoader;
 
 public class YellowExplosion extends Explosion {
 

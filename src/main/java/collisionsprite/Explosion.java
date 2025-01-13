@@ -1,11 +1,11 @@
-package main.java.collisionsprite;
+package collisionsprite;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import main.java.entity.ExplosionEntity;
+import entity.ExplosionEntity;
 
 public abstract class Explosion implements ExplosionEntity {
 	BufferedImage images;
