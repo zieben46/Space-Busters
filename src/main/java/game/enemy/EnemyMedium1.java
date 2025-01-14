@@ -1,7 +1,7 @@
 package game.enemy;
 
-import game.assets.ImageLoader;
-import game.bulletbehaviors.NullBulletBehavior;
+import game.projectiles.projectilebehaviors.NullBulletBehavior;
+import game.utils.ImageLoader;
 
 public class EnemyMedium1 extends Enemy {
 	int health=30;

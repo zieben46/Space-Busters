@@ -2,8 +2,8 @@ package game.enemy;
 
 import java.util.Random;
 
-import game.assets.ImageLoader;
-import game.bulletbehaviors.SingleBeamBehavior;
+import game.projectiles.projectilebehaviors.SingleBeamBehavior;
+import game.utils.ImageLoader;
 
 public class EnemyBeamEasy extends Enemy {
 	int health=30;

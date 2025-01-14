@@ -9,12 +9,12 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import game.assets.ImageLoader;
+import game.ancillary.StatsTracker;
 import game.entities.Space;
 import game.input.Keyboard;
 import game.input.MouseInput;
 import game.ui.Menu;
-import game.utils.StatsTracker;
+import game.utils.ImageLoader;
 
 public class Game extends JPanel implements KeyListener, Runnable {
 	private static final long serialVersionUID = 1L;

@@ -2,9 +2,9 @@ package game.entities;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import game.assets.ImageLoader;
 import game.core.Controller;
 import game.core.Game;
+import game.utils.ImageLoader;
 
 public class Space {
 	public static final int WIDTH=Game.WIDTH;

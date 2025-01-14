@@ -4,19 +4,19 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import game.assets.ImageLoader;
-import game.bulletbehaviors.*;
+import game.ancillary.StatsTracker;
 import game.entities.interfaces.Entity;
 import game.entities.interfaces.ProjectileEntity;
 import game.entities.interfaces.UpgradeEntity;
-import game.utils.StatsTracker;
+import game.projectiles.projectilebehaviors.*;
+import game.utils.ImageLoader;
 
 public class MyShip extends GameObject implements Entity {
 	protected BufferedImage[] shipImage;
 	protected int Vx;
 	protected int Vy;
 	protected double animeCount=6.0;
-	private BulletBehavior bulletBehavior;
+	private ProjectileBehavior bulletBehavior;
 	private MissileBehavior missileBehavior;
 	private boolean dead=false;
 
@@ -154,7 +154,7 @@ public class MyShip extends GameObject implements Entity {
 		}
 	}
 
-	public void setBulletBehavior(BulletBehavior bulletBehavior) {
+	public void setBulletBehavior(ProjectileBehavior bulletBehavior) {
 		this.bulletBehavior=bulletBehavior;
 	}
 

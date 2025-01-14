@@ -1,9 +1,8 @@
 package game.enemy;
 
-import game.assets.ImageLoader;
-import game.bulletbehaviors.NullBulletBehavior;
 import game.core.Game;
-import game.entities.EnemyAI;
+import game.projectiles.projectilebehaviors.NullBulletBehavior;
+import game.utils.ImageLoader;
 
 public class EnemySuicide extends Enemy {
 	private int velocity;

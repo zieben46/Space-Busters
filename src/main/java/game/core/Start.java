@@ -3,8 +3,8 @@ package game.core;
 import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JFrame;
 
-import game.assets.ImageLoader;
-import game.assets.Sound;
+import game.utils.ImageLoader;
+import game.utils.Sound;
 
 public class Start {
 	

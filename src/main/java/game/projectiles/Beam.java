@@ -1,6 +1,6 @@
 package game.projectiles;
 
-import game.assets.ImageLoader;
+import game.utils.ImageLoader;
 
 public class Beam extends Bullet {
 

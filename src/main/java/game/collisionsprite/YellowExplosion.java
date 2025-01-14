@@ -3,7 +3,7 @@ package game.collisionsprite;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import game.assets.ImageLoader;
+import game.utils.ImageLoader;
 
 public class YellowExplosion extends Explosion {
 

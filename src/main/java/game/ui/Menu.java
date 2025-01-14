@@ -6,9 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
-import game.assets.ImageLoader;
 import game.core.Game;
 import game.input.MouseInput;
+import game.utils.ImageLoader;
 
 public class Menu {
 	private BufferedImage background;

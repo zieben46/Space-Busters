@@ -12,13 +12,13 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
-import game.assets.LoadAndSaver;
-import game.assets.Sound;
-import game.assets.Sound.soundEnum;
+import game.ancillary.MyShipUpgrades;
+import game.ancillary.Physics;
+import game.ancillary.StatsTracker;
 import game.collisionsprite.BigYellowExplosion;
 import game.collisionsprite.BlueExplosion;
 import game.collisionsprite.YellowExplosion;
-import game.entities.EnemyAI;
+import game.enemy.EnemyAI;
 import game.entities.MyShip;
 import game.entities.Upgrade;
 import game.entities.interfaces.EnemyEntity;
@@ -29,12 +29,12 @@ import game.entities.interfaces.ProjectileEntity.Team;
 import game.entities.interfaces.UpgradeEntity.UpgradeType;
 import game.input.Keyboard;
 import game.levels.LevelEntity;
+import game.levels.LevelFactory;
 import game.levels.Popup;
 import game.projectiles.Beam;
-import game.utils.LevelFactory;
-import game.utils.MyShipUpgrades;
-import game.utils.Physics;
-import game.utils.StatsTracker;
+import game.utils.LoadAndSaver;
+import game.utils.Sound;
+import game.utils.Sound.soundEnum;
 
 public class Controller {
 

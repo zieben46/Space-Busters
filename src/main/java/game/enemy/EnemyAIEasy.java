@@ -3,11 +3,10 @@ package game.enemy;
 import java.util.ArrayList;
 import java.util.Random;
 
-import game.assets.ImageLoader;
-import game.bulletbehaviors.DuoBulletBehavior;
-import game.entities.EnemyAI;
 import game.entities.interfaces.ProjectileEntity;
 import game.entities.interfaces.ProjectileEntity.Team;
+import game.projectiles.projectilebehaviors.DuoBulletBehavior;
+import game.utils.ImageLoader;
 
 public class EnemyAIEasy extends Enemy {
 	private Random random=new Random();

@@ -3,10 +3,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import game.assets.LoadAndSaver;
-import game.assets.Sound;
-import game.assets.Sound.soundEnum;
 import game.core.Game;
+import game.utils.LoadAndSaver;
+import game.utils.Sound;
+import game.utils.Sound.soundEnum;
 
 public class MouseInput implements MouseListener, MouseMotionListener  {
 

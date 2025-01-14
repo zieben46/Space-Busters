@@ -5,10 +5,10 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
-import game.assets.ImageLoader;
-import game.assets.Sound;
-import game.assets.Sound.soundEnum;
 import game.core.Game;
+import game.utils.ImageLoader;
+import game.utils.Sound;
+import game.utils.Sound.soundEnum;
 
 public class BigYellowExplosion extends Explosion {
 	private int frame=0;

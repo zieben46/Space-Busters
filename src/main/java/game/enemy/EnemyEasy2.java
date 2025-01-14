@@ -1,7 +1,7 @@
 package game.enemy;
 
-import game.assets.ImageLoader;
-import game.bulletbehaviors.DuoBulletBehavior;
+import game.projectiles.projectilebehaviors.DuoBulletBehavior;
+import game.utils.ImageLoader;
 
 public class EnemyEasy2 extends Enemy {
 	public EnemyEasy2() {

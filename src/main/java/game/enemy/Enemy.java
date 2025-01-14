@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
-import game.bulletbehaviors.BulletBehavior;
 import game.core.Game;
 import game.entities.GameObject;
 import game.entities.interfaces.EnemyEntity;
 import game.entities.interfaces.ProjectileEntity;
 import game.entities.interfaces.ProjectileEntity.Team;
+import game.projectiles.projectilebehaviors.ProjectileBehavior;
 
 public abstract class Enemy extends GameObject implements EnemyEntity {
 	protected BufferedImage shipImage;
@@ -22,7 +22,7 @@ public abstract class Enemy extends GameObject implements EnemyEntity {
 	protected int Vx;
 	protected int Vy;
 	protected int health;
-	protected BulletBehavior bulletBehavior;
+	protected ProjectileBehavior bulletBehavior;
 	protected int bulletSpeed;
 	protected double bulletCoolDownTime;
 	protected double moveCoolDownTime;
