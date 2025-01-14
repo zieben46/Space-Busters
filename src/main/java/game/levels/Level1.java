@@ -1,0 +1,24 @@
+package game.levels;
+
+import java.util.LinkedList;
+
+import game.entities.MyShip;
+import game.entities.interfaces.EnemyEntity;
+import game.entities.interfaces.EnemyEntity.EnemyType;
+
+public class Level1 extends Level {
+
+	public Level1(LinkedList<EnemyEntity> enemyEntities, MyShip myShip) {
+		super(enemyEntities, myShip);
+		gapTime=10*1000;
+		totalEnemies=25;
+		enemyRate=10;
+	}
+
+	@Override
+	public void addEnemy() {
+		if (enemiesAdded<totalEnemies)
+			enemyEntities.add(enemyFactory.addEnemy(EnemyType.Easy1));
+		enemiesAdded++;
+	}
+}

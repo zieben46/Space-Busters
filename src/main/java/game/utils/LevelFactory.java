@@ -2,9 +2,9 @@ package game.utils;
 
 import java.util.LinkedList;
 
-import entity.EnemyEntity;
 import game.entities.MyShip;
-import level.*;
+import game.entities.interfaces.EnemyEntity;
+import game.levels.*;
 
 public class LevelFactory {
 	private LinkedList<EnemyEntity> enemyEntities;

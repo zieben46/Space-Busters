@@ -1,6 +1,6 @@
 package game.utils;
 
-import bulletbehavior.*;
+import game.bulletbehaviors.*;
 import game.entities.MyShip;
 
 public class MyShipUpgrades {

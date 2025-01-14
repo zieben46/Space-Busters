@@ -1,8 +1,8 @@
 package game.entities;
 
-import enemy.*;
-import entity.EnemyEntity;
-import entity.EnemyEntity.EnemyType;
+import game.enemy.*;
+import game.entities.interfaces.EnemyEntity;
+import game.entities.interfaces.EnemyEntity.EnemyType;
 
 public class EnemyFactory {
 	

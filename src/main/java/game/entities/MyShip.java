@@ -4,9 +4,11 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import bulletbehavior.*;
-import entity.*;
 import game.assets.ImageLoader;
+import game.bulletbehaviors.*;
+import game.entities.interfaces.Entity;
+import game.entities.interfaces.ProjectileEntity;
+import game.entities.interfaces.UpgradeEntity;
 import game.utils.StatsTracker;
 
 public class MyShip extends GameObject implements Entity {

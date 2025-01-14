@@ -2,8 +2,8 @@ package game.entities;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import entity.UpgradeEntity;
 import game.assets.ImageLoader;
+import game.entities.interfaces.UpgradeEntity;
 
 public class Upgrade extends GameObject implements UpgradeEntity {
 

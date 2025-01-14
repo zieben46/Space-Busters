@@ -1,7 +1,7 @@
 package game.utils;
 import java.awt.Rectangle;
 
-import entity.Entity;
+import game.entities.interfaces.Entity;
 
 public class Physics {
 
