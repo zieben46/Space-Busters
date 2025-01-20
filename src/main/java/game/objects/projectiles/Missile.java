@@ -9,7 +9,7 @@ public class Missile extends Bullet {
 		getImage();
 	}
 
-	protected void getImage() {
+	public void getImage() {
 		if (Vx<0) {
 			projectileImage = ImageLoader.missileLeft;
 		} else if (Vx>0) {

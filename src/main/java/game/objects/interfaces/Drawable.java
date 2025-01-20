@@ -9,4 +9,5 @@ public interface Drawable {
 	public int getX();
 	public int getY();
 	public Rectangle getBounds();
+	public void getImage();
 }

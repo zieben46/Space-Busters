@@ -24,7 +24,7 @@ public class Bullet extends BaseObject implements ProjectileEntity {
 		super.setWidth(projectileImage.getWidth());
 	}
 
-	protected void getImage() {
+	public void getImage() {
 		if (team.equals(Team.FRIENDLY)) {
 			projectileImage = ImageLoader.bulletUp;
 		} else if (team.equals(Team.ENEMY)) {

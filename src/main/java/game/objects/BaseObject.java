@@ -24,6 +24,7 @@ public abstract class BaseObject implements Drawable {
 		//y=-40;
 	}
 
+	@Override
 	public Rectangle getBounds() {
 		return new Rectangle (x, y, width, height);
 	}

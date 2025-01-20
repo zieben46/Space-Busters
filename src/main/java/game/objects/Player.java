@@ -45,7 +45,7 @@ public class Player extends BaseObject {
 	}
 
     //Base Object methods
-	private void getImage() {
+	public void getImage() {
 		shipImage[0]= ImageLoader.myShip0;
 		shipImage[1]= ImageLoader.myShip1;
 		shipImage[2]= ImageLoader.myShip2;
@@ -62,6 +62,7 @@ public class Player extends BaseObject {
 		}
 	}
 
+	@Override
 	public void update() {
 		if (x>=Space.WIDTH-50&&!dead) {
 			x=Space.WIDTH-50;
@@ -147,10 +148,12 @@ public class Player extends BaseObject {
 		y+=Player.Vy;
 	}
 
+	@Override
 	public int getX() {
 		return x;
 	}
 
+	@Override
 	public int getY() {
 		return y;
 	}
@@ -163,6 +166,7 @@ public class Player extends BaseObject {
 		this.y=y;
 	}
 
+	@Override
 	public Rectangle getBounds() {
 		return new Rectangle (x, y, shipImage[3].getWidth(), shipImage[3].getHeight());
 	}

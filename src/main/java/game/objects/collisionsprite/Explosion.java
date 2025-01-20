@@ -18,10 +18,10 @@ public abstract class Explosion implements ExplosionEntity {
 	public Explosion (Point point) {
 		this.x=(int) point.getX();
 		this.y=(int) point.getY();
-		setImage();
+		getImage();
 	}
 
-	abstract void setImage();
+	// abstract void setImage();
 
 	@Override
 	public void render(Graphics2D g) {

@@ -20,7 +20,7 @@ public class EnemyEasy1 extends BaseEnemy {
 	}
 
 	@Override
-	void getImage() {
+	public void getImage() {
 		shipImage = ImageLoader.EnemyEasy1;
 	}
 

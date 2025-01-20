@@ -17,12 +17,13 @@ public class Item extends BaseObject implements ItemEntity {
 		Vx=0;
 		Vy=1;
 		this.itemType=itemType;
-		loadImage();
+		getImage();
 		super.setHeight(upgradeImage.getHeight());
 		super.setWidth(upgradeImage.getWidth());
 	}
 
-	private void loadImage() {
+	@Override
+	public void getImage() {
 		switch (itemType) {
 		case movement :
 			upgradeImage= ImageLoader.yellowUpgrade;

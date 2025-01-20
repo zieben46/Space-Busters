@@ -21,7 +21,7 @@ public class EnemySuicide extends BaseEnemy {
 	}
 
 	@Override
-	void getImage() {
+	public void getImage() {
 		shipImage = ImageLoader.enemySuicide;
 	}
 

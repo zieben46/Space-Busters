@@ -22,7 +22,7 @@ public class EnemyBeamEasy extends BaseEnemy {
 	}
 
 	@Override
-	void getImage() {
+	public void getImage() {
 		shipImage = ImageLoader.enemyBeamEasy;
 	}
 	

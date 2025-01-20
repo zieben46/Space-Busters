@@ -9,10 +9,11 @@ public class Beam extends Bullet {
 	}
 
 	@Override
-	protected void getImage() {
+	public void getImage() {
 		projectileImage = ImageLoader.beamDown;
 	}
 
+	@Override
 	public void update() {
 		//do nothing
 	}

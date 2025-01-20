@@ -35,7 +35,7 @@ public abstract class BaseEnemy extends BaseObject implements EnemyEntity {
 		super.setWidth(shipImage.getWidth());
 	}
 	
-	abstract void getImage();
+	public abstract void getImage();
 	
 	@Override
 	public void render(Graphics2D g) {

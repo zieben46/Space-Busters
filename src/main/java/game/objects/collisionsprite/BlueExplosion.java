@@ -11,7 +11,7 @@ public class BlueExplosion extends Explosion {
 	}
 
 	@Override
-	void setImage() {
+	public void getImage() {
 		int width=50;
 		int height=50;
 		imageArray=new BufferedImage[46];

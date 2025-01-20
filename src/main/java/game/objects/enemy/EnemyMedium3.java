@@ -20,7 +20,7 @@ public class EnemyMedium3 extends BaseEnemy {
 	}
 
 	@Override
-	void getImage() {
+	public void getImage() {
 		shipImage = ImageLoader.enemyMedium3;
 	}
 

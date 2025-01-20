@@ -18,7 +18,7 @@ public class BigYellowExplosion extends Explosion {
 
 	}
 
-	public void setImage() {
+	public void getImage() {
 		int width=400;
 		int height=400;
 		imageArray=new BufferedImage[81];
