@@ -1,7 +1,7 @@
 package game.levels;
 
-import game.gameobjects.Player;
-import game.gameobjects.projectiles.projectilebehaviors.*;
+import game.objects.Player;
+import game.objects.projectiles.projectilebehaviors.*;
 
 public class MyShipUpgrades {
 

@@ -2,8 +2,8 @@ package game.levels;
 
 import java.util.LinkedList;
 
-import game.gameobjects.Player;
-import game.gameobjects.interfaces.EnemyEntity;
+import game.objects.Player;
+import game.objects.interfaces.EnemyEntity;
 
 public class LevelFactory {
 	private LinkedList<EnemyEntity> enemyEntities;

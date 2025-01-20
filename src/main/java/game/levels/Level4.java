@@ -3,9 +3,9 @@ package game.levels;
 import java.util.LinkedList;
 import java.util.Random;
 
-import game.gameobjects.Player;
-import game.gameobjects.interfaces.EnemyEntity;
-import game.gameobjects.interfaces.EnemyEntity.EnemyType;
+import game.objects.Player;
+import game.objects.interfaces.EnemyEntity;
+import game.objects.interfaces.EnemyEntity.EnemyType;
 
 public class Level4 extends Level {
 	private int enemyTypes=3;

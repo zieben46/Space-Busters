@@ -1,7 +1,7 @@
 package game.core;
 import java.awt.Rectangle;
 
-import game.gameobjects.interfaces.Drawable;
+import game.objects.interfaces.Drawable;
 
 public class Physics {
 

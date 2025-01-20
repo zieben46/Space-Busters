@@ -2,9 +2,9 @@ package game.levels;
 
 import java.util.LinkedList;
 
-import game.gameobjects.Player;
-import game.gameobjects.interfaces.EnemyEntity;
-import game.gameobjects.interfaces.EnemyEntity.EnemyType;
+import game.objects.Player;
+import game.objects.interfaces.EnemyEntity;
+import game.objects.interfaces.EnemyEntity.EnemyType;
 
 public class Level9 extends Level {
 

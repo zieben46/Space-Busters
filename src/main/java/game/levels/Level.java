@@ -2,9 +2,9 @@ package game.levels;
 
 import java.util.LinkedList;
 
-import game.gameobjects.Player;
-import game.gameobjects.enemy.EnemyFactory;
-import game.gameobjects.interfaces.EnemyEntity;
+import game.objects.Player;
+import game.objects.enemy.EnemyFactory;
+import game.objects.interfaces.EnemyEntity;
 
 public abstract class Level implements LevelEntity {
 	protected EnemyFactory enemyFactory;

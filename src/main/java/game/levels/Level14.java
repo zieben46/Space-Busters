@@ -2,11 +2,11 @@ package game.levels;
 
 import java.util.LinkedList;
 
-import game.gameobjects.Player;
-import game.gameobjects.enemy.EnemyAIEasySlave;
-import game.gameobjects.enemy.EnemyCarrierEasy;
-import game.gameobjects.interfaces.EnemyEntity;
-import game.gameobjects.interfaces.EnemyEntity.EnemyType;
+import game.objects.Player;
+import game.objects.enemy.EnemyAIEasySlave;
+import game.objects.enemy.EnemyCarrierEasy;
+import game.objects.interfaces.EnemyEntity;
+import game.objects.interfaces.EnemyEntity.EnemyType;
 
 public class Level14 extends Level {
 	private int totalSlaves;

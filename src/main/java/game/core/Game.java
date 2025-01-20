@@ -9,9 +9,9 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import game.gameobjects.Space;
 import game.input.Keyboard;
 import game.input.MouseInput;
+import game.objects.Space;
 import game.ui.Menu;
 import game.utils.ImageLoader;
 
