@@ -3,12 +3,12 @@ package game.levels;
 import java.util.LinkedList;
 
 import game.objects.Player;
-import game.objects.interfaces.EnemyEntity;
-import game.objects.interfaces.EnemyEntity.EnemyType;
+import game.objects.interfaces.Enemy;
+import game.objects.interfaces.Enemy.EnemyType;
 
 public class Level9 extends Level {
 
-	public Level9(LinkedList<EnemyEntity> enemyEntities, Player player) {
+	public Level9(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
 		totalEnemies=150;
 		enemyRate=7;

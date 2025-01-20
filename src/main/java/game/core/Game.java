@@ -163,6 +163,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
 		g.drawRect(5,  5, 200, 20);
 	}
 	
+	
 	private void drawFPS(Graphics2D g) {
 		g.setFont(new Font("arial", Font.BOLD, 10));
 		g.drawString("Updates: "+currUpdates+" FPS: "+currFrames, WIDTH-107, HEIGHT-5);
@@ -194,6 +195,6 @@ public class Game extends JPanel implements KeyListener, Runnable {
 		g.drawRect(0, HEIGHT-33, 270, 70);
 		
 		g.setColor(Color.lightGray);
-		g.drawString("Current Level: "+StatsTracker.level, 400, HEIGHT-10);
+		g.drawString("Level "+StatsTracker.level, 400, HEIGHT-10);
 	}	
 }

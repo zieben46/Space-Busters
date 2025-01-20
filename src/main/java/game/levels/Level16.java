@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import game.objects.Player;
-import game.objects.interfaces.EnemyEntity;
-import game.objects.interfaces.EnemyEntity.EnemyType;
+import game.objects.interfaces.Enemy;
+import game.objects.interfaces.Enemy.EnemyType;
 
 public class Level16 extends Level {
 	private Random random;
 	private int enemyTypes;
 
-	public Level16(LinkedList<EnemyEntity> enemyEntities, Player player) {
+	public Level16(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
 		totalEnemies=500;
 		enemyRate=20;

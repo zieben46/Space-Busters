@@ -26,7 +26,7 @@ public class Space {
 	}
 
 	private void createBackground() {
-		spaceImage= ImageLoader.spaceBackground;	
+		spaceImage=ImageLoader.spaceBackground;	
 	}
 
 	public void render(Graphics2D g) {

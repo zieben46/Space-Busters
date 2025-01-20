@@ -3,12 +3,12 @@ package game.levels;
 import java.util.LinkedList;
 
 import game.objects.Player;
-import game.objects.interfaces.EnemyEntity;
-import game.objects.interfaces.EnemyEntity.EnemyType;
+import game.objects.interfaces.Enemy;
+import game.objects.interfaces.Enemy.EnemyType;
 
 public class Level1 extends Level {
 
-	public Level1(LinkedList<EnemyEntity> enemyEntities, Player player) {
+	public Level1(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
 		gapTime=10*1000;
 		totalEnemies=25;

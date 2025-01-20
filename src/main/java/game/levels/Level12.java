@@ -3,16 +3,16 @@ package game.levels;
 import java.util.LinkedList;
 
 import game.objects.Player;
-import game.objects.enemy.EnemyAIEasySlave;
-import game.objects.enemy.EnemyCarrierEasy;
-import game.objects.interfaces.EnemyEntity;
-import game.objects.interfaces.EnemyEntity.EnemyType;
+import game.objects.enemies.EnemyAIEasySlave;
+import game.objects.enemies.EnemyCarrierEasy;
+import game.objects.interfaces.Enemy;
+import game.objects.interfaces.Enemy.EnemyType;
 
 public class Level12 extends Level {
 	private int totalSlaves;
 	private int slavesPerCarr=20;
 
-	public Level12(LinkedList<EnemyEntity> enemyEntities, Player player) {
+	public Level12(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
 		totalEnemies=3;
 		totalSlaves=slavesPerCarr*totalEnemies;
@@ -35,7 +35,7 @@ public class Level12 extends Level {
 	public void addEnemy() {
 		int currSlaveCount=0;
 		int currCarrierCount=0;
-		for (EnemyEntity enemyEntity: enemyEntities) {
+		for (Enemy enemyEntity: enemyEntities) {
 			if (enemyEntity.getClass().equals(EnemyAIEasySlave.class)) {
 				currSlaveCount++;
 			} else if (enemyEntity.getClass().equals(EnemyCarrierEasy.class)) {

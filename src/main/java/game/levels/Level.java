@@ -3,15 +3,15 @@ package game.levels;
 import java.util.LinkedList;
 
 import game.objects.Player;
-import game.objects.enemy.EnemyFactory;
-import game.objects.interfaces.EnemyEntity;
+import game.objects.enemies.EnemyFactory;
+import game.objects.interfaces.Enemy;
 
 public abstract class Level implements LevelEntity {
 	protected EnemyFactory enemyFactory;
 	protected int totalEnemies;
 	protected int enemyRate;
 	protected int enemiesPresent;
-	protected LinkedList<EnemyEntity> enemyEntities;
+	protected LinkedList<Enemy> enemyEntities;
 	protected Player player;
 	protected int enemiesAdded;
 	protected int healthPackSpawn=25;
@@ -21,7 +21,7 @@ public abstract class Level implements LevelEntity {
 	protected double startTime;
 	protected boolean inGap;
 
-	public Level(LinkedList<EnemyEntity> enemyEntities, Player player) {
+	public Level(LinkedList<Enemy> enemyEntities, Player player) {
 		this.enemyEntities=enemyEntities;
 		enemyFactory=new EnemyFactory();
 		this.player=player;

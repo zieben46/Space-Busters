@@ -8,9 +8,7 @@ import game.utils.Sound;
 
 public class Start {
 	
-	public static void main(String[] args) throws LineUnavailableException {
-
-		System.out.println(System.getProperty("java.class.path"));
+	public static void main(String[] args) {
 		ImageLoader.loadImages();	
 		Sound.load();
 		Game game=new Game();

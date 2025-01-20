@@ -17,17 +17,16 @@ import game.levels.LevelEntity;
 import game.levels.LevelFactory;
 import game.levels.Popup;
 import game.objects.Player;
+import game.objects.enemies.Radar;
 import game.objects.Item;
-import game.objects.collisionsprite.BigYellowExplosion;
-import game.objects.collisionsprite.BlueExplosion;
-import game.objects.collisionsprite.YellowExplosion;
-import game.objects.enemy.Radar;
-import game.objects.interfaces.EnemyEntity;
-import game.objects.interfaces.ExplosionEntity;
-import game.objects.interfaces.ProjectileEntity;
-import game.objects.interfaces.ItemEntity;
-import game.objects.interfaces.ProjectileEntity.Team;
-import game.objects.interfaces.ItemEntity.ItemType;
+import game.objects.explosions.YellowBigExplosion;
+import game.objects.explosions.BlueExplosion;
+import game.objects.explosions.YellowExplosion;
+import game.objects.interfaces.Enemy;
+import game.objects.interfaces.Explosion;
+import game.objects.interfaces.Projectile;
+import game.objects.Item.ItemType;
+import game.objects.interfaces.Projectile.Team;
 import game.objects.projectiles.Beam;
 import game.utils.LoadAndSaver;
 import game.utils.Sound;
@@ -35,10 +34,10 @@ import game.utils.Sound.soundEnum;
 
 public class Controller {
 
-	private LinkedList<ProjectileEntity> projectileEntities = new LinkedList<ProjectileEntity>();
-	private LinkedList<EnemyEntity> enemyEntities = new LinkedList<EnemyEntity>();
-	private LinkedList<ItemEntity> upgradeEntities = new LinkedList<ItemEntity>();
-	private LinkedList<ExplosionEntity> explosionEntities = new LinkedList<ExplosionEntity>();
+	private LinkedList<Projectile> projectiles = new LinkedList<Projectile>();
+	private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
+	private LinkedList<Item> Items = new LinkedList<Item>();
+	private LinkedList<Explosion> explosions = new LinkedList<Explosion>();
 
 	private Player player;
 
@@ -68,7 +67,7 @@ public class Controller {
 	public Controller(int levelNumber) {
 		this.levelNumber=levelNumber;
 		player=new Player(420, 600);
-		levelFactory=new LevelFactory(enemyEntities, player);
+		levelFactory=new LevelFactory(enemies, player);
 		initializeLevel();
 		healthPackSpawn=level.getHeathSpawnRate();
 	}
@@ -88,33 +87,33 @@ public class Controller {
 		if (!paused) {
 			player.update();
 
-			for (int i=0; i<projectileEntities.size(); i++) {
-				ProjectileEntity projectileEntity=projectileEntities.get(i);
-				projectileHit(projectileEntity);
-				projectileBounds(projectileEntity);
-				checkBeam(projectileEntity);
-				projectileEntity.update();
+			for (int i=0; i<projectiles.size(); i++) {
+				Projectile projectile=projectiles.get(i);
+				projectileHit(projectile);
+				projectileBounds(projectile);
+				checkBeam(projectile);
+				projectile.update();
 			}
 
-			for (int i=0; i<enemyEntities.size(); i++) {
-				EnemyEntity enemyEntity=enemyEntities.get(i);
-				testCollision(enemyEntity);
-				checkDeadEnemy(enemyEntity);			
-				enemyBounds(enemyEntity);
-				randomShoot(enemyEntity);
-				enemyEntity.update();
+			for (int i=0; i<enemies.size(); i++) {
+				Enemy enemy=enemies.get(i);
+				testCollision(enemy);
+				checkDeadEnemy(enemy);			
+				enemyBounds(enemy);
+				randomShoot(enemy);
+				enemy.update();
 			}
 
-			for (int i=0; i<upgradeEntities.size(); i++) {
-				ItemEntity upGradeEntity=upgradeEntities.get(i);
-				pickUp(upGradeEntity);
-				upgradeBounds(upGradeEntity);
-				upGradeEntity.update();
+			for (int i=0; i<Items.size(); i++) {
+				Item item=Items.get(i);
+				pickUp(item);
+				upgradeBounds(item);
+				item.update();
 			}
 
-			for (int i=0; i<explosionEntities.size(); i++) {
-				ExplosionEntity explosionEntity=explosionEntities.get(i);
-				checkRendering(explosionEntity);
+			for (int i=0; i<explosions.size(); i++) {
+				Explosion explosion=explosions.get(i);
+				checkRendering(explosion);
 			}
 
 			level.update();
@@ -125,7 +124,7 @@ public class Controller {
 			if (player.isDead()) {
 
 				if (!explosionRendered) {
-					explosionEntities.add(new BigYellowExplosion(new Point
+					explosions.add(new YellowBigExplosion(new Point
 							(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
 					explosionRendered=true;
 				}
@@ -134,26 +133,26 @@ public class Controller {
 		checkKeys();
 	}
 
-	private void checkRendering(ExplosionEntity explosionEntity) {
-		if (!explosionEntity.isRendering()) {
-			explosionEntities.remove(explosionEntity);
+	private void checkRendering(Explosion explosion) {
+		if (!explosion.isRendering()) {
+			explosions.remove(explosion);
 		}
 	}
 
-	private void checkBeam(ProjectileEntity projectileEntity) {
-		if (projectileEntity.getClass().equals(Beam.class)) {
-			projectileEntities.remove(projectileEntity);
+	private void checkBeam(Projectile projectile) {
+		if (projectile.getClass().equals(Beam.class)) {
+			projectiles.remove(projectile);
 		}
 	}
 
 	public void render(Graphics2D g) {
-		projectileEntities.stream().forEach(e -> e.render(g));
-		enemyEntities.stream().forEach(e -> e.render(g));
-		upgradeEntities.stream().forEach(e -> e.render(g));
+		projectiles.stream().forEach(e -> e.render(g));
+		enemies.stream().forEach(e -> e.render(g));
+		Items.stream().forEach(e -> e.render(g));
 		player.render(g);
 
 
-		explosionEntities.stream().forEach(e -> e.render(g));
+		explosions.stream().forEach(e -> e.render(g));
 
 		if (inGap) {
 			popup.renderWarning(g);
@@ -163,7 +162,7 @@ public class Controller {
 			popup.renderDeadMessage(g);
 			playerDead=true;
 			//			if (!explosionRendered) {
-			//				explosionEntities.add(new BigYellowExplosion(new Point
+			//				explosions.add(new BigYellowExplosion(new Point
 			//						(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
 			//				explosionRendered=true;
 			//			}
@@ -182,84 +181,84 @@ public class Controller {
 		g.drawString(enemiesKilled+"/"+totalEnemies, Game.WIDTH-130, Game.HEIGHT-20);
 	}
 
-	private void randomShoot(EnemyEntity enemyEntity) {
-		ArrayList<ProjectileEntity> newProjectiles=enemyEntity.randomBullet();
+	private void randomShoot(Enemy enemy) {
+		ArrayList<Projectile> newProjectiles=enemy.randomBullet();
 		if (newProjectiles!=null) {
-			projectileEntities.addAll(newProjectiles);
+			projectiles.addAll(newProjectiles);
 		}
 	}
 
-	private void  projectileHit(ProjectileEntity projectileEntity) {    //test player hits enemy
-		if (projectileEntity.team().equals(Team.FRIENDLY)) {
-			for (int i=0; i<enemyEntities.size(); i++) {
-				EnemyEntity enemyEntity=enemyEntities.get(i);
-				if (Physics.Collision(projectileEntity, enemyEntity)) {
+	private void  projectileHit(Projectile projectile) {    //test player hits enemy
+		if (projectile.team().equals(Team.FRIENDLY)) {
+			for (int i=0; i<enemies.size(); i++) {
+				Enemy enemy=enemies.get(i);
+				if (Physics.Collision(projectile, enemy)) {
 
-					enemyEntity.takeDamage(projectileEntity.getDamage());
-					explosionEntities.add(new YellowExplosion(new Point
-							(projectileEntity.getX()+player.getWidth()/2, projectileEntity.getY()+player.getHeight()/2)));
+					enemy.takeDamage(projectile.getDamage());
+					explosions.add(new YellowExplosion(new Point
+							(projectile.getX()+player.getWidth()/2, projectile.getY()+player.getHeight()/2)));
 					Sound.playSound(soundEnum.SMALLEXPLOSION);
-					projectileEntities.remove(projectileEntity);
+					projectiles.remove(projectile);
 				}
 			}
-		} else if (projectileEntity.team().equals(Team.ENEMY)){   //test enemy hits player
-			if (Physics.Collision(player, projectileEntity) && !player.isDead()) {
-				projectileEntities.remove(projectileEntity);
+		} else if (projectile.team().equals(Team.ENEMY)){   //test enemy hits player
+			if (Physics.Collision(player, projectile) && !player.isDead()) {
+				projectiles.remove(projectile);
 				player.decreaseHealth();
-				explosionEntities.add(new BlueExplosion(new Point
+				explosions.add(new BlueExplosion(new Point
 						(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
 				Sound.playSound(soundEnum.SMALLEXPLOSION);
 			}
 		}
 	}
 
-	private void checkDeadEnemy(EnemyEntity enemyEntity) {
-		if (enemyEntity.isDead()) {
-			enemyEntities.remove(enemyEntity);
+	private void checkDeadEnemy(Enemy enemy) {
+		if (enemy.isDead()) {
+			enemies.remove(enemy);
 			enemiesKilled++;
-			spawnUpgrade(enemyEntity.getX(), enemyEntity.getY());    //move?
+			spawnUpgrade(enemy.getX(), enemy.getY());    //move?
 			level.addEnemy();
 		}
 	}
 
-	private void testCollision(EnemyEntity enemyEntity) {    //test for enemy player collision
-		if (Physics.Collision(player, enemyEntity) && !player.isDead()) {
+	private void testCollision(Enemy enemy) {    //test for enemy player collision
+		if (Physics.Collision(player, enemy) && !player.isDead()) {
 			Sound.playSound(soundEnum.SMALLEXPLOSION);
 			player.decreaseHealth();
-			Rectangle union=Physics.getIntersection(player, enemyEntity);
-			explosionEntities.add(new BlueExplosion(new Point((int) union.getX(),(int) union.getY())));
-			enemyEntities.remove(enemyEntity);
+			Rectangle union=Physics.getIntersection(player, enemy);
+			explosions.add(new BlueExplosion(new Point((int) union.getX(),(int) union.getY())));
+			enemies.remove(enemy);
 			enemiesKilled++;
 			level.addEnemy();
 		}
 	}
 
-	private void projectileBounds(ProjectileEntity ProjectileEntity) {
+	private void projectileBounds(Projectile ProjectileEntity) {
 		if (ProjectileEntity.getY()<-20||ProjectileEntity.getY()>1000||
 				ProjectileEntity.getX()<-100||ProjectileEntity.getX()>900) {
-			projectileEntities.remove(ProjectileEntity);
+			projectiles.remove(ProjectileEntity);
 		}
 	}
 
-	private void upgradeBounds(ItemEntity itemEntity) {
-		if (itemEntity.getY()<-20||itemEntity.getY()>1000||
-				itemEntity.getX()<-100||itemEntity.getX()>900) {
-			upgradeEntities.remove(itemEntity);
+	private void upgradeBounds(Item item) {
+		if (item.getY()<-20||item.getY()>1000||
+				item.getX()<-100||item.getX()>900) {
+			Items.remove(item);
 		}
 	}
 
-	private void enemyBounds(EnemyEntity enemyEntity) {
-		int x=enemyEntity.getX();
-		int y=enemyEntity.getY();
+	private void enemyBounds(Enemy enemy) {
+		int x=enemy.getX();
+		int y=enemy.getY();
 
 		if (x>Game.WIDTH+60) {
-			enemyEntity.setX(-30);
+			enemy.setX(-30);
 		}
 		else if (x<-60) {
-			enemyEntity.setX(Game.WIDTH+30);
+			enemy.setX(Game.WIDTH+30);
 
 		} else if (y>Game.HEIGHT+400) {
-			enemyEntity.setNewPosition();
+			enemy.setNewPosition();
 		}
 	}
 
@@ -272,29 +271,29 @@ public class Controller {
 
 	/////////////////////////////////////////////////////////////////////////////////
 
-	private void pickUp(ItemEntity itemEntity) {
-		if ((Physics.Collision(player, itemEntity))) {
-			upgradeEntities.remove(itemEntity);
-			player.consume(itemEntity);
+	private void pickUp(Item item) {
+		if ((Physics.Collision(player, item))) {
+			Items.remove(item);
+			player.consume(item);
 		}
 	}
 
 	private void spawnUpgrade(int x, int y) {  //move
 		int r=random.nextInt(100);
 		if (r<=gunTypeUpgradeSpawn&&StatsTracker.gunTypeUpgs<3) {
-			upgradeEntities.add(new Item(x, y, ItemType.gunType));
+			Items.add(new Item(x, y, ItemType.gunType));
 		}
 		r=random.nextInt(100);
 		if (r<=gunRateUpgradeSpawn&&StatsTracker.gunRateUpgs<10) {
-			upgradeEntities.add(new Item(x, y, ItemType.gunRate));
+			Items.add(new Item(x, y, ItemType.gunRate));
 		} 
 		r=random.nextInt(100);
 		if (r<=movementUpgradeSpawn&&StatsTracker.movementUpgs<3) {
-			upgradeEntities.add(new Item(x, y, ItemType.movement));
+			Items.add(new Item(x, y, ItemType.movement));
 		}
 		r=random.nextInt(100);
 		if (r<=healthPackSpawn) {
-			upgradeEntities.add(new Item(x, y, ItemType.healthPack));
+			Items.add(new Item(x, y, ItemType.healthPack));
 		}
 	}
 
@@ -312,32 +311,32 @@ public class Controller {
 			player.moveDown();
 		}
 		if (Keyboard.typed(KeyEvent.VK_SPACE)&&!paused&&!playerDead) {
-			ArrayList<ProjectileEntity> newProjectiles= new ArrayList<>();
+			ArrayList<Projectile> newProjectiles= new ArrayList<>();
 			newProjectiles=player.shootBullet();
 			if (newProjectiles!=null) {
-				projectileEntities.addAll(newProjectiles);
+				projectiles.addAll(newProjectiles);
 			}
 		}
 
 		if (Keyboard.typed(KeyEvent.VK_A)&&!paused&&!playerDead) {
-			ArrayList<ProjectileEntity> newProjectiles=player.shootMissile(-30);
+			ArrayList<Projectile> newProjectiles=player.shootMissile(-30);
 			if (newProjectiles!=null) {
-				projectileEntities.addAll(newProjectiles);
+				projectiles.addAll(newProjectiles);
 			}
 		}
 
 		if (Keyboard.typed(KeyEvent.VK_D)&&!paused&&!playerDead) {
-			ArrayList<ProjectileEntity> newProjectiles=player.shootMissile(30);
+			ArrayList<Projectile> newProjectiles=player.shootMissile(30);
 			if (newProjectiles!=null) {
-				projectileEntities.addAll(newProjectiles);
+				projectiles.addAll(newProjectiles);
 			}
 		}
 
 		if (Keyboard.EnterPressed()&&!paused&&playerDead) {
 			player=new Player(420, 600);
-			enemyEntities.clear();
-			upgradeEntities.clear();
-			projectileEntities.clear();
+			enemies.clear();
+			Items.clear();
+			projectiles.clear();
 			healthPackSpawn=level.getHeathSpawnRate();
 			initializeLevel();
 		}

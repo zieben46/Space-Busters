@@ -4,10 +4,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.objects.BaseObject;
-import game.objects.interfaces.ProjectileEntity;
+import game.objects.interfaces.Projectile;
 import game.utils.ImageLoader;
 
-public class Bullet extends BaseObject implements ProjectileEntity {
+public class Bullet extends BaseObject implements Projectile {
 
 	protected BufferedImage projectileImage;
 	protected int Vx;

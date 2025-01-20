@@ -5,9 +5,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import game.core.StatsTracker;
-import game.objects.interfaces.ProjectileEntity;
-import game.objects.interfaces.ItemEntity;
-import game.objects.projectiles.projectilebehaviors.*;
+import game.objects.interfaces.Projectile;
+import game.objects.projectiles.behaviors.*;
 import game.utils.ImageLoader;
 
 public class Player extends BaseObject {
@@ -19,8 +18,8 @@ public class Player extends BaseObject {
 	//default bullet behavior
 	private static double coolDownTime=0.5*1000;  //half second
 	private static int bulletSpeed=0;
-	private static ProjectileBehavior bulletBehavior = new SingleBulletBehavior();
-	private static MissileBehavior missileBehavior;
+	private static FrontGunBehavior frontGunBehavior = new MonoBullet();
+	private static SideGunBehavior sideGunBehavior = new OffSideBullets();
 	private static double firedTime;
 
 	//default upgrades 
@@ -31,33 +30,36 @@ public class Player extends BaseObject {
 	//default new object fields
 	private int health=200;
 	private boolean dead=false;
-	protected BufferedImage[] shipImage;
+	protected BufferedImage[] image;
 	protected double animeCount=6.0;
 
 
 	public Player(int x, int y) { 
 		super(x, y);
-		shipImage=new BufferedImage[6];
-		getImage();
-		super.setHeight(shipImage[3].getHeight());
-		super.setWidth(shipImage[3].getWidth());
+		image=Player.getImage();
+		super.setHeight(image[3].getHeight());
+		super.setWidth(image[3].getWidth());
 		StatsTracker.playerHealth=health;
 	}
 
     //Base Object methods
-	public void getImage() {
-		shipImage[0]= ImageLoader.myShip0;
-		shipImage[1]= ImageLoader.myShip1;
-		shipImage[2]= ImageLoader.myShip2;
-		shipImage[3]= ImageLoader.myShip3;
-		shipImage[4]= ImageLoader.myShip4;
-		shipImage[5]= ImageLoader.myShip5;
+	public static BufferedImage[] getImage() {
+		return new BufferedImage[] {
+			ImageLoader.myShip0,
+			ImageLoader.myShip1,
+			ImageLoader.myShip2,
+			ImageLoader.myShip3,
+			ImageLoader.myShip4,
+			ImageLoader.myShip5
+		};
 	}
+	
+
 
 	@Override
 	public void render(Graphics2D g) {
 		if (!dead) {
-			g.drawImage(shipImage[(int) animeCount%6], x, y, null);
+			g.drawImage(image[(int) animeCount%6], x, y, null);
 			animeCount+=.05;
 		}
 	}
@@ -81,20 +83,20 @@ public class Player extends BaseObject {
 		}
 	}
 
-	public ArrayList<ProjectileEntity> shootBullet() {
+	public ArrayList<Projectile> shootBullet() {
 		double currentTime=System.currentTimeMillis();
 		if (currentTime-firedTime>coolDownTime) {
 			firedTime=currentTime;
-			return bulletBehavior.shootBullet(x+20, y, -Vx, -Vy-bulletSpeed, ProjectileEntity.Team.FRIENDLY);
+			return frontGunBehavior.shootBullet(x+20, y, -Vx, -Vy-bulletSpeed, Projectile.Team.FRIENDLY);
 		}
 		return null;
 	}
 
-	public ArrayList<ProjectileEntity> shootMissile(int Vx) {
+	public ArrayList<Projectile> shootMissile(int Vx) {
 		double currentTime=System.currentTimeMillis();
 		if (currentTime-firedTime>=coolDownTime) {
 			firedTime=currentTime;
-			return missileBehavior.shootMissile(x+20, y, Vx, -Vy, ProjectileEntity.Team.FRIENDLY);
+			return sideGunBehavior.shootMissile(x+20, y, Vx, -Vy, Projectile.Team.FRIENDLY);
 		}
 		return null;
 	}
@@ -119,8 +121,8 @@ public class Player extends BaseObject {
 		return health<=0;
 	}
 
-	public void consume(ItemEntity upgradeEntity) {	
-		switch(upgradeEntity.itemType()) {
+	public void consume(Item item) {	
+		switch(item.getItemType()) {
 		case gunType:
 			//increaseShootBehavior();
 			break;
@@ -168,7 +170,7 @@ public class Player extends BaseObject {
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle (x, y, shipImage[3].getWidth(), shipImage[3].getHeight());
+		return new Rectangle (x, y, image[3].getWidth(), image[3].getHeight());
 	}
 
 	public int getWidth() {
@@ -201,12 +203,12 @@ public class Player extends BaseObject {
 		StatsTracker.movementUpgs=Player.speedUps;
 	}
 
-	public static void setBulletBehavior(ProjectileBehavior bulletBehavior) {
-		Player.bulletBehavior=bulletBehavior;
+	public static void setBulletBehavior(FrontGunBehavior frontGunBehavior) {
+		Player.frontGunBehavior=frontGunBehavior;
 	}
 
-	public static void setMissileBehavior(MissileBehavior missileBehavior) {
-		Player.missileBehavior=missileBehavior;
+	public static void setMissileBehavior(SideGunBehavior sideGunBehavior) {
+		Player.sideGunBehavior=sideGunBehavior;
 	}
 
 }
