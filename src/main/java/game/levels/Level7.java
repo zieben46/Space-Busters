@@ -11,8 +11,8 @@ public class Level7 extends Level {
 	private Random random;
 	private int enemyTypes=2;
 
-	public Level7(LinkedList<EnemyEntity> enemyEntities, Player myShip) {
-		super(enemyEntities, myShip);
+	public Level7(LinkedList<EnemyEntity> enemyEntities, Player player) {
+		super(enemyEntities, player);
 		gapTime=10*1000;
 		totalEnemies=30;
 		enemyRate=6;

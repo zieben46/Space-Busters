@@ -12,8 +12,8 @@ public class Level14 extends Level {
 	private int totalSlaves;
 	private int slavesPerCarr=3;
 
-	public Level14(LinkedList<EnemyEntity> enemyEntities, Player myShip) {
-		super(enemyEntities, myShip);
+	public Level14(LinkedList<EnemyEntity> enemyEntities, Player player) {
+		super(enemyEntities, player);
 		totalEnemies=5;
 		totalSlaves=slavesPerCarr*totalEnemies;
 		enemyRate=12;

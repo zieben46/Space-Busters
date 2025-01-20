@@ -2,28 +2,28 @@ package game.objects;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import game.objects.interfaces.UpgradeEntity;
+import game.objects.interfaces.ItemEntity;
 import game.utils.ImageLoader;
 
-public class Upgrade extends BaseObject implements UpgradeEntity {
+public class Item extends BaseObject implements ItemEntity {
 
 	protected BufferedImage upgradeImage;
 	protected int Vx;
 	protected int Vy;
-	private UpgradeType upgradeType;
+	private ItemType itemType;
 
-	public Upgrade(int x, int y, UpgradeType upgradeType) {
+	public Item(int x, int y, ItemType itemType) {
 		super(x, y);
 		Vx=0;
 		Vy=1;
-		this.upgradeType=upgradeType;
+		this.itemType=itemType;
 		loadImage();
 		super.setHeight(upgradeImage.getHeight());
 		super.setWidth(upgradeImage.getWidth());
 	}
 
 	private void loadImage() {
-		switch (upgradeType) {
+		switch (itemType) {
 		case movement :
 			upgradeImage= ImageLoader.yellowUpgrade;
 			break;
@@ -62,7 +62,7 @@ public class Upgrade extends BaseObject implements UpgradeEntity {
 	}
 
 	@Override
-	public UpgradeType upgradeType() {
-		return upgradeType;
+	public ItemType itemType() {
+		return itemType;
 	}
 }

@@ -72,7 +72,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
 		if (state==STATE.GAME) {
 			space.render(g);
 			renderHealthBar(g);
-			drawFPS(g);
+			// drawFPS(g);
 			drawInventory(g);
 
 		} else if (state==STATE.MENU) {

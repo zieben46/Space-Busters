@@ -2,18 +2,18 @@ package game.objects.enemy;
 
 import game.objects.Player;
 
-public class EnemyAI {
+public class Radar {
 	private static int playerX;
 	private static int playerY;
-	private static Player myShip;
+	private static Player player;
 	
-	public EnemyAI(Player myShip) {
-		EnemyAI.myShip=myShip;
+	public Radar(Player player) {
+		Radar.player=player;
 	}
 	
 	public static void update() {
-		playerX=myShip.getX();
-		playerY=myShip.getY();
+		playerX=player.getX();
+		playerY=player.getY();
 	}
 	
 	public static int getPlayerX() {

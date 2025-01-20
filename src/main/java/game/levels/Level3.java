@@ -8,9 +8,9 @@ import game.objects.interfaces.EnemyEntity.EnemyType;
 
 public class Level3 extends Level {
 
-	public Level3(LinkedList<EnemyEntity> enemyEntities, Player myShip) {
-		super(enemyEntities, myShip);
-		totalEnemies=15;
+	public Level3(LinkedList<EnemyEntity> enemyEntities, Player player) {
+		super(enemyEntities, player);
+		totalEnemies=30;
 		enemyRate=4;
 	}
 

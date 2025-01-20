@@ -37,6 +37,7 @@ public abstract class BaseEnemy extends BaseObject implements EnemyEntity {
 	
 	abstract void getImage();
 	
+	@Override
 	public void render(Graphics2D g) {
 		g.drawImage(shipImage, x, y, null);
 	}
@@ -51,6 +52,7 @@ public abstract class BaseEnemy extends BaseObject implements EnemyEntity {
 		return null;
 	}
 	
+	@Override
 	public void update() {
 		y+=Vy;
 		x+=Vx;	

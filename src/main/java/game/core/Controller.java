@@ -15,20 +15,19 @@ import javax.swing.JOptionPane;
 import game.input.Keyboard;
 import game.levels.LevelEntity;
 import game.levels.LevelFactory;
-import game.levels.MyShipUpgrades;
 import game.levels.Popup;
 import game.objects.Player;
-import game.objects.Upgrade;
+import game.objects.Item;
 import game.objects.collisionsprite.BigYellowExplosion;
 import game.objects.collisionsprite.BlueExplosion;
 import game.objects.collisionsprite.YellowExplosion;
-import game.objects.enemy.EnemyAI;
+import game.objects.enemy.Radar;
 import game.objects.interfaces.EnemyEntity;
 import game.objects.interfaces.ExplosionEntity;
 import game.objects.interfaces.ProjectileEntity;
-import game.objects.interfaces.UpgradeEntity;
+import game.objects.interfaces.ItemEntity;
 import game.objects.interfaces.ProjectileEntity.Team;
-import game.objects.interfaces.UpgradeEntity.UpgradeType;
+import game.objects.interfaces.ItemEntity.ItemType;
 import game.objects.projectiles.Beam;
 import game.utils.LoadAndSaver;
 import game.utils.Sound;
@@ -38,10 +37,10 @@ public class Controller {
 
 	private LinkedList<ProjectileEntity> projectileEntities = new LinkedList<ProjectileEntity>();
 	private LinkedList<EnemyEntity> enemyEntities = new LinkedList<EnemyEntity>();
-	private LinkedList<UpgradeEntity> upgradeEntities = new LinkedList<UpgradeEntity>();
+	private LinkedList<ItemEntity> upgradeEntities = new LinkedList<ItemEntity>();
 	private LinkedList<ExplosionEntity> explosionEntities = new LinkedList<ExplosionEntity>();
 
-	private Player myShip;
+	private Player player;
 
 	private int gunTypeUpgradeSpawn=-1;
 	private int gunRateUpgradeSpawn=-1;
@@ -50,7 +49,6 @@ public class Controller {
 	private Random random = new Random();
 	private LevelEntity level;
 	private LevelFactory levelFactory;
-	private MyShipUpgrades myShipUpgrades;
 	private boolean inGap;
 	private Popup popup;
 	private boolean paused;
@@ -69,28 +67,26 @@ public class Controller {
 
 	public Controller(int levelNumber) {
 		this.levelNumber=levelNumber;
-		myShip=new Player(420, 600);
-		levelFactory=new LevelFactory(enemyEntities, myShip);
-		myShipUpgrades=new MyShipUpgrades(myShip);
+		player=new Player(420, 600);
+		levelFactory=new LevelFactory(enemyEntities, player);
 		initializeLevel();
 		healthPackSpawn=level.getHeathSpawnRate();
 	}
 
 	private void initializeLevel() {
-		new EnemyAI(myShip);
+		new Radar(player);
 		playerDead=false;
 		explosionRendered=false;
 		level=levelFactory.newLevel(levelNumber);
 		totalEnemies=level.getTotalEnemies();
 		enemiesKilled=0;
-		myShipUpgrades.setUpgrades(levelNumber);
 		StatsTracker.level=levelNumber;
 		popup=new Popup(levelNumber);
 	}
 
 	public synchronized void update() {
 		if (!paused) {
-			myShip.update();
+			player.update();
 
 			for (int i=0; i<projectileEntities.size(); i++) {
 				ProjectileEntity projectileEntity=projectileEntities.get(i);
@@ -110,7 +106,7 @@ public class Controller {
 			}
 
 			for (int i=0; i<upgradeEntities.size(); i++) {
-				UpgradeEntity upGradeEntity=upgradeEntities.get(i);
+				ItemEntity upGradeEntity=upgradeEntities.get(i);
 				pickUp(upGradeEntity);
 				upgradeBounds(upGradeEntity);
 				upGradeEntity.update();
@@ -122,15 +118,15 @@ public class Controller {
 			}
 
 			level.update();
-			EnemyAI.update();
+			Radar.update();
 			checkComplete();
 			inGap=level.getInGap();
 
-			if (myShip.isDead()) {
+			if (player.isDead()) {
 
 				if (!explosionRendered) {
 					explosionEntities.add(new BigYellowExplosion(new Point
-							(myShip.getX()+myShip.getWidth()/2, myShip.getY()+myShip.getHeight()/2)));
+							(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
 					explosionRendered=true;
 				}
 			}
@@ -154,7 +150,7 @@ public class Controller {
 		projectileEntities.stream().forEach(e -> e.render(g));
 		enemyEntities.stream().forEach(e -> e.render(g));
 		upgradeEntities.stream().forEach(e -> e.render(g));
-		myShip.render(g);
+		player.render(g);
 
 
 		explosionEntities.stream().forEach(e -> e.render(g));
@@ -163,12 +159,12 @@ public class Controller {
 			popup.renderWarning(g);
 		}
 
-		if (myShip.isDead()) {
+		if (player.isDead()) {
 			popup.renderDeadMessage(g);
 			playerDead=true;
 			//			if (!explosionRendered) {
 			//				explosionEntities.add(new BigYellowExplosion(new Point
-			//						(myShip.getX()+myShip.getWidth()/2, myShip.getY()+myShip.getHeight()/2)));
+			//						(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
 			//				explosionRendered=true;
 			//			}
 		}
@@ -201,17 +197,17 @@ public class Controller {
 
 					enemyEntity.takeDamage(projectileEntity.getDamage());
 					explosionEntities.add(new YellowExplosion(new Point
-							(projectileEntity.getX()+myShip.getWidth()/2, projectileEntity.getY()+myShip.getHeight()/2)));
+							(projectileEntity.getX()+player.getWidth()/2, projectileEntity.getY()+player.getHeight()/2)));
 					Sound.playSound(soundEnum.SMALLEXPLOSION);
 					projectileEntities.remove(projectileEntity);
 				}
 			}
 		} else if (projectileEntity.team().equals(Team.ENEMY)){   //test enemy hits player
-			if (Physics.Collision(myShip, projectileEntity) && !myShip.isDead()) {
+			if (Physics.Collision(player, projectileEntity) && !player.isDead()) {
 				projectileEntities.remove(projectileEntity);
-				myShip.decreaseHealth();
+				player.decreaseHealth();
 				explosionEntities.add(new BlueExplosion(new Point
-						(myShip.getX()+myShip.getWidth()/2, myShip.getY()+myShip.getHeight()/2)));
+						(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
 				Sound.playSound(soundEnum.SMALLEXPLOSION);
 			}
 		}
@@ -227,10 +223,10 @@ public class Controller {
 	}
 
 	private void testCollision(EnemyEntity enemyEntity) {    //test for enemy player collision
-		if (Physics.Collision(myShip, enemyEntity) && !myShip.isDead()) {
+		if (Physics.Collision(player, enemyEntity) && !player.isDead()) {
 			Sound.playSound(soundEnum.SMALLEXPLOSION);
-			myShip.decreaseHealth();
-			Rectangle union=Physics.getIntersection(myShip, enemyEntity);
+			player.decreaseHealth();
+			Rectangle union=Physics.getIntersection(player, enemyEntity);
 			explosionEntities.add(new BlueExplosion(new Point((int) union.getX(),(int) union.getY())));
 			enemyEntities.remove(enemyEntity);
 			enemiesKilled++;
@@ -245,10 +241,10 @@ public class Controller {
 		}
 	}
 
-	private void upgradeBounds(UpgradeEntity upgradeEntity) {
-		if (upgradeEntity.getY()<-20||upgradeEntity.getY()>1000||
-				upgradeEntity.getX()<-100||upgradeEntity.getX()>900) {
-			upgradeEntities.remove(upgradeEntity);
+	private void upgradeBounds(ItemEntity itemEntity) {
+		if (itemEntity.getY()<-20||itemEntity.getY()>1000||
+				itemEntity.getX()<-100||itemEntity.getX()>900) {
+			upgradeEntities.remove(itemEntity);
 		}
 	}
 
@@ -276,70 +272,69 @@ public class Controller {
 
 	/////////////////////////////////////////////////////////////////////////////////
 
-	private void pickUp(UpgradeEntity upgradeEntity) {
-		if ((Physics.Collision(myShip, upgradeEntity))) {
-			upgradeEntities.remove(upgradeEntity);
-			myShip.upgrade(upgradeEntity);
+	private void pickUp(ItemEntity itemEntity) {
+		if ((Physics.Collision(player, itemEntity))) {
+			upgradeEntities.remove(itemEntity);
+			player.consume(itemEntity);
 		}
 	}
 
 	private void spawnUpgrade(int x, int y) {  //move
 		int r=random.nextInt(100);
 		if (r<=gunTypeUpgradeSpawn&&StatsTracker.gunTypeUpgs<3) {
-			upgradeEntities.add(new Upgrade(x, y, UpgradeType.gunType));
+			upgradeEntities.add(new Item(x, y, ItemType.gunType));
 		}
 		r=random.nextInt(100);
 		if (r<=gunRateUpgradeSpawn&&StatsTracker.gunRateUpgs<10) {
-			upgradeEntities.add(new Upgrade(x, y, UpgradeType.gunRate));
+			upgradeEntities.add(new Item(x, y, ItemType.gunRate));
 		} 
 		r=random.nextInt(100);
 		if (r<=movementUpgradeSpawn&&StatsTracker.movementUpgs<3) {
-			upgradeEntities.add(new Upgrade(x, y, UpgradeType.movement));
+			upgradeEntities.add(new Item(x, y, ItemType.movement));
 		}
 		r=random.nextInt(100);
 		if (r<=healthPackSpawn) {
-			upgradeEntities.add(new Upgrade(x, y, UpgradeType.healthPack));
+			upgradeEntities.add(new Item(x, y, ItemType.healthPack));
 		}
 	}
 
 	private void checkKeys() {
 		if (Keyboard.typed(KeyEvent.VK_LEFT)&&!paused&&!playerDead) {
-			myShip.moveLeft();
+			player.moveLeft();
 		}
 		if (Keyboard.typed(KeyEvent.VK_RIGHT)&&!paused&&!playerDead) {
-			myShip.moveRight();
+			player.moveRight();
 		}
 		if (Keyboard.typed(KeyEvent.VK_UP)&&!paused&&!playerDead) {
-			myShip.moveUp();
+			player.moveUp();
 		}
 		if (Keyboard.typed(KeyEvent.VK_DOWN)&&!paused&&!playerDead) {
-			myShip.moveDown();
+			player.moveDown();
 		}
 		if (Keyboard.typed(KeyEvent.VK_SPACE)&&!paused&&!playerDead) {
 			ArrayList<ProjectileEntity> newProjectiles= new ArrayList<>();
-			newProjectiles=myShip.shootBullet();
+			newProjectiles=player.shootBullet();
 			if (newProjectiles!=null) {
 				projectileEntities.addAll(newProjectiles);
 			}
 		}
 
 		if (Keyboard.typed(KeyEvent.VK_A)&&!paused&&!playerDead) {
-			ArrayList<ProjectileEntity> newProjectiles=myShip.shootMissile(-30);
+			ArrayList<ProjectileEntity> newProjectiles=player.shootMissile(-30);
 			if (newProjectiles!=null) {
 				projectileEntities.addAll(newProjectiles);
 			}
 		}
 
 		if (Keyboard.typed(KeyEvent.VK_D)&&!paused&&!playerDead) {
-			ArrayList<ProjectileEntity> newProjectiles=myShip.shootMissile(30);
+			ArrayList<ProjectileEntity> newProjectiles=player.shootMissile(30);
 			if (newProjectiles!=null) {
 				projectileEntities.addAll(newProjectiles);
 			}
 		}
 
 		if (Keyboard.EnterPressed()&&!paused&&playerDead) {
-			myShip=new Player(420, 600);
-			myShipUpgrades=new MyShipUpgrades(myShip);
+			player=new Player(420, 600);
 			enemyEntities.clear();
 			upgradeEntities.clear();
 			projectileEntities.clear();

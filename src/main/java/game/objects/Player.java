@@ -6,43 +6,45 @@ import java.util.ArrayList;
 
 import game.core.StatsTracker;
 import game.objects.interfaces.ProjectileEntity;
-import game.objects.interfaces.UpgradeEntity;
+import game.objects.interfaces.ItemEntity;
 import game.objects.projectiles.projectilebehaviors.*;
 import game.utils.ImageLoader;
 
 public class Player extends BaseObject {
-	protected BufferedImage[] shipImage;
-	protected int Vx;
-	protected int Vy;
-	protected double animeCount=6.0;
-	private ProjectileBehavior bulletBehavior;
-	private MissileBehavior missileBehavior;
-	private boolean dead=false;
 
-	private double firedTime;
-	private double coolDownTime;  //half second
-	private int bulletSpeed;
-	//private double coolDownTime=.05*1000;
+	//default velocity
+	protected static int Vx=4;
+	protected static int Vy=4;
 
-	private int speedUps=0;
-	private int gunSpeedUps=0;
-	private int bulletSpeedUps;
+	//default bullet behavior
+	private static double coolDownTime=0.5*1000;  //half second
+	private static int bulletSpeed=0;
+	private static ProjectileBehavior bulletBehavior = new SingleBulletBehavior();
+	private static MissileBehavior missileBehavior;
+	private static double firedTime;
+
+	//default upgrades 
+	private static int speedUps=0;
+	private static int gunSpeedUps=0;
+	private static int bulletSpeedUps=0;
+
+	//default new object fields
 	private int health=200;
+	private boolean dead=false;
+	protected BufferedImage[] shipImage;
+	protected double animeCount=6.0;
+
 
 	public Player(int x, int y) { 
 		super(x, y);
-		coolDownTime=0.5*1000;  //half second
-		bulletBehavior=new SingleBulletBehavior();
-		missileBehavior=new NullMissileBehavior();
 		shipImage=new BufferedImage[6];
-		Vx=4;
-		Vy=4;
 		getImage();
 		super.setHeight(shipImage[3].getHeight());
 		super.setWidth(shipImage[3].getWidth());
 		StatsTracker.playerHealth=health;
 	}
 
+    //Base Object methods
 	private void getImage() {
 		shipImage[0]= ImageLoader.myShip0;
 		shipImage[1]= ImageLoader.myShip1;
@@ -52,6 +54,7 @@ public class Player extends BaseObject {
 		shipImage[5]= ImageLoader.myShip5;
 	}
 
+	@Override
 	public void render(Graphics2D g) {
 		if (!dead) {
 			g.drawImage(shipImage[(int) animeCount%6], x, y, null);
@@ -95,28 +98,6 @@ public class Player extends BaseObject {
 		return null;
 	}
 
-//	public void increaseShootBehavior(BulletBehavior bulletBehavior) {
-//		this.bulletBehavior=bulletBehavior;
-//	}
-
-	public void setGunSpeedUps(int gunSpeedUps) {
-		this.gunSpeedUps=gunSpeedUps;
-		coolDownTime=0.5*1000*Math.pow(0.85, gunSpeedUps);
-		StatsTracker.gunRateUpgs=this.gunSpeedUps;
-	}
-
-	public void setBulletSpeedUps(int bulletSpeedUps) {
-		this.bulletSpeedUps=bulletSpeedUps;
-		bulletSpeed=4+this.bulletSpeedUps;
-	}
-
-	public void setSpeedUps(int speedUps) {
-		this.speedUps=speedUps;
-		Vx=4+this.speedUps;
-		Vy=4+this.speedUps;
-		StatsTracker.movementUpgs=this.speedUps;
-	}
-
 	public void increaseHealth() {
 		if (health<200) {
 			health+=20;
@@ -137,41 +118,33 @@ public class Player extends BaseObject {
 		return health<=0;
 	}
 
-	public void upgrade(UpgradeEntity upgradeEntity) {	
-		switch(upgradeEntity.upgradeType()) {
+	public void consume(ItemEntity upgradeEntity) {	
+		switch(upgradeEntity.itemType()) {
 		case gunType:
 			//increaseShootBehavior();
 			break;
 		case gunRate:
-			gunSpeedUps++;
+			Player.gunSpeedUps++;
 			break;
 		case movement:
-			speedUps++;
+			Player.speedUps++;
 			break;
 		case healthPack:
 			increaseHealth();
 		}
 	}
 
-	public void setBulletBehavior(ProjectileBehavior bulletBehavior) {
-		this.bulletBehavior=bulletBehavior;
-	}
-
-	public void setMissileBehavior(MissileBehavior missileBehavior) {
-		this.missileBehavior=missileBehavior;
-	}
-
 	public void moveLeft() {
-		x-=Vx;
+		x-=Player.Vx;
 	}
 	public void moveRight() {
-		x+=Vx;
+		x+=Player.Vx;
 	}
 	public void moveUp() {
-		y-=Vy;
+		y-=Player.Vy;
 	}
 	public void moveDown() {
-		y+=Vy;
+		y+=Player.Vy;
 	}
 
 	public int getX() {
@@ -201,4 +174,35 @@ public class Player extends BaseObject {
 	public int getHeight() {
 		return super.getHeight();
 	}
+
+
+
+	/////////static methods
+
+	public static void setGunSpeedUps(int gunSpeedUps) {
+		Player.gunSpeedUps=gunSpeedUps;
+		Player.coolDownTime=0.5*1000*Math.pow(0.85, gunSpeedUps);
+		StatsTracker.gunRateUpgs=Player.gunSpeedUps;
+	}
+
+	public static void setBulletSpeedUps(int bulletSpeedUps) {
+		Player.bulletSpeedUps=bulletSpeedUps;
+		Player.bulletSpeed=4+Player.bulletSpeedUps;
+	}
+
+	public static void setSpeedUps(int speedUps) {
+		Player.speedUps=speedUps;
+		Player.Vx=4+Player.speedUps;
+		Player.Vy=4+Player.speedUps;
+		StatsTracker.movementUpgs=Player.speedUps;
+	}
+
+	public static void setBulletBehavior(ProjectileBehavior bulletBehavior) {
+		Player.bulletBehavior=bulletBehavior;
+	}
+
+	public static void setMissileBehavior(MissileBehavior missileBehavior) {
+		Player.missileBehavior=missileBehavior;
+	}
+
 }

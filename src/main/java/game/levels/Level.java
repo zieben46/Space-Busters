@@ -12,7 +12,7 @@ public abstract class Level implements LevelEntity {
 	protected int enemyRate;
 	protected int enemiesPresent;
 	protected LinkedList<EnemyEntity> enemyEntities;
-	protected Player myShip;
+	protected Player player;
 	protected int enemiesAdded;
 	protected int healthPackSpawn=25;
 	protected boolean running=false;
@@ -21,10 +21,10 @@ public abstract class Level implements LevelEntity {
 	protected double startTime;
 	protected boolean inGap;
 
-	public Level(LinkedList<EnemyEntity> enemyEntities, Player myShip) {
+	public Level(LinkedList<EnemyEntity> enemyEntities, Player player) {
 		this.enemyEntities=enemyEntities;
 		enemyFactory=new EnemyFactory();
-		this.myShip=myShip;
+		this.player=player;
 		startTime=System.currentTimeMillis();
 		inGap=true;
 	}

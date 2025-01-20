@@ -34,7 +34,7 @@ public class EnemyAIEasySlave extends EnemyAIEasy {
 
 	@Override
 	public void randomMove() {
-		double deltaY=EnemyAI.getPlayerY()-y;
+		double deltaY=Radar.getPlayerY()-y;
 		if (deltaY<100) {
 			Vy=-4;
 		} else if (deltaY>300){
@@ -43,7 +43,7 @@ public class EnemyAIEasySlave extends EnemyAIEasy {
 
 		double currentTime=System.currentTimeMillis();
 		if ((currentTime-movedTime)>=moveCoolDownTime) {
-			int deltaX=EnemyAI.getPlayerX()-x;
+			int deltaX=Radar.getPlayerX()-x;
 			if (deltaX>0) {
 				Vx=random.nextInt(5)+5;
 			} else {

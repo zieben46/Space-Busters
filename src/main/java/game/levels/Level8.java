@@ -11,8 +11,8 @@ public class Level8 extends Level {
 	private Random random;
 	private int enemyTypes=2;
 
-	public Level8(LinkedList<EnemyEntity> enemyEntities, Player myShip) {
-		super(enemyEntities, myShip);
+	public Level8(LinkedList<EnemyEntity> enemyEntities, Player player) {
+		super(enemyEntities, player);
 		totalEnemies=100;
 		enemyRate=9;
 		random=new Random();

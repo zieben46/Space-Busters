@@ -27,8 +27,8 @@ public class EnemySuicide extends BaseEnemy {
 
 	@Override
 	public void update() {
-		double deltaX=x-EnemyAI.getPlayerX();
-		double deltaY=y-EnemyAI.getPlayerY();
+		double deltaX=x-Radar.getPlayerX();
+		double deltaY=y-Radar.getPlayerY();
 		double distance=Math.sqrt(deltaX*deltaX+deltaY*deltaY);
 		x-= (int) ((deltaX/distance)*velocity);
 		y-= (int) ((deltaY/distance)*velocity);

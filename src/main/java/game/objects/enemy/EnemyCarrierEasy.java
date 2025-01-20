@@ -28,7 +28,7 @@ public class EnemyCarrierEasy extends BaseEnemy {
 
 	@Override
 	public void randomMove() {
-		double deltaY=EnemyAI.getPlayerY()-y;
+		double deltaY=Radar.getPlayerY()-y;
 		if (deltaY<500) {
 			Vy=-2;
 		} else if (deltaY>550){
@@ -37,7 +37,7 @@ public class EnemyCarrierEasy extends BaseEnemy {
 
 		double currentTime=System.currentTimeMillis();
 		if ((currentTime-movedTime)>=moveCoolDownTime) {
-			int deltaX=EnemyAI.getPlayerX()-x;
+			int deltaX=Radar.getPlayerX()-x;
 			if (deltaX>0) {
 				Vx=random.nextInt(2)+2;
 			} else {

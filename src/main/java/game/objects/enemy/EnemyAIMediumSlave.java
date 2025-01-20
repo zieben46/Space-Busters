@@ -36,7 +36,7 @@ public class EnemyAIMediumSlave extends EnemyAIEasy {
 	public void randomMove() {
 		double currentTime=System.currentTimeMillis();
 		if ((currentTime-movedTime)>=moveCoolDownTime) {
-			int deltaX=EnemyAI.getPlayerX()-x;
+			int deltaX=Radar.getPlayerX()-x;
 			if (deltaX>0) {
 				Vx=random.nextInt(10)+10;
 			} else {
