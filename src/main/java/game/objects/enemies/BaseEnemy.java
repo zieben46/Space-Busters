@@ -9,9 +9,9 @@ import java.util.Random;
 import game.core.Game;
 import game.objects.BaseObject;
 import game.objects.interfaces.Enemy;
+import game.objects.interfaces.FireBehavior.FrontFireBehavior;
 import game.objects.interfaces.Projectile;
 import game.objects.interfaces.Projectile.Team;
-import game.objects.projectiles.behaviors.FrontGunBehavior;
 
 public abstract class BaseEnemy extends BaseObject implements Enemy {
 	public BufferedImage image;
@@ -22,7 +22,7 @@ public abstract class BaseEnemy extends BaseObject implements Enemy {
 	protected int Vx;
 	protected int Vy;
 	protected int health;
-	protected FrontGunBehavior bulletBehavior;
+	protected FrontFireBehavior frontFireBehavior;
 	protected int bulletSpeed;
 	protected double bulletCoolDownTime;
 	protected double moveCoolDownTime;
@@ -47,7 +47,7 @@ public abstract class BaseEnemy extends BaseObject implements Enemy {
 		double currentTime=System.currentTimeMillis();
 		if ((currentTime-firedTime)>bulletCoolDownTime&&wantsTo()) {
 			firedTime=currentTime;
-			return bulletBehavior.shootBullet(x+(getWidth()/2-5), y+getHeight(), Vx, Vy+bulletSpeed, Team.ENEMY);
+			return frontFireBehavior.fire(x+(getWidth()/2-5), y+getHeight(), Vx, Vy+bulletSpeed, Team.ENEMY);
 		}
 		return null;
 	}

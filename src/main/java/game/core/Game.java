@@ -14,6 +14,7 @@ import game.input.MouseInput;
 import game.objects.Space;
 import game.ui.Menu;
 import game.utils.ImageLoader;
+import game.core.Controller.StatsTracker;
 
 public class Game extends JPanel implements KeyListener, Runnable {
 	private static final long serialVersionUID = 1L;
@@ -163,7 +164,8 @@ public class Game extends JPanel implements KeyListener, Runnable {
 		g.drawRect(5,  5, 200, 20);
 	}
 	
-	
+
+	@SuppressWarnings("unused")
 	private void drawFPS(Graphics2D g) {
 		g.setFont(new Font("arial", Font.BOLD, 10));
 		g.drawString("Updates: "+currUpdates+" FPS: "+currFrames, WIDTH-107, HEIGHT-5);

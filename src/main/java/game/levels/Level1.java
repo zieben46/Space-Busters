@@ -6,8 +6,7 @@ import game.objects.Player;
 import game.objects.interfaces.Enemy;
 import game.objects.interfaces.Enemy.EnemyType;
 
-public class Level1 extends Level {
-
+public class Level1 extends LevelBase {
 	public Level1(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
 		gapTime=10*1000;

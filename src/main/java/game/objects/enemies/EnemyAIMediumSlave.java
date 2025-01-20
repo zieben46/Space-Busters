@@ -6,7 +6,7 @@ import java.util.Random;
 
 import game.objects.interfaces.Projectile;
 import game.objects.interfaces.Projectile.Team;
-import game.objects.projectiles.behaviors.NoBullets;
+import game.objects.projectiles.behaviors.Off;
 import game.utils.ImageLoader;
 
 public class EnemyAIMediumSlave extends EnemyAIEasy {
@@ -23,7 +23,7 @@ public class EnemyAIMediumSlave extends EnemyAIEasy {
 		Vx=random.nextInt(10)-5;
 		Vy=8;
 		health=100;
-		bulletBehavior=new NoBullets();
+		frontFireBehavior=new Off();
 		bulletSpeed=5;
 		bulletCoolDownTime=10000*1000;
 	}
@@ -58,7 +58,7 @@ public class EnemyAIMediumSlave extends EnemyAIEasy {
 				rapidFiredTime=currentTime;
 				rapidFireCount=0;
 			}
-			return bulletBehavior.shootBullet(x+(getWidth()/2-5), y+getHeight(), Vx, Vy+bulletSpeed, Team.ENEMY);
+			return frontFireBehavior.fire(x+(getWidth()/2-5), y+getHeight(), Vx, Vy+bulletSpeed, Team.ENEMY);
 		}
 		return null;
 	}

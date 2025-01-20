@@ -4,8 +4,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import game.core.StatsTracker;
+import game.core.Controller.StatsTracker;
+import game.objects.interfaces.FireBehavior.FrontFireBehavior;
 import game.objects.interfaces.Projectile;
+import game.objects.interfaces.FireBehavior.SideFireBehavior;
 import game.objects.projectiles.behaviors.*;
 import game.utils.ImageLoader;
 
@@ -18,8 +20,8 @@ public class Player extends BaseObject {
 	//default bullet behavior
 	private static double coolDownTime=0.5*1000;  //half second
 	private static int bulletSpeed=0;
-	private static FrontGunBehavior frontGunBehavior = new MonoBullet();
-	private static SideGunBehavior sideGunBehavior = new OffSideBullets();
+	private static FrontFireBehavior frontGunBehavior = new SingleBullet();
+	private static SideFireBehavior sideGunBehavior = new Off();
 	private static double firedTime;
 
 	//default upgrades 
@@ -83,20 +85,20 @@ public class Player extends BaseObject {
 		}
 	}
 
-	public ArrayList<Projectile> shootBullet() {
+	public ArrayList<Projectile> fire() {
 		double currentTime=System.currentTimeMillis();
 		if (currentTime-firedTime>coolDownTime) {
 			firedTime=currentTime;
-			return frontGunBehavior.shootBullet(x+20, y, -Vx, -Vy-bulletSpeed, Projectile.Team.FRIENDLY);
+			return frontGunBehavior.fire(x+20, y, -Vx, -Vy-bulletSpeed, Projectile.Team.FRIENDLY);
 		}
 		return null;
 	}
 
-	public ArrayList<Projectile> shootMissile(int Vx) {
+	public ArrayList<Projectile> shootSide(int Vx) {
 		double currentTime=System.currentTimeMillis();
 		if (currentTime-firedTime>=coolDownTime) {
 			firedTime=currentTime;
-			return sideGunBehavior.shootMissile(x+20, y, Vx, -Vy, Projectile.Team.FRIENDLY);
+			return sideGunBehavior.fire(x+20, y, Vx, -Vy, Projectile.Team.FRIENDLY);
 		}
 		return null;
 	}
@@ -203,11 +205,11 @@ public class Player extends BaseObject {
 		StatsTracker.movementUpgs=Player.speedUps;
 	}
 
-	public static void setBulletBehavior(FrontGunBehavior frontGunBehavior) {
+	public static void setBulletBehavior(FrontFireBehavior frontGunBehavior) {
 		Player.frontGunBehavior=frontGunBehavior;
 	}
 
-	public static void setMissileBehavior(SideGunBehavior sideGunBehavior) {
+	public static void setMissileBehavior(SideFireBehavior sideGunBehavior) {
 		Player.sideGunBehavior=sideGunBehavior;
 	}
 

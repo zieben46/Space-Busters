@@ -2,7 +2,6 @@ package game.objects;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-// import game.objects.interfaces.ItemEntity;
 import game.utils.ImageLoader;
 
 public class Item extends BaseObject {

@@ -2,7 +2,7 @@ package game.objects.enemies;
 
 import java.awt.image.BufferedImage;
 
-import game.objects.projectiles.behaviors.NoBullets;
+import game.objects.projectiles.behaviors.Off;
 import game.utils.ImageLoader;
 
 public class EnemyMedium1 extends BaseEnemy {
@@ -13,7 +13,7 @@ public class EnemyMedium1 extends BaseEnemy {
 		Vx=0;
 		Vy=random.nextInt(5)+14;
 		health=10;
-		bulletBehavior=new NoBullets();
+		frontFireBehavior=new Off();
 		bulletSpeed=0;
 		bulletCoolDownTime=10000*1000;
 	}

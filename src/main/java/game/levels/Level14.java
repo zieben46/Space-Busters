@@ -8,7 +8,7 @@ import game.objects.enemies.EnemyCarrierEasy;
 import game.objects.interfaces.Enemy;
 import game.objects.interfaces.Enemy.EnemyType;
 
-public class Level14 extends Level {
+public class Level14 extends LevelBase {
 	private int totalSlaves;
 	private int slavesPerCarr=3;
 

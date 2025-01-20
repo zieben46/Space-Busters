@@ -17,7 +17,7 @@ public class EnemyBeamEasy extends BaseEnemy {
 		Vx=0;
 		Vy=random.nextInt(2)+5;
 		health=20;
-		bulletBehavior=new ConstantBeam();
+		frontFireBehavior=new ConstantBeam();
 		bulletCoolDownTime=.005*1000;
 		bulletSpeed=10;
 	}

@@ -2,7 +2,7 @@ package game.objects.enemies;
 
 import java.awt.image.BufferedImage;
 
-import game.objects.projectiles.behaviors.SpreadBullet;
+import game.objects.projectiles.behaviors.QuadBullet;
 import game.utils.ImageLoader;
 
 public class EnemyEasy3 extends BaseEnemy {
@@ -12,7 +12,7 @@ public class EnemyEasy3 extends BaseEnemy {
 		Vx=random.nextInt(6)-3;
 		Vy=random.nextInt(1)+4;
 		health=10;
-		bulletBehavior=new SpreadBullet();
+		frontFireBehavior=new QuadBullet();
 		bulletSpeed=6;
 		bulletCoolDownTime=1*1000;
 	}

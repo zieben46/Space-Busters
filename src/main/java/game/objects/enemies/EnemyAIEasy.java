@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 import game.objects.interfaces.Projectile;
 import game.objects.interfaces.Projectile.Team;
-import game.objects.projectiles.behaviors.DuoBullets;
+import game.objects.projectiles.behaviors.DoubleBullets;
 import game.utils.ImageLoader;
 
 public class EnemyAIEasy extends BaseEnemy {
@@ -24,7 +24,7 @@ public class EnemyAIEasy extends BaseEnemy {
 		Vx=random.nextInt(10)-5;
 		Vy=5;
 		health=40;
-		bulletBehavior=new DuoBullets();
+		frontFireBehavior=new DoubleBullets();
 		bulletSpeed=8;
 		bulletCoolDownTime=0.01*1000;
 	}
@@ -66,7 +66,7 @@ public class EnemyAIEasy extends BaseEnemy {
 				rapidFiredTime=currentTime;
 				rapidFireCount=0;
 			}
-			return bulletBehavior.shootBullet(x+(getWidth()/2-5), y+getHeight(), Vx, Vy+bulletSpeed, Team.ENEMY);
+			return frontFireBehavior.fire(x+(getWidth()/2-5), y+getHeight(), Vx, Vy+bulletSpeed, Team.ENEMY);
 		}
 		return null;
 	}

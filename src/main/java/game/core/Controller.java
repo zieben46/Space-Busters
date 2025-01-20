@@ -13,7 +13,7 @@ import java.util.Random;
 import javax.swing.JOptionPane;
 
 import game.input.Keyboard;
-import game.levels.LevelEntity;
+import game.levels.Level;
 import game.levels.LevelFactory;
 import game.levels.Popup;
 import game.objects.Player;
@@ -36,7 +36,7 @@ public class Controller {
 
 	private LinkedList<Projectile> projectiles = new LinkedList<Projectile>();
 	private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
-	private LinkedList<Item> Items = new LinkedList<Item>();
+	private LinkedList<Item> items = new LinkedList<Item>();
 	private LinkedList<Explosion> explosions = new LinkedList<Explosion>();
 
 	private Player player;
@@ -46,7 +46,7 @@ public class Controller {
 	private int movementUpgradeSpawn=-1;
 	private int healthPackSpawn;
 	private Random random = new Random();
-	private LevelEntity level;
+	private Level level;
 	private LevelFactory levelFactory;
 	private boolean inGap;
 	private Popup popup;
@@ -59,6 +59,14 @@ public class Controller {
 
 	private int enemiesKilled;
 	private int totalEnemies;
+
+	public class StatsTracker {
+		public static int playerHealth=100*2;
+		public static int movementUpgs=0;
+		public static int gunRateUpgs=0;
+		public static int gunTypeUpgs=0;
+		public static int level=0;
+	}
 
 	public Controller() {
 		this(1);
@@ -104,8 +112,8 @@ public class Controller {
 				enemy.update();
 			}
 
-			for (int i=0; i<Items.size(); i++) {
-				Item item=Items.get(i);
+			for (int i=0; i<items.size(); i++) {
+				Item item=items.get(i);
 				pickUp(item);
 				upgradeBounds(item);
 				item.update();
@@ -148,7 +156,7 @@ public class Controller {
 	public void render(Graphics2D g) {
 		projectiles.stream().forEach(e -> e.render(g));
 		enemies.stream().forEach(e -> e.render(g));
-		Items.stream().forEach(e -> e.render(g));
+		items.stream().forEach(e -> e.render(g));
 		player.render(g);
 
 
@@ -243,7 +251,7 @@ public class Controller {
 	private void upgradeBounds(Item item) {
 		if (item.getY()<-20||item.getY()>1000||
 				item.getX()<-100||item.getX()>900) {
-			Items.remove(item);
+					items.remove(item);
 		}
 	}
 
@@ -273,7 +281,7 @@ public class Controller {
 
 	private void pickUp(Item item) {
 		if ((Physics.Collision(player, item))) {
-			Items.remove(item);
+			items.remove(item);
 			player.consume(item);
 		}
 	}
@@ -281,19 +289,19 @@ public class Controller {
 	private void spawnUpgrade(int x, int y) {  //move
 		int r=random.nextInt(100);
 		if (r<=gunTypeUpgradeSpawn&&StatsTracker.gunTypeUpgs<3) {
-			Items.add(new Item(x, y, ItemType.gunType));
+			items.add(new Item(x, y, ItemType.gunType));
 		}
 		r=random.nextInt(100);
 		if (r<=gunRateUpgradeSpawn&&StatsTracker.gunRateUpgs<10) {
-			Items.add(new Item(x, y, ItemType.gunRate));
+			items.add(new Item(x, y, ItemType.gunRate));
 		} 
 		r=random.nextInt(100);
 		if (r<=movementUpgradeSpawn&&StatsTracker.movementUpgs<3) {
-			Items.add(new Item(x, y, ItemType.movement));
+			items.add(new Item(x, y, ItemType.movement));
 		}
 		r=random.nextInt(100);
 		if (r<=healthPackSpawn) {
-			Items.add(new Item(x, y, ItemType.healthPack));
+			items.add(new Item(x, y, ItemType.healthPack));
 		}
 	}
 
@@ -312,21 +320,21 @@ public class Controller {
 		}
 		if (Keyboard.typed(KeyEvent.VK_SPACE)&&!paused&&!playerDead) {
 			ArrayList<Projectile> newProjectiles= new ArrayList<>();
-			newProjectiles=player.shootBullet();
+			newProjectiles=player.fire();
 			if (newProjectiles!=null) {
 				projectiles.addAll(newProjectiles);
 			}
 		}
 
 		if (Keyboard.typed(KeyEvent.VK_A)&&!paused&&!playerDead) {
-			ArrayList<Projectile> newProjectiles=player.shootMissile(-30);
+			ArrayList<Projectile> newProjectiles=player.shootSide(-30);
 			if (newProjectiles!=null) {
 				projectiles.addAll(newProjectiles);
 			}
 		}
 
 		if (Keyboard.typed(KeyEvent.VK_D)&&!paused&&!playerDead) {
-			ArrayList<Projectile> newProjectiles=player.shootMissile(30);
+			ArrayList<Projectile> newProjectiles=player.shootSide(30);
 			if (newProjectiles!=null) {
 				projectiles.addAll(newProjectiles);
 			}
@@ -335,7 +343,7 @@ public class Controller {
 		if (Keyboard.EnterPressed()&&!paused&&playerDead) {
 			player=new Player(420, 600);
 			enemies.clear();
-			Items.clear();
+			items.clear();
 			projectiles.clear();
 			healthPackSpawn=level.getHeathSpawnRate();
 			initializeLevel();

@@ -4,11 +4,11 @@ import java.util.LinkedList;
 
 import game.objects.Player;
 import game.objects.interfaces.Enemy;
-import game.objects.projectiles.behaviors.DuoBullets;
-import game.objects.projectiles.behaviors.OffSideBullets;
-import game.objects.projectiles.behaviors.MonoBullet;
-import game.objects.projectiles.behaviors.OnSideBullets;
-import game.objects.projectiles.behaviors.SpreadBullet;
+import game.objects.projectiles.behaviors.DoubleBullets;
+import game.objects.projectiles.behaviors.Off;
+import game.objects.projectiles.behaviors.SingleBullet;
+import game.objects.projectiles.behaviors.SideMissile;
+import game.objects.projectiles.behaviors.QuadBullet;
 
 public class LevelFactory {
 	private LinkedList<Enemy> enemies;
@@ -20,7 +20,7 @@ public class LevelFactory {
 	}
 
 
-	public LevelEntity newLevel(int levelNumber) {
+	public Level newLevel(int levelNumber) {
 		setPlayerUpgrades(levelNumber);
 		switch (levelNumber) {
 		case 1:
@@ -71,135 +71,135 @@ public class LevelFactory {
 	private static void setPlayerUpgrades(int level) {
 		switch (level) {
 		case 1:
-			Player.setBulletBehavior(new MonoBullet());
+			Player.setBulletBehavior(new SingleBullet());
 			Player.setGunSpeedUps(0);
-			Player.setMissileBehavior(new OffSideBullets());
+			Player.setMissileBehavior(new Off());
 			Player.setSpeedUps(0);
 			Player.setBulletSpeedUps(0);
 			break;
 		case 2:
-			Player.setBulletBehavior(new MonoBullet());
+			Player.setBulletBehavior(new SingleBullet());
 			Player.setGunSpeedUps(1);
-			Player.setMissileBehavior(new OffSideBullets());
+			Player.setMissileBehavior(new Off());
 			Player.setSpeedUps(1);
 			Player.setBulletSpeedUps(1);
 			break;
 		case 3:
-			Player.setBulletBehavior(new MonoBullet());
+			Player.setBulletBehavior(new SingleBullet());
 			Player.setGunSpeedUps(2);
-			Player.setMissileBehavior(new OffSideBullets());
+			Player.setMissileBehavior(new Off());
 			Player.setSpeedUps(2);
 			Player.setBulletSpeedUps(2);
 			break;
 		case 4:
-			Player.setBulletBehavior(new MonoBullet());
+			Player.setBulletBehavior(new SingleBullet());
 			Player.setGunSpeedUps(3);
-			Player.setMissileBehavior(new OffSideBullets());
+			Player.setMissileBehavior(new Off());
 			Player.setSpeedUps(3);
 			Player.setBulletSpeedUps(3);
 			break;
 		case 5:
-			Player.setBulletBehavior(new DuoBullets());
+			Player.setBulletBehavior(new DoubleBullets());
 			Player.setGunSpeedUps(4);
-			Player.setMissileBehavior(new OffSideBullets());
+			Player.setMissileBehavior(new Off());
 			Player.setSpeedUps(4);
 			Player.setBulletSpeedUps(4);
 			break;
 		case 6:
-			Player.setBulletBehavior(new DuoBullets());
+			Player.setBulletBehavior(new DoubleBullets());
 			Player.setGunSpeedUps(5);
-			Player.setMissileBehavior(new OffSideBullets());
+			Player.setMissileBehavior(new Off());
 			Player.setSpeedUps(5);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 7:
-			Player.setBulletBehavior(new DuoBullets());
+			Player.setBulletBehavior(new DoubleBullets());
 			Player.setGunSpeedUps(6);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 8:
-			Player.setBulletBehavior(new DuoBullets());
+			Player.setBulletBehavior(new DoubleBullets());
 			Player.setGunSpeedUps(7);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;	
 		case 9:
-			Player.setBulletBehavior(new DuoBullets());
+			Player.setBulletBehavior(new DoubleBullets());
 			Player.setGunSpeedUps(8);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 10:
-			Player.setBulletBehavior(new DuoBullets());
+			Player.setBulletBehavior(new DoubleBullets());
 			Player.setGunSpeedUps(9);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;	
 		case 11:
-			Player.setBulletBehavior(new DuoBullets());
+			Player.setBulletBehavior(new DoubleBullets());
 			Player.setGunSpeedUps(10);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 12:
-			Player.setBulletBehavior(new DuoBullets());
+			Player.setBulletBehavior(new DoubleBullets());
 			Player.setGunSpeedUps(11);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 13:
-			Player.setBulletBehavior(new SpreadBullet());
+			Player.setBulletBehavior(new QuadBullet());
 			Player.setGunSpeedUps(12);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 14:
-			Player.setBulletBehavior(new SpreadBullet());
+			Player.setBulletBehavior(new QuadBullet());
 			Player.setGunSpeedUps(13);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 15:
-			Player.setBulletBehavior(new SpreadBullet());
+			Player.setBulletBehavior(new QuadBullet());
 			Player.setGunSpeedUps(14);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 16:
-			Player.setBulletBehavior(new SpreadBullet());
+			Player.setBulletBehavior(new QuadBullet());
 			Player.setGunSpeedUps(14);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 17:
-			Player.setBulletBehavior(new SpreadBullet());
+			Player.setBulletBehavior(new QuadBullet());
 			Player.setGunSpeedUps(14);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 18:
-			Player.setBulletBehavior(new SpreadBullet());
+			Player.setBulletBehavior(new QuadBullet());
 			Player.setGunSpeedUps(14);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;
 		case 19:
-			Player.setBulletBehavior(new SpreadBullet());
+			Player.setBulletBehavior(new QuadBullet());
 			Player.setGunSpeedUps(14);
-			Player.setMissileBehavior(new OnSideBullets());
+			Player.setMissileBehavior(new SideMissile());
 			Player.setSpeedUps(6);
 			Player.setBulletSpeedUps(5);
 			break;

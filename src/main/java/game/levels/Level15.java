@@ -6,7 +6,7 @@ import game.objects.Player;
 import game.objects.interfaces.Enemy;
 import game.objects.interfaces.Enemy.EnemyType;
 
-public class Level15 extends Level {
+public class Level15 extends LevelBase {
 
 	public Level15(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);

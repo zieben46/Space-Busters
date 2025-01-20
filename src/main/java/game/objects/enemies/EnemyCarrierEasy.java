@@ -3,7 +3,7 @@ package game.objects.enemies;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
-import game.objects.projectiles.behaviors.NoBullets;
+import game.objects.projectiles.behaviors.Off;
 import game.utils.ImageLoader;
 
 public class EnemyCarrierEasy extends BaseEnemy {
@@ -17,7 +17,7 @@ public class EnemyCarrierEasy extends BaseEnemy {
 		Vx=random.nextInt(8);
 		Vy=2;
 		health=350;
-		bulletBehavior=new NoBullets();
+		frontFireBehavior=new Off();
 		bulletSpeed=0;
 		bulletCoolDownTime=10000*1000;
 	}

@@ -3,7 +3,7 @@ package game.objects.enemies;
 import java.awt.image.BufferedImage;
 
 import game.core.Game;
-import game.objects.projectiles.behaviors.NoBullets;
+import game.objects.projectiles.behaviors.Off;
 import game.utils.ImageLoader;
 
 public class EnemySuicide extends BaseEnemy {
@@ -14,7 +14,7 @@ public class EnemySuicide extends BaseEnemy {
 		Vx=0;
 		Vy=0;
 		this.health=health;
-		bulletBehavior=new NoBullets();
+		frontFireBehavior=new Off();
 		bulletSpeed=0;
 		bulletCoolDownTime=10000*1000;
 		

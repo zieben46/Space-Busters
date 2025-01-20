@@ -7,7 +7,7 @@ import game.objects.Player;
 import game.objects.interfaces.Enemy;
 import game.objects.interfaces.Enemy.EnemyType;
 
-public class Level4 extends Level {
+public class Level4 extends LevelBase {
 	private int enemyTypes=3;
 	private Random random;
 
