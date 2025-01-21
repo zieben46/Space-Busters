@@ -20,10 +20,10 @@ public class Item extends BaseObject {
 
 	public Item(int x, int y, ItemType itemType) {
 		super(x, y);
-		Vx=0;
-		Vy=1;
-		this.itemType=itemType;
-		image=Item.getImage(itemType);
+		Vx = 0;
+		Vy = 1;
+		this.itemType = itemType;
+		image = Item.getImage(itemType);
 		super.setHeight(image.getHeight());
 		super.setWidth(image.getWidth());
 	}
@@ -44,8 +44,8 @@ public class Item extends BaseObject {
 	
 	@Override
 	public void update() {
-		x+=Vx;
-		y+=Vy;
+		x+= Vx;
+		y+= Vy;
 	}
 
 	@Override

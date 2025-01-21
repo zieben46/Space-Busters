@@ -10,8 +10,8 @@ public class Level2 extends LevelBase {
 	
 	public Level2(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
-		totalEnemies=30;
-		enemyRate=5;
+		totalEnemies = 30;
+		enemyRate = 5;
 	}
 
 	@Override

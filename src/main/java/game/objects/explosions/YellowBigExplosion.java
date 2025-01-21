@@ -11,7 +11,7 @@ import game.utils.Sound;
 import game.utils.Sound.soundEnum;
 
 public class YellowBigExplosion extends BaseExplosion {
-	private int frame=0;
+	private int frame = 0;
 
 	public YellowBigExplosion(Point point) {
 		super(point);
@@ -20,14 +20,14 @@ public class YellowBigExplosion extends BaseExplosion {
 
 	@Override
 	public void setImage() {
-		int width=400;
-		int height=400;
-		imageArray=new BufferedImage[81];
+		int width = 400;
+		int height = 400;
+		imageArray = new BufferedImage[81];
 		images = ImageLoader.yellowSpriteBig;
-		int counter=0;	
-		for (int y=3201; y>=1; y=y-height) {
-			for (int x=3201; x>=1; x=x-width) {
-				imageArray[counter]=images.getSubimage(x, y, 399, 399);
+		int counter = 0;	
+		for (int y = 3201; y>= 1; y = y-height) {
+			for (int x = 3201; x>= 1; x = x-width) {
+				imageArray[counter] = images.getSubimage(x, y, 399, 399);
 				counter++;
 			}
 		}
@@ -36,7 +36,7 @@ public class YellowBigExplosion extends BaseExplosion {
 	@Override
 	public void render(Graphics2D g) {
 		if (frame<imageArray.length) {
-			if (frame==0) {
+			if (frame == 0) {
 				Sound.playSound(soundEnum.BIGEXPLOSION);
 			}
 			

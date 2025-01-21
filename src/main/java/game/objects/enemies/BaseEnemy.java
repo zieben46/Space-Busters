@@ -15,7 +15,7 @@ import game.objects.interfaces.Projectile.Team;
 
 public abstract class BaseEnemy extends BaseObject implements Enemy {
 	public BufferedImage image;
-	protected Random random=new Random();
+	protected Random random = new Random();
 	protected boolean isDead;
 	protected double firedTime;
 	
@@ -29,8 +29,8 @@ public abstract class BaseEnemy extends BaseObject implements Enemy {
 	
 	public BaseEnemy() {
 		super();
-		image=getImage();
-		random=new Random();
+		image = getImage();
+		random = new Random();
 		super.setHeight(image.getHeight());
 		super.setWidth(image.getWidth());
 	}
@@ -44,9 +44,9 @@ public abstract class BaseEnemy extends BaseObject implements Enemy {
 	
 	@Override
 	public ArrayList<Projectile> randomBullet() {
-		double currentTime=System.currentTimeMillis();
+		double currentTime = System.currentTimeMillis();
 		if ((currentTime-firedTime)>bulletCoolDownTime&&wantsTo()) {
-			firedTime=currentTime;
+			firedTime = currentTime;
 			return frontFireBehavior.fire(x+(getWidth()/2-5), y+getHeight(), Vx, Vy+bulletSpeed, Team.ENEMY);
 		}
 		return null;
@@ -54,8 +54,8 @@ public abstract class BaseEnemy extends BaseObject implements Enemy {
 	
 	@Override
 	public void update() {
-		y+=Vy;
-		x+=Vx;	
+		y+= Vy;
+		x+= Vx;	
 		randomMove();
 	}
 	
@@ -64,14 +64,14 @@ public abstract class BaseEnemy extends BaseObject implements Enemy {
 	}
 	
 	protected boolean wantsTo() {
-		int r=random.nextInt(5);
-		return r==0;
+		int r = random.nextInt(5);
+		return r == 0;
 	}
 	
 	public void takeDamage(int damage) {
-		health-=damage;
+		health -= damage;
 		if (health<=0) {
-			isDead=true;
+			isDead = true;
 		}
 	}
 	
@@ -81,11 +81,11 @@ public abstract class BaseEnemy extends BaseObject implements Enemy {
 	
 	public void setNewPosition() {
 		y=-random.nextInt(200)-300;
-		x=random.nextInt(Game.WIDTH);
+		x = random.nextInt(Game.WIDTH);
 	}
 	
 	public void setX(int x) {
-		this.x=x;
+		this.x = x;
 	}
 	
 	public int getX() {

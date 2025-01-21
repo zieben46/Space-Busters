@@ -9,19 +9,19 @@ import game.objects.interfaces.Enemy.EnemyType;
 
 public class Level13 extends LevelBase {
 	private Random random;
-	private int enemyTypes=8;
+	private int enemyTypes = 8;
 
 	public Level13(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
-		totalEnemies=550;
-		enemyRate=25;
-		random=new Random();
+		totalEnemies = 550;
+		enemyRate = 25;
+		random = new Random();
 	}
 
 	@Override
 	public void addEnemy() {
 		if (enemiesAdded<totalEnemies) {
-			int r=random.nextInt(enemyTypes)+1;
+			int r = random.nextInt(enemyTypes)+1;
 			switch (r) {
 			case 1:
 				enemyEntities.add(enemyFactory.addEnemy(EnemyType.AIEasy));

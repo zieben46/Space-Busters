@@ -9,9 +9,9 @@ import game.objects.interfaces.Enemy.EnemyType;
 public class Level1 extends LevelBase {
 	public Level1(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
-		gapTime=10*1000;
-		totalEnemies=25;
-		enemyRate=10;
+		gapTime = 10*1000;
+		totalEnemies = 25;
+		enemyRate = 10;
 	}
 
 	@Override

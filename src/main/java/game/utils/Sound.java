@@ -18,13 +18,13 @@ public class Sound {
 //Audio slows down the game from time to time...
 	
 	public static void load() {
-		buttonHover=AudioClip.createAudioClip("sound/buttonHover.wav");
-		multiShoot=AudioClip.createAudioClip("sound/multiShoot.wav");
-		bigExplosion=AudioClip.createAudioClip("sound/bigExplosion.wav");
-		smallExplosion=AudioClip.createAudioClip("sound/smallExplosion.wav");
-		buttonSelect=AudioClip.createAudioClip("sound/buttonSelect.wav");
-		backgroundMusic=AudioClip.createAudioClip("sound/backgroundMusic.wav");
-		thread=new Thread();
+		buttonHover = AudioClip.createAudioClip("sound/buttonHover.wav");
+		multiShoot = AudioClip.createAudioClip("sound/multiShoot.wav");
+		bigExplosion = AudioClip.createAudioClip("sound/bigExplosion.wav");
+		smallExplosion = AudioClip.createAudioClip("sound/smallExplosion.wav");
+		buttonSelect = AudioClip.createAudioClip("sound/buttonSelect.wav");
+		backgroundMusic = AudioClip.createAudioClip("sound/backgroundMusic.wav");
+		thread = new Thread();
 	}
 
 	public enum soundEnum {
@@ -39,19 +39,19 @@ public class Sound {
 		AudioClip presentClip = null;
 		switch (se) {
 		case MULTISHOOT:
-			presentClip=multiShoot;
+			presentClip = multiShoot;
 			break;
 		case BIGEXPLOSION:
-			presentClip=bigExplosion;
+			presentClip = bigExplosion;
 			break;
 		case SMALLEXPLOSION:
-			presentClip=smallExplosion;
+			presentClip = smallExplosion;
 			break;
 		case BUTTONHOVER:
-			presentClip=buttonHover;
+			presentClip = buttonHover;
 			break;	
 		case BUTTONSELECT:
-			presentClip=buttonSelect;
+			presentClip = buttonSelect;
 			break;	
 		}
 		playClip(presentClip);

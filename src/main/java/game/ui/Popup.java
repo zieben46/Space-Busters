@@ -1,4 +1,4 @@
-package game.levels;
+package game.ui;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,15 +10,15 @@ import game.core.Game;
 public class Popup {
 	private int levelNumber;
 	private int counter;
-	private boolean rendering=false;
+	private boolean rendering = false;
 	private double startTime;
 
 	public Popup(int levelNumber) {
-		this.levelNumber=levelNumber;
+		this.levelNumber = levelNumber;
 	}
 	
 	public void renderWarning(Graphics2D g) {
-		GradientPaint gradient=null;
+		GradientPaint gradient = null;
 		if (counter%60<30) {
 			gradient = new GradientPaint(160, 300,Color.red,500,400,new Color(106,0,0));
 		} else {
@@ -28,11 +28,11 @@ public class Popup {
 		g.setFont(new Font("AR DESTINE",Font.BOLD, 50 ));
 		g.drawString("WAVE "+ levelNumber+ " APPROACHING", 162, 300);
 		counter++;
-		if (levelNumber==1) {
+		if (levelNumber == 1) {
 			renderIntro(g);
 		}
 
-		if (levelNumber==7) {
+		if (levelNumber == 7) {
 			renderSideBulletMessage(g);
 		}
 	}
@@ -57,10 +57,10 @@ public class Popup {
 
 	public void renderDeadMessage(Graphics2D g) {
 		if (!rendering) {
-			rendering=true;
-			startTime=System.currentTimeMillis();
+			rendering = true;
+			startTime = System.currentTimeMillis();
 		}
-		double currentTime=System.currentTimeMillis();
+		double currentTime = System.currentTimeMillis();
 		if (currentTime-startTime>.75*1000) {
 
 			g.setPaint(changingGradient());
@@ -85,11 +85,11 @@ public class Popup {
 	}
 
 	private GradientPaint changingGradient() {
-		double currentTime=System.currentTimeMillis();
-		double gapTime=currentTime-startTime;
-		int creep=(int) gapTime/2;
+		double currentTime = System.currentTimeMillis();
+		double gapTime = currentTime-startTime;
+		int creep = (int) gapTime/2;
 		if (creep>1400) {
-			creep=1400;
+			creep = 1400;
 		}
 		return new GradientPaint(160, 700,Color.white, 160, -1300+creep,new Color(151, 21, 21));
 	}

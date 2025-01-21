@@ -10,8 +10,8 @@ public class Physics {
 	}
 	
 	public static Rectangle getIntersection(Drawable ent1, Drawable ent2) {
-		Rectangle r1=ent1.getBounds();
-		Rectangle r2=ent2.getBounds();
+		Rectangle r1 = ent1.getBounds();
+		Rectangle r2 = ent2.getBounds();
 		return r1.intersection(r2);
 	}
 }

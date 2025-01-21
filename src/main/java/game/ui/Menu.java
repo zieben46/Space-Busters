@@ -14,16 +14,16 @@ public class Menu {
 	private BufferedImage background;
 	private MouseInput mouseInput;
 	
-	private boolean mouseInStart=false;
-	private boolean mouseInLoad=false;
-	private boolean mouseInQuit=false;
+	private boolean mouseInStart = false;
+	private boolean mouseInLoad = false;
+	private boolean mouseInQuit = false;
 
 	public RoundRectangle2D startButton = new RoundRectangle2D.Float(100, 150, 100, 50, 10, 10);
 	public RoundRectangle2D loadButton = new RoundRectangle2D.Float(100, 250, 100, 50, 10, 10);
 	public RoundRectangle2D quitButton = new RoundRectangle2D.Float(100, 350, 100, 50, 10, 10);
 	
 	public Menu(Game game, MouseInput mouseInput) {
-		this.mouseInput=mouseInput;
+		this.mouseInput = mouseInput;
 		background = ImageLoader.menuBackground;
 	}
 
@@ -82,8 +82,8 @@ public class Menu {
 	}
 	
 	public void update() {
-		mouseInStart=mouseInput.getInStart();
-		mouseInLoad=mouseInput.getInLoad();
-		mouseInQuit=mouseInput.getInQuit();	
+		mouseInStart = mouseInput.getInStart();
+		mouseInLoad = mouseInput.getInLoad();
+		mouseInQuit = mouseInput.getInQuit();	
 	}
 }

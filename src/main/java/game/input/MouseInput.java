@@ -16,7 +16,7 @@ public class MouseInput implements MouseListener, MouseMotionListener  {
 	private boolean inQuit;
 
 	public MouseInput(Game game) {
-		this.game=game;
+		this.game = game;
 	}
 
 	@Override
@@ -37,20 +37,20 @@ public class MouseInput implements MouseListener, MouseMotionListener  {
 	public void mousePressed(MouseEvent e) {
 
 		if (Game.state.equals(Game.STATE.MENU)) {
-			int x=e.getX();
-			int y=e.getY();
+			int x = e.getX();
+			int y = e.getY();
 			if (x>100&&x<200&&y>150&&y<200) {
 				Sound.playSound(soundEnum.BUTTONSELECT);
 				game.startLevels(1);
-				Game.state=Game.STATE.GAME;
+				Game.state = Game.STATE.GAME;
 				Sound.playBackgroundMusic();
 			}
 
 			if (x>100&&x<200&&y>250&&y<300) {
 				Sound.playSound(soundEnum.BUTTONSELECT);
-				int levelNumber=LoadAndSaver.Load();
+				int levelNumber = LoadAndSaver.Load();
 				game.startLevels(levelNumber);
-				Game.state=Game.STATE.GAME;
+				Game.state = Game.STATE.GAME;
 				Sound.playBackgroundMusic();
 			}
 
@@ -77,34 +77,34 @@ public class MouseInput implements MouseListener, MouseMotionListener  {
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		if (Game.state.equals(Game.STATE.MENU)) {
-			int x=e.getX();
-			int y=e.getY();
+			int x = e.getX();
+			int y = e.getY();
 
 			if (x>100&&x<200&&y>150&&y<200) {
-				if (inStart==false) {
+				if (inStart == false) {
 					Sound.playSound(soundEnum.BUTTONHOVER);
 				}
-				inStart=true;
+				inStart = true;
 			} else {
-				inStart=false;
+				inStart = false;
 			}
 
 			if (x>100&&x<200&&y>250&&y<300) {
-				if (inLoad==false) {
+				if (inLoad == false) {
 					Sound.playSound(soundEnum.BUTTONHOVER);
 				}
-				inLoad=true;
+				inLoad = true;
 			} else {
-				inLoad=false;
+				inLoad = false;
 			}
 
 			if (x>100&&x<200&&y>350&&y<400) {
-				if (inQuit==false) {
+				if (inQuit == false) {
 					Sound.playSound(soundEnum.BUTTONHOVER);
 				}
-				inQuit=true;
+				inQuit = true;
 			} else {
-				inQuit=false;
+				inQuit = false;
 			}
 
 		}

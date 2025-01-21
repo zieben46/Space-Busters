@@ -10,13 +10,13 @@ import game.objects.interfaces.Enemy.EnemyType;
 
 public class Level14 extends LevelBase {
 	private int totalSlaves;
-	private int slavesPerCarr=3;
+	private int slavesPerCarr = 3;
 
 	public Level14(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
-		totalEnemies=5;
-		totalSlaves=slavesPerCarr*totalEnemies;
-		enemyRate=12;
+		totalEnemies = 5;
+		totalSlaves = slavesPerCarr*totalEnemies;
+		enemyRate = 12;
 	}
 	
 	@Override
@@ -32,8 +32,8 @@ public class Level14 extends LevelBase {
 
 	@Override
 	public void addEnemy() {
-		int currSlaveCount=0;
-		int currCarrierCount=0;
+		int currSlaveCount = 0;
+		int currCarrierCount = 0;
 		for (Enemy enemyEntity: enemyEntities) {
 			if (enemyEntity.getClass().equals(EnemyAIEasySlave.class)) {
 				currSlaveCount++;

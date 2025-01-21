@@ -16,9 +16,9 @@ public class Bullet extends BaseObject implements Projectile {
 
 	public Bullet(int x, int y, int Vx, int Vy, Team team) {
 		super(x, y);
-		this.Vx=Vx;
-		this.Vy=Vy;
-		this.team=team;
+		this.Vx = Vx;
+		this.Vy = Vy;
+		this.team = team;
 		getImage();
 		super.setHeight(projectileImage.getHeight());
 		super.setWidth(projectileImage.getWidth());
@@ -37,8 +37,8 @@ public class Bullet extends BaseObject implements Projectile {
 	}
 
 	public void update() {
-		y+=Vy;
-		x+=Vx;
+		y+= Vy;
+		x+= Vx;
 	}
 
 	public int getX() {
@@ -50,11 +50,11 @@ public class Bullet extends BaseObject implements Projectile {
 	}
 
 	public void setVy(int Vy) {
-		this.Vy=Vy;
+		this.Vy = Vy;
 	}
 
 	public void setVx(int Vx) {
-		this.Vx=Vx;
+		this.Vx = Vx;
 	}
 
 	@Override

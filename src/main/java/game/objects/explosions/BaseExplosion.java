@@ -15,8 +15,8 @@ public abstract class BaseExplosion implements Explosion {
 	int y;
 
 	public BaseExplosion (Point point) {
-		this.x=(int) point.getX();
-		this.y=(int) point.getY();
+		this.x = (int) point.getX();
+		this.y = (int) point.getY();
 		setImage();
 	}
 

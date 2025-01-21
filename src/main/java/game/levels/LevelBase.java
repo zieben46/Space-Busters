@@ -14,19 +14,19 @@ public abstract class LevelBase implements Level {
 	protected LinkedList<Enemy> enemyEntities;
 	protected Player player;
 	protected int enemiesAdded;
-	protected int healthPackSpawn=25;
-	protected boolean running=false;
-	protected boolean activated=false;
-	protected long gapTime=7*1000;
+	protected int healthPackSpawn = 25;
+	protected boolean running = false;
+	protected boolean activated = false;
+	protected long gapTime = 7*1000;
 	protected double startTime;
 	protected boolean inGap;
 
 	public LevelBase(LinkedList<Enemy> enemyEntities, Player player) {
-		this.enemyEntities=enemyEntities;
-		enemyFactory=new EnemyFactory();
-		this.player=player;
-		startTime=System.currentTimeMillis();
-		inGap=true;
+		this.enemyEntities = enemyEntities;
+		enemyFactory = new EnemyFactory();
+		this.player = player;
+		startTime = System.currentTimeMillis();
+		inGap = true;
 	}
 
 	@Override
@@ -44,11 +44,11 @@ public abstract class LevelBase implements Level {
 	}
 
 	public void update() {
-		if (inGap==true) {
-			double currentTime=System.currentTimeMillis();
-			if (currentTime-startTime>=gapTime) {
+		if (inGap == true) {
+			double currentTime = System.currentTimeMillis();
+			if (currentTime-startTime>= gapTime) {
 				initialize();
-				inGap=false;
+				inGap = false;
 			}
 		}
 	}

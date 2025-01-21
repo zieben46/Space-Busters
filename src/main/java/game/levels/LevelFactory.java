@@ -15,8 +15,8 @@ public class LevelFactory {
 	private Player player;
 
 	public LevelFactory(LinkedList<Enemy> enemies, Player player) {
-		this.enemies=enemies;
-		this.player=player;
+		this.enemies = enemies;
+		this.player = player;
 	}
 
 

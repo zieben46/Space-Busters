@@ -13,13 +13,13 @@ public abstract class BaseObject implements Drawable {
 	Random random;
 
 	public BaseObject(int x, int y) {
-		this.x=x;
-		this.y=y;
+		this.x = x;
+		this.y = y;
 	}
 	
 	public BaseObject() {
-		random=new Random();
-		x=random.nextInt(Game.WIDTH);
+		random = new Random();
+		x = random.nextInt(Game.WIDTH);
 		y=-random.nextInt(300);
 		//y=-40;
 	}
@@ -30,11 +30,11 @@ public abstract class BaseObject implements Drawable {
 	}
 	
 	public void setWidth(int width) {
-		this.width=width;
+		this.width = width;
 	}
 	
 	public void setHeight(int height) {
-		this.height=height;
+		this.height = height;
 	}
 	
 	public int getWidth() {

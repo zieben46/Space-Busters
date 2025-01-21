@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
 public class LoadAndSaver {
 	private static BufferedReader reader;
 	private static FileWriter fw;
-	private static String levelNumber="1";
+	private static String levelNumber = "1";
 
 	public static int Load() {
 		try {
-			reader=new BufferedReader(new FileReader(new File("storage.txt")));
-			levelNumber=reader.readLine();
+			reader = new BufferedReader(new FileReader(new File("storage.txt")));
+			levelNumber = reader.readLine();
 			reader.close();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "ERROR:  NO SAVE FILE FOUND");

@@ -13,16 +13,16 @@ public class Level16 extends LevelBase {
 
 	public Level16(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
-		totalEnemies=500;
-		enemyRate=20;
-		enemyTypes=2;
-		random=new Random();
+		totalEnemies = 500;
+		enemyRate = 20;
+		enemyTypes = 2;
+		random = new Random();
 	}
 
 	@Override
 	public void addEnemy() {
 		if (enemiesAdded<totalEnemies) {
-			int r=random.nextInt(enemyTypes)+1;
+			int r = random.nextInt(enemyTypes)+1;
 			switch (r) {
 			case 1:
 				enemyEntities.add(enemyFactory.addEnemy(EnemyType.BeamEasy));

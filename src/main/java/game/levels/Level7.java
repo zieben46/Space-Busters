@@ -9,20 +9,20 @@ import game.objects.interfaces.Enemy.EnemyType;
 
 public class Level7 extends LevelBase {
 	private Random random;
-	private int enemyTypes=2;
+	private int enemyTypes = 2;
 
 	public Level7(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
-		gapTime=10*1000;
-		totalEnemies=30;
-		enemyRate=6;
-		random=new Random();
+		gapTime = 10*1000;
+		totalEnemies = 30;
+		enemyRate = 6;
+		random = new Random();
 	}
 
 	@Override
 	public void addEnemy() {
 		if (enemiesAdded<totalEnemies) {
-			int r=random.nextInt(enemyTypes)+1;
+			int r = random.nextInt(enemyTypes)+1;
 			switch (r) {
 			case 1:
 				enemyEntities.add(enemyFactory.addEnemy(EnemyType.Medium3));

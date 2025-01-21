@@ -14,34 +14,34 @@ import game.utils.ImageLoader;
 public class Player extends BaseObject {
 
 	//default velocity
-	protected static int Vx=4;
-	protected static int Vy=4;
+	protected static int Vx = 4;
+	protected static int Vy = 4;
 
 	//default bullet behavior
-	private static double coolDownTime=0.5*1000;  //half second
-	private static int bulletSpeed=0;
+	private static double coolDownTime = 0.5*1000;  //half second
+	private static int bulletSpeed = 0;
 	private static FrontFireBehavior frontGunBehavior = new SingleBullet();
 	private static SideFireBehavior sideGunBehavior = new Off();
 	private static double firedTime;
 
 	//default upgrades 
-	private static int speedUps=0;
-	private static int gunSpeedUps=0;
-	private static int bulletSpeedUps=0;
+	private static int speedUps = 0;
+	private static int gunSpeedUps = 0;
+	private static int bulletSpeedUps = 0;
 
 	//default new object fields
-	private int health=200;
-	private boolean dead=false;
+	private int health = 200;
+	private boolean dead = false;
 	protected BufferedImage[] image;
-	protected double animeCount=6.0;
+	protected double animeCount = 6.0;
 
 
 	public Player(int x, int y) { 
 		super(x, y);
-		image=Player.getImage();
+		image = Player.getImage();
 		super.setHeight(image[3].getHeight());
 		super.setWidth(image[3].getWidth());
-		StatsTracker.playerHealth=health;
+		StatsTracker.playerHealth = health;
 	}
 
     //Base Object methods
@@ -62,42 +62,42 @@ public class Player extends BaseObject {
 	public void render(Graphics2D g) {
 		if (!dead) {
 			g.drawImage(image[(int) animeCount%6], x, y, null);
-			animeCount+=.05;
+			animeCount+= .05;
 		}
 	}
 
 	@Override
 	public void update() {
 		if (x>=Space.WIDTH-50&&!dead) {
-			x=Space.WIDTH-50;
+			x = Space.WIDTH-50;
 		}
 		if (x<=0) {
-			x=0;
+			x = 0;
 		}
 		if (y>=Space.HEIGHT-50&&!dead) {
-			y=Space.HEIGHT-50;
+			y = Space.HEIGHT-50;
 		}
 		if (y<=0) {
-			y=0;
+			y = 0;
 		}
 		if (health<=0) {
-			dead=true;
+			dead = true;
 		}
 	}
 
 	public ArrayList<Projectile> fire() {
-		double currentTime=System.currentTimeMillis();
+		double currentTime = System.currentTimeMillis();
 		if (currentTime-firedTime>coolDownTime) {
-			firedTime=currentTime;
+			firedTime = currentTime;
 			return frontGunBehavior.fire(x+20, y, -Vx, -Vy-bulletSpeed, Projectile.Team.FRIENDLY);
 		}
 		return null;
 	}
 
 	public ArrayList<Projectile> shootSide(int Vx) {
-		double currentTime=System.currentTimeMillis();
-		if (currentTime-firedTime>=coolDownTime) {
-			firedTime=currentTime;
+		double currentTime = System.currentTimeMillis();
+		if (currentTime-firedTime>= coolDownTime) {
+			firedTime = currentTime;
 			return sideGunBehavior.fire(x+20, y, Vx, -Vy, Projectile.Team.FRIENDLY);
 		}
 		return null;
@@ -105,22 +105,22 @@ public class Player extends BaseObject {
 
 	public void increaseHealth() {
 		if (health<200) {
-			health+=20;
-			StatsTracker.playerHealth=health;
+			health+= 20;
+			StatsTracker.playerHealth = health;
 		}
 	}
 
 	public void decreaseHealth() {
 		if (health>0) {
-			health-=20;
-			StatsTracker.playerHealth=health;
+			health -= 20;
+			StatsTracker.playerHealth = health;
 		} else {
-			dead=true;
+			dead = true;
 		}
 	}
 
 	public boolean isDead() {
-		return health<=0;
+		return health <= 0;
 	}
 
 	public void consume(Item item) {	
@@ -140,16 +140,16 @@ public class Player extends BaseObject {
 	}
 
 	public void moveLeft() {
-		x-=Player.Vx;
+		x -= Player.Vx;
 	}
 	public void moveRight() {
-		x+=Player.Vx;
+		x += Player.Vx;
 	}
 	public void moveUp() {
-		y-=Player.Vy;
+		y -= Player.Vy;
 	}
 	public void moveDown() {
-		y+=Player.Vy;
+		y += Player.Vy;
 	}
 
 	@Override
@@ -163,11 +163,11 @@ public class Player extends BaseObject {
 	}
 
 	public void setX(int x) {
-		this.x=x;
+		this.x = x;
 	}
 	
 	public void setY(int y) {
-		this.y=y;
+		this.y = y;
 	}
 
 	@Override
@@ -188,29 +188,29 @@ public class Player extends BaseObject {
 	/////////static methods
 
 	public static void setGunSpeedUps(int gunSpeedUps) {
-		Player.gunSpeedUps=gunSpeedUps;
-		Player.coolDownTime=0.5*1000*Math.pow(0.85, gunSpeedUps);
-		StatsTracker.gunRateUpgs=Player.gunSpeedUps;
+		Player.gunSpeedUps = gunSpeedUps;
+		Player.coolDownTime = 0.5*1000*Math.pow(0.85, gunSpeedUps);
+		StatsTracker.gunRateUpgs = Player.gunSpeedUps;
 	}
 
 	public static void setBulletSpeedUps(int bulletSpeedUps) {
-		Player.bulletSpeedUps=bulletSpeedUps;
-		Player.bulletSpeed=4+Player.bulletSpeedUps;
+		Player.bulletSpeedUps = bulletSpeedUps;
+		Player.bulletSpeed = 4+Player.bulletSpeedUps;
 	}
 
 	public static void setSpeedUps(int speedUps) {
-		Player.speedUps=speedUps;
-		Player.Vx=4+Player.speedUps;
-		Player.Vy=4+Player.speedUps;
-		StatsTracker.movementUpgs=Player.speedUps;
+		Player.speedUps = speedUps;
+		Player.Vx = 4+Player.speedUps;
+		Player.Vy = 4+Player.speedUps;
+		StatsTracker.movementUpgs = Player.speedUps;
 	}
 
 	public static void setBulletBehavior(FrontFireBehavior frontGunBehavior) {
-		Player.frontGunBehavior=frontGunBehavior;
+		Player.frontGunBehavior = frontGunBehavior;
 	}
 
 	public static void setMissileBehavior(SideFireBehavior sideGunBehavior) {
-		Player.sideGunBehavior=sideGunBehavior;
+		Player.sideGunBehavior = sideGunBehavior;
 	}
 
 }

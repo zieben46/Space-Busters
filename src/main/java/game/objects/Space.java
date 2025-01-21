@@ -7,8 +7,8 @@ import game.core.Game;
 import game.utils.ImageLoader;
 
 public class Space {
-	public static final int WIDTH=Game.WIDTH;
-	public static final int HEIGHT=Game.HEIGHT;
+	public static final int WIDTH = Game.WIDTH;
+	public static final int HEIGHT = Game.HEIGHT;
 
 	private int x;
 	private int y;
@@ -17,20 +17,20 @@ public class Space {
 	private Controller controller;
 
 	public Space(int x, int y, int levelNumber) {
-		this.x=x;
-		this.y=y;
-		spaceImage=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		foregroundImage=new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		controller=new Controller(levelNumber);
+		this.x = x;
+		this.y = y;
+		spaceImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		foregroundImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		controller = new Controller(levelNumber);
 		createBackground();
 	}
 
 	private void createBackground() {
-		spaceImage=ImageLoader.spaceBackground;	
+		spaceImage = ImageLoader.spaceBackground;	
 	}
 
 	public void render(Graphics2D g) {
-		Graphics2D g2=(Graphics2D) foregroundImage.getGraphics();
+		Graphics2D g2 = (Graphics2D) foregroundImage.getGraphics();
 		g2.drawImage(spaceImage, 0, 0, null);		
 		controller.render(g2);	
 		g.drawImage(foregroundImage, x, y, null);
