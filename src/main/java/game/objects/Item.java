@@ -6,40 +6,40 @@ import game.utils.ImageLoader;
 
 public class Item extends BaseObject {
 
-	public enum ItemType {
+	public enum Type {
 		gunType,
 		gunRate,
 		movement,
 		healthPack
-	}
+	} 
 
 	protected BufferedImage image;
 	protected int Vx;
 	protected int Vy;
-	private ItemType itemType;
+	private Type type;
 
-	public Item(int x, int y, ItemType itemType) {
+	public Item(int x, int y, Type type) {
 		super(x, y);
 		Vx = 0;
 		Vy = 1;
-		this.itemType = itemType;
-		image = Item.getImage(itemType);
+		this.type = type;
+		image = Item.getImage(type);
 		super.setHeight(image.getHeight());
 		super.setWidth(image.getWidth());
 	}
 
-	public static BufferedImage getImage(ItemType itemType) {
-		return switch (itemType) {
+	public static BufferedImage getImage(Type type) {
+		return switch (type) {
 			case movement -> ImageLoader.yellowUpgrade;
 			case gunType -> ImageLoader.purpleUpgrade;
 			case gunRate -> ImageLoader.greenUpgrade;
 			case healthPack -> ImageLoader.healthPack;
-			default -> throw new IllegalArgumentException("Unexpected ItemType: " + itemType);
+			default -> throw new IllegalArgumentException("Unexpected Item Type: " + type);
 		};
 	}
 
-	public ItemType getItemType() {
-        return itemType;
+	public Type getType() {
+        return type;
     }
 	
 	@Override

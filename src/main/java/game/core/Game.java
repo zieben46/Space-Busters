@@ -54,7 +54,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
 	}
 		
 	public void startLevels(int levelNumber) {
-		space = new Space(WIDTH/2-Space.WIDTH/2,HEIGHT/2-Space.HEIGHT/2, levelNumber);	
+		space = new Space(WIDTH/2 - Space.WIDTH/2, HEIGHT/2-Space.HEIGHT/2, levelNumber);	
 	}
 
 	private void update() {

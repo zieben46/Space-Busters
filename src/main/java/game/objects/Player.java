@@ -124,7 +124,7 @@ public class Player extends BaseObject {
 	}
 
 	public void consume(Item item) {	
-		switch(item.getItemType()) {
+		switch(item.getType()) {
 		case gunType:
 			//increaseShootBehavior();
 			break;

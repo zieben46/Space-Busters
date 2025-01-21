@@ -23,7 +23,7 @@ import game.objects.explosions.YellowExplosion;
 import game.objects.interfaces.Enemy;
 import game.objects.interfaces.Explosion;
 import game.objects.interfaces.Projectile;
-import game.objects.Item.ItemType;
+import game.objects.Item.Type;
 import game.objects.interfaces.Projectile.Team;
 import game.objects.projectiles.Beam;
 import game.ui.Popup;
@@ -289,19 +289,19 @@ public class Controller {
 	private void spawnUpgrade(int x, int y) {  //move
 		int r = random.nextInt(100);
 		if (r <= gunTypeUpgradeSpawn&&StatsTracker.gunTypeUpgs<3) {
-			items.add(new Item(x, y, ItemType.gunType));
+			items.add(new Item(x, y, Type.gunType));
 		}
 		r = random.nextInt(100);
 		if (r <= gunRateUpgradeSpawn&&StatsTracker.gunRateUpgs<10) {
-			items.add(new Item(x, y, ItemType.gunRate));
+			items.add(new Item(x, y, Type.gunRate));
 		} 
 		r = random.nextInt(100);
 		if (r <= movementUpgradeSpawn&&StatsTracker.movementUpgs<3) {
-			items.add(new Item(x, y, ItemType.movement));
+			items.add(new Item(x, y, Type.movement));
 		}
 		r = random.nextInt(100);
 		if (r <= healthPackSpawn) {
-			items.add(new Item(x, y, ItemType.healthPack));
+			items.add(new Item(x, y, Type.healthPack));
 		}
 	}
 
