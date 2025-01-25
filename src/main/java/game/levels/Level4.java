@@ -13,8 +13,8 @@ public class Level4 extends LevelBase {
 
 	public Level4(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
-		totalEnemies = 15;
-		enemyRate = 8;
+		totalEnemies = 20;
+		enemyRate = 35;
 		random = new Random();
 	}
 
