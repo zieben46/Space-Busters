@@ -53,7 +53,7 @@ public class Keyboard {
 	
 	//JOption pane messing with this
 	public static void resetS() {
-		pressed[KeyEvent.VK_A] = false;
+		pressed[KeyEvent.VK_S] = false;
 	}
 
 	public static boolean RPressed() {
