@@ -2,8 +2,11 @@ package game.ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+
+//import game.core.Game.WIDTH;
 
 import game.core.Game;
 
@@ -14,6 +17,7 @@ public class Popup {
 	private double startTime;
 
 	public Popup(int levelNumber) {
+		int x = Game.WIDTH;
 		this.levelNumber = levelNumber;
 	}
 	
@@ -52,7 +56,7 @@ public class Popup {
 		g.setFont(new Font("AR DESTINE",Font.BOLD, 20 ));
 		g.drawString("SIDE BULLETS AQUIRED", 327, 350);
 		g.setFont(new Font("AR DESTINE",Font.BOLD, 16 ));
-		g.drawString("USE THE 'S' AND 'F' KEYS TO FIRE SIDE BULLETS", 258, 380);
+		g.drawString("PRESS A AND D", 368, 380);
 	}
 
 	public void renderDeadMessage(Graphics2D g) {

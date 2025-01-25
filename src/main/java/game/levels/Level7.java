@@ -14,8 +14,8 @@ public class Level7 extends LevelBase {
 	public Level7(LinkedList<Enemy> enemyEntities, Player player) {
 		super(enemyEntities, player);
 		gapTime = 10*1000;
-		totalEnemies = 30;
-		enemyRate = 6;
+		totalEnemies = 50;
+		enemyRate = 7;
 		random = new Random();
 	}
 
