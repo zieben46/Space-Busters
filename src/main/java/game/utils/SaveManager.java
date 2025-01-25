@@ -7,7 +7,7 @@ import java.io.FileWriter;
 
 import javax.swing.JOptionPane;
 
-public class LoadAndSaver {
+public class SaveManager {
 	private static BufferedReader reader;
 	private static FileWriter fw;
 	private static String levelNumber = "1";
@@ -19,8 +19,8 @@ public class LoadAndSaver {
 			reader.close();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "ERROR:  NO SAVE FILE FOUND");
-		}		
-		return Integer.parseInt(levelNumber);	
+		}
+		return Integer.parseInt(levelNumber);
 	}
 
 	public static void Save(int levelNumber) {
@@ -28,9 +28,9 @@ public class LoadAndSaver {
 			fw = new FileWriter(new File("storage.txt"));
 			fw.write(String.valueOf(levelNumber));
 			fw.close();
-			JOptionPane.showMessageDialog(null,"SAVE SUCCESSFUL");
-		} catch(Exception e) {
-			JOptionPane.showMessageDialog(null,"AN UNEXPECTED ERROR HAS OCCURED WHILE SAVING...");   
-		}  
+			JOptionPane.showMessageDialog(null, "SAVE SUCCESSFUL");
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "AN UNEXPECTED ERROR HAS OCCURED WHILE SAVING...");
+		}
 	}
 }

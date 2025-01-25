@@ -6,8 +6,8 @@ import game.objects.interfaces.Projectile;
 import game.objects.interfaces.FireBehavior.SideFireBehavior;
 import game.objects.interfaces.Projectile.Team;
 import game.objects.projectiles.Missile;
-import game.utils.Sound;
-import game.utils.Sound.soundEnum;
+import game.utils.SoundPlayer;
+import game.utils.SoundPlayer.SoundType;
 
 public class SideMissile implements SideFireBehavior {
 
@@ -15,7 +15,7 @@ public class SideMissile implements SideFireBehavior {
 	public ArrayList<Projectile> fire(int x, int y, int Vx, int Vy, Team team) {
 		ArrayList<Projectile> missiles = new ArrayList<>();
 		missiles.add(new Missile(x, y, Vx, 0, team));
-		Sound.playSound(soundEnum.MULTISHOOT);
+		SoundPlayer.playSound(SoundType.MULTISHOOT);
 		return missiles;
 	}
 }

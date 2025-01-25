@@ -27,9 +27,9 @@ import game.objects.Item.Type;
 import game.objects.interfaces.Projectile.Team;
 import game.objects.projectiles.Beam;
 import game.ui.Popup;
-import game.utils.LoadAndSaver;
-import game.utils.Sound;
-import game.utils.Sound.soundEnum;
+import game.utils.SaveManager;
+import game.utils.SoundPlayer;
+import game.utils.SoundPlayer.SoundType;
 
 public class Controller {
 
@@ -40,9 +40,9 @@ public class Controller {
 
 	private Player player;
 
-	private int gunTypeUpgradeSpawn=-1;
-	private int gunRateUpgradeSpawn=-1;
-	private int movementUpgradeSpawn=-1;
+	private int gunTypeUpgradeSpawn = -1;
+	private int gunRateUpgradeSpawn = -1;
+	private int movementUpgradeSpawn = -1;
 	private int healthPackSpawn;
 	private Random random = new Random();
 	private Level level;
@@ -60,7 +60,7 @@ public class Controller {
 	private int totalEnemies;
 
 	public class StatsTracker {
-		public static int playerHealth = 100*2;
+		public static int playerHealth = 100 * 2;
 		public static int movementUpgs = 0;
 		public static int gunRateUpgs = 0;
 		public static int gunTypeUpgs = 0;
@@ -98,7 +98,7 @@ public class Controller {
 			StatsTracker.playerX = player.getX();
 			StatsTracker.playerY = player.getY();
 
-			for (int i=0; i<projectiles.size(); i++) {
+			for (int i = 0; i < projectiles.size(); i++) {
 				Projectile projectile = projectiles.get(i);
 				projectileHit(projectile);
 				projectileBounds(projectile);
@@ -106,23 +106,23 @@ public class Controller {
 				projectile.update();
 			}
 
-			for (int i=0; i<enemies.size(); i++) {
+			for (int i = 0; i < enemies.size(); i++) {
 				Enemy enemy = enemies.get(i);
 				testCollision(enemy);
-				checkDeadEnemy(enemy);			
+				checkDeadEnemy(enemy);
 				enemyBounds(enemy);
 				randomShoot(enemy);
 				enemy.update();
 			}
 
-			for (int i=0; i<items.size(); i++) {
+			for (int i = 0; i < items.size(); i++) {
 				Item item = items.get(i);
 				pickUp(item);
 				upgradeBounds(item);
 				item.update();
 			}
 
-			for (int i=0; i<explosions.size(); i++) {
+			for (int i = 0; i < explosions.size(); i++) {
 				Explosion explosion = explosions.get(i);
 				checkRendering(explosion);
 			}
@@ -134,8 +134,8 @@ public class Controller {
 			if (player.isDead()) {
 
 				if (!explosionRendered) {
-					explosions.add(new YellowBigExplosion(new Point
-							(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
+					explosions.add(new YellowBigExplosion(
+							new Point(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2)));
 					explosionRendered = true;
 				}
 			}
@@ -160,7 +160,7 @@ public class Controller {
 		enemies.stream().forEach(e -> e.render(g));
 		items.stream().forEach(e -> e.render(g));
 		player.render(g);
-        explosions.stream().forEach(e -> e.render(g));
+		explosions.stream().forEach(e -> e.render(g));
 
 		if (inGap) {
 			popup.renderWarning(g);
@@ -169,11 +169,11 @@ public class Controller {
 		if (player.isDead()) {
 			popup.renderDeadMessage(g);
 			playerDead = true;
-			//			if (!explosionRendered) {
-			//				explosions.add(new BigYellowExplosion(new Point
-			//						(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
-			//				explosionRendered = true;
-			//			}
+			// if (!explosionRendered) {
+			// explosions.add(new BigYellowExplosion(new Point
+			// (player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
+			// explosionRendered = true;
+			// }
 		}
 
 		if (paused) {
@@ -188,41 +188,41 @@ public class Controller {
 		g.setColor(Color.white);
 		String text = enemiesKilled + "/" + totalEnemies;
 
-		//right justified
+		// right justified
 		int textWidth = (g.getFontMetrics()).stringWidth(text);
 		int xPosition = Game.WIDTH - textWidth - 5;
 		int yPosition = Game.HEIGHT - 5;
 
 		g.drawString(text, xPosition, yPosition);
 	}
-	
+
 	private void randomShoot(Enemy enemy) {
 		ArrayList<Projectile> newProjectiles = enemy.randomBullet();
-		if (newProjectiles!= null) {
+		if (newProjectiles != null) {
 			projectiles.addAll(newProjectiles);
 		}
 	}
 
-	private void  projectileHit(Projectile projectile) {    //test player hits enemy
+	private void projectileHit(Projectile projectile) { // test player hits enemy
 		if (projectile.team().equals(Team.FRIENDLY)) {
-			for (int i=0; i<enemies.size(); i++) {
+			for (int i = 0; i < enemies.size(); i++) {
 				Enemy enemy = enemies.get(i);
 				if (Physics.Collision(projectile, enemy)) {
 
 					enemy.takeDamage(projectile.getDamage());
-					explosions.add(new YellowExplosion(new Point
-							(projectile.getX()+player.getWidth()/2, projectile.getY()+player.getHeight()/2)));
-					Sound.playSound(soundEnum.SMALLEXPLOSION);
+					explosions.add(new YellowExplosion(new Point(projectile.getX() + player.getWidth() / 2,
+							projectile.getY() + player.getHeight() / 2)));
+					SoundPlayer.playSound(SoundType.SMALLEXPLOSION);
 					projectiles.remove(projectile);
 				}
 			}
-		} else if (projectile.team().equals(Team.ENEMY)){   //test enemy hits player
+		} else if (projectile.team().equals(Team.ENEMY)) { // test enemy hits player
 			if (Physics.Collision(player, projectile) && !player.isDead()) {
 				projectiles.remove(projectile);
 				player.decreaseHealth();
-				explosions.add(new BlueExplosion(new Point
-						(player.getX()+player.getWidth()/2, player.getY()+player.getHeight()/2)));
-				Sound.playSound(soundEnum.SMALLEXPLOSION);
+				explosions.add(new BlueExplosion(
+						new Point(player.getX() + player.getWidth() / 2, player.getY() + player.getHeight() / 2)));
+				SoundPlayer.playSound(SoundType.SMALLEXPLOSION);
 			}
 		}
 	}
@@ -231,17 +231,17 @@ public class Controller {
 		if (enemy.isDead()) {
 			enemies.remove(enemy);
 			enemiesKilled++;
-			spawnUpgrade(enemy.getX(), enemy.getY());    //move?
+			spawnUpgrade(enemy.getX(), enemy.getY()); // move?
 			level.addEnemy();
 		}
 	}
 
-	private void testCollision(Enemy enemy) {    //test for enemy player collision
+	private void testCollision(Enemy enemy) { // test for enemy player collision
 		if (Physics.Collision(player, enemy) && !player.isDead()) {
-			Sound.playSound(soundEnum.SMALLEXPLOSION);
+			SoundPlayer.playSound(SoundType.SMALLEXPLOSION);
 			player.decreaseHealth();
 			Rectangle union = Physics.getIntersection(player, enemy);
-			explosions.add(new BlueExplosion(new Point((int) union.getX(),(int) union.getY())));
+			explosions.add(new BlueExplosion(new Point((int) union.getX(), (int) union.getY())));
 			enemies.remove(enemy);
 			enemiesKilled++;
 			level.addEnemy();
@@ -249,16 +249,16 @@ public class Controller {
 	}
 
 	private void projectileBounds(Projectile ProjectileEntity) {
-		if (ProjectileEntity.getY()<-20||ProjectileEntity.getY()>1000||
-				ProjectileEntity.getX()<-100||ProjectileEntity.getX()>900) {
+		if (ProjectileEntity.getY() < -20 || ProjectileEntity.getY() > 1000 ||
+				ProjectileEntity.getX() < -100 || ProjectileEntity.getX() > 900) {
 			projectiles.remove(ProjectileEntity);
 		}
 	}
 
 	private void upgradeBounds(Item item) {
-		if (item.getY()<-20||item.getY()>1000||
-				item.getX()<-100||item.getX()>900) {
-					items.remove(item);
+		if (item.getY() < -20 || item.getY() > 1000 ||
+				item.getX() < -100 || item.getX() > 900) {
+			items.remove(item);
 		}
 	}
 
@@ -266,19 +266,18 @@ public class Controller {
 		int x = enemy.getX();
 		int y = enemy.getY();
 
-		if (x>Game.WIDTH+60) {
+		if (x > Game.WIDTH + 60) {
 			enemy.setX(-30);
-		}
-		else if (x<-60) {
-			enemy.setX(Game.WIDTH+30);
+		} else if (x < -60) {
+			enemy.setX(Game.WIDTH + 30);
 
-		} else if (y>Game.HEIGHT+400) {
+		} else if (y > Game.HEIGHT + 400) {
 			enemy.setNewPosition();
 		}
 	}
 
 	private void checkComplete() {
-		if (level.levelComplete()&&levelNumber<TOTAL_LEVELS) {
+		if (level.levelComplete() && levelNumber < TOTAL_LEVELS) {
 			levelNumber++;
 			initializeLevel();
 		}
@@ -293,17 +292,17 @@ public class Controller {
 		}
 	}
 
-	private void spawnUpgrade(int x, int y) {  //move
+	private void spawnUpgrade(int x, int y) { // move
 		int r = random.nextInt(100);
-		if (r <= gunTypeUpgradeSpawn&&StatsTracker.gunTypeUpgs<3) {
+		if (r <= gunTypeUpgradeSpawn && StatsTracker.gunTypeUpgs < 3) {
 			items.add(new Item(x, y, Type.gunType));
 		}
 		r = random.nextInt(100);
-		if (r <= gunRateUpgradeSpawn&&StatsTracker.gunRateUpgs<10) {
+		if (r <= gunRateUpgradeSpawn && StatsTracker.gunRateUpgs < 10) {
 			items.add(new Item(x, y, Type.gunRate));
-		} 
+		}
 		r = random.nextInt(100);
-		if (r <= movementUpgradeSpawn&&StatsTracker.movementUpgs<3) {
+		if (r <= movementUpgradeSpawn && StatsTracker.movementUpgs < 3) {
 			items.add(new Item(x, y, Type.movement));
 		}
 		r = random.nextInt(100);
@@ -313,41 +312,41 @@ public class Controller {
 	}
 
 	private void checkKeys() {
-		if (Keyboard.typed(KeyEvent.VK_LEFT)&&!paused&&!playerDead) {
+		if (Keyboard.typed(KeyEvent.VK_LEFT) && !paused && !playerDead) {
 			player.moveLeft();
 		}
-		if (Keyboard.typed(KeyEvent.VK_RIGHT)&&!paused&&!playerDead) {
+		if (Keyboard.typed(KeyEvent.VK_RIGHT) && !paused && !playerDead) {
 			player.moveRight();
 		}
-		if (Keyboard.typed(KeyEvent.VK_UP)&&!paused&&!playerDead) {
+		if (Keyboard.typed(KeyEvent.VK_UP) && !paused && !playerDead) {
 			player.moveUp();
 		}
-		if (Keyboard.typed(KeyEvent.VK_DOWN)&&!paused&&!playerDead) {
+		if (Keyboard.typed(KeyEvent.VK_DOWN) && !paused && !playerDead) {
 			player.moveDown();
 		}
-		if (Keyboard.typed(KeyEvent.VK_SPACE)&&!paused&&!playerDead) {
-			ArrayList<Projectile> newProjectiles= new ArrayList<>();
+		if (Keyboard.typed(KeyEvent.VK_SPACE) && !paused && !playerDead) {
+			ArrayList<Projectile> newProjectiles = new ArrayList<>();
 			newProjectiles = player.fire();
-			if (newProjectiles!= null) {
+			if (newProjectiles != null) {
 				projectiles.addAll(newProjectiles);
 			}
 		}
 
-		if (Keyboard.typed(KeyEvent.VK_A)&&!paused&&!playerDead) {
+		if (Keyboard.typed(KeyEvent.VK_A) && !paused && !playerDead) {
 			ArrayList<Projectile> newProjectiles = player.shootSide(-30);
-			if (newProjectiles!= null) {
+			if (newProjectiles != null) {
 				projectiles.addAll(newProjectiles);
 			}
 		}
 
-		if (Keyboard.typed(KeyEvent.VK_D)&&!paused&&!playerDead) {
+		if (Keyboard.typed(KeyEvent.VK_D) && !paused && !playerDead) {
 			ArrayList<Projectile> newProjectiles = player.shootSide(30);
-			if (newProjectiles!= null) {
+			if (newProjectiles != null) {
 				projectiles.addAll(newProjectiles);
 			}
 		}
 
-		if (Keyboard.EnterPressed()&&!paused&&playerDead) {
+		if (Keyboard.EnterPressed() && !paused && playerDead) {
 			player = new Player(420, 600);
 			enemies.clear();
 			items.clear();
@@ -357,26 +356,26 @@ public class Controller {
 		}
 
 		if (Keyboard.PPressed()) {
-			paused = true;	
+			paused = true;
 		}
 
 		if (Keyboard.RPressed()) {
 			paused = false;
 		}
 
-		if (Keyboard.escapePressed()&&paused) {
+		if (Keyboard.escapePressed() && paused) {
 			int input = JOptionPane.showConfirmDialog(null, "Exit game and return to menu?");
 			if (input == 0) {
 				Game.state = Game.STATE.MENU;
-				//Sound.stopBackgroundMusic();
+				SoundPlayer.stopBackgroundMusic();
 			}
 			Keyboard.resetEscape();
 		}
 
-		if (Keyboard.SPressed()&&paused) {
+		if (Keyboard.SPressed() && paused) {
 			int input = JOptionPane.showConfirmDialog(null, "Save game?");
 			if (input == 0) {
-				LoadAndSaver.Save(levelNumber);
+				SaveManager.Save(levelNumber);
 			}
 			Keyboard.resetS();
 		}

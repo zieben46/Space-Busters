@@ -10,7 +10,6 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-
 final public class ImageLoader {
 
 	public static BufferedImage blueSprite;
@@ -46,65 +45,63 @@ final public class ImageLoader {
 	public static BufferedImage purpleUpgrade;
 	public static BufferedImage greenUpgrade;
 	public static BufferedImage healthPack;
-	
+
 	public static BufferedImage yellowSpriteBig;
 	public static BufferedImage yellowSpriteReallyBig;
 	public static BufferedImage yellowSpriteAll;
 
 	public static InputStream load(String path) {
 		InputStream input = ImageLoader.class.getResourceAsStream(path);
-		
+
 		if (input == null) {
-			input = ImageLoader.class.getResourceAsStream("/"+path);
+			input = ImageLoader.class.getResourceAsStream("/" + path);
 		}
 
 		return input;
 	}
-	
+
 	public static void loadImages() {
 		try {
-			menuBackground= ImageIO.read(load("/images/menuBackground.png"));
-			blueSprite= ImageIO.read(load("/images/explosionSheetBlueShort.png"));
-			yellowSprite= ImageIO.read(load("/images/explosionSheetYellowShort.png"));
+			menuBackground = ImageIO.read(load("/images/menuBackground.png"));
+			blueSprite = ImageIO.read(load("/images/explosionSheetBlueShort.png"));
+			yellowSprite = ImageIO.read(load("/images/explosionSheetYellowShort.png"));
 			enemyAIEasy = ImageIO.read(load("/images/enemyAIEasy.png"));
-			EnemyAIEasySlave= ImageIO.read(load("/images/enemyAIEasySlave.png"));
-			EnemyAIMediumSlave= ImageIO.read(load("/images/enemyAIMediumSlave.png"));
-			enemyBeamEasy= ImageIO.read(load("/images/enemyBeamEasy.png"));
-			enemyCarrierEasy= ImageIO.read(load("/images/carrierEasy.png"));
-			EnemyEasy1= ImageIO.read(load("/images/enemyType1.png")); 
-			EnemyEasy2= ImageIO.read(load("/images/enemyType2.png"));
-			enemyEasy3= ImageIO.read(load("/images/enemyType2.png")); 
-			enemyMedium1= ImageIO.read(load("/images/enemyMedium1.png"));
-			enemyMedium3= ImageIO.read(load("/images/enemyMedium3.png"));
-			enemySuicide= ImageIO.read(load("/images/enemyTypeSuicide.png"));
-			beamDown= ImageIO.read(load("/images/beam.png"));
-			bulletUp= ImageIO.read(load("/images/bulletUp.png")); 
-			bulletDown= ImageIO.read(load("/images/bulletDown.png"));
-			purpImageSmall= ImageIO.read(load("/images/upgradePurpleSmall.png"));
+			EnemyAIEasySlave = ImageIO.read(load("/images/enemyAIEasySlave.png"));
+			EnemyAIMediumSlave = ImageIO.read(load("/images/enemyAIMediumSlave.png"));
+			enemyBeamEasy = ImageIO.read(load("/images/enemyBeamEasy.png"));
+			enemyCarrierEasy = ImageIO.read(load("/images/carrierEasy.png"));
+			EnemyEasy1 = ImageIO.read(load("/images/enemyType1.png"));
+			EnemyEasy2 = ImageIO.read(load("/images/enemyType2.png"));
+			enemyEasy3 = ImageIO.read(load("/images/enemyType2.png"));
+			enemyMedium1 = ImageIO.read(load("/images/enemyMedium1.png"));
+			enemyMedium3 = ImageIO.read(load("/images/enemyMedium3.png"));
+			enemySuicide = ImageIO.read(load("/images/enemyTypeSuicide.png"));
+			beamDown = ImageIO.read(load("/images/beam.png"));
+			bulletUp = ImageIO.read(load("/images/bulletUp.png"));
+			bulletDown = ImageIO.read(load("/images/bulletDown.png"));
+			purpImageSmall = ImageIO.read(load("/images/upgradePurpleSmall.png"));
 			yellowImageSmall = ImageIO.read(load("/images/upgradeYellowSmall.png"));
-			greenImageSmall= ImageIO.read(load("/images/upgradeGreenSmall.png"));
-			missileLeft= ImageIO.read(load("/images/bulletLeft.png"));
-			missileRight= ImageIO.read(load("/images/bulletRight.png"));
-			myShip0= ImageIO.read(load("/images/myShipAnim1.png"));
-			myShip1= ImageIO.read(load("/images/myShipAnim2.png"));
-			myShip2= ImageIO.read(load("/images/myShipAnim3.png"));
-			myShip3= ImageIO.read(load("/images/myShipAnim4.png"));
-			myShip4= ImageIO.read(load("/images/myShipAnim5.png"));
-			myShip5= ImageIO.read(load("/images/myShipAnim6.png"));
-			spaceBackground= ImageIO.read(load("/images/background.png"));
-			yellowUpgrade= ImageIO.read(load("/images/upgradeYellow.png"));
-			purpleUpgrade= ImageIO.read(load("/images/upgradePurple.png"));
-			greenUpgrade= ImageIO.read(load("/images/upgradeGreen.png"));
-			healthPack= ImageIO.read(load("/images/healthPack.png"));
-			//yellowSpriteBig= ImageIO.read(load("images/explosionSheetYellowShortBig.png"));
-			//yellowSpriteReallyBig= ImageIO.read(load("images/explosionSheetYellowShortBigger.png"));
-			yellowSpriteBig= ImageIO.read(load("/images/shipExplosion.png"));
-				
+			greenImageSmall = ImageIO.read(load("/images/upgradeGreenSmall.png"));
+			missileLeft = ImageIO.read(load("/images/bulletLeft.png"));
+			missileRight = ImageIO.read(load("/images/bulletRight.png"));
+			myShip0 = ImageIO.read(load("/images/myShipAnim1.png"));
+			myShip1 = ImageIO.read(load("/images/myShipAnim2.png"));
+			myShip2 = ImageIO.read(load("/images/myShipAnim3.png"));
+			myShip3 = ImageIO.read(load("/images/myShipAnim4.png"));
+			myShip4 = ImageIO.read(load("/images/myShipAnim5.png"));
+			myShip5 = ImageIO.read(load("/images/myShipAnim6.png"));
+			spaceBackground = ImageIO.read(load("/images/background.png"));
+			yellowUpgrade = ImageIO.read(load("/images/upgradeYellow.png"));
+			purpleUpgrade = ImageIO.read(load("/images/upgradePurple.png"));
+			greenUpgrade = ImageIO.read(load("/images/upgradeGreen.png"));
+			healthPack = ImageIO.read(load("/images/healthPack.png"));
+			yellowSpriteBig = ImageIO.read(load("/images/shipExplosion.png"));
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "ERROR LOADING IMAGES.  CONTACT ADMIN FOR SUPPORT");
-				e.printStackTrace();
+			e.printStackTrace();
 		}
-		
+
 		try {
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, load("/font/ARDESTINE.ttf")));

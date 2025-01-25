@@ -7,8 +7,8 @@ import java.awt.image.BufferedImage;
 
 import game.core.Game;
 import game.utils.ImageLoader;
-import game.utils.Sound;
-import game.utils.Sound.soundEnum;
+import game.utils.SoundPlayer;
+import game.utils.SoundPlayer.SoundType;
 
 public class YellowBigExplosion extends BaseExplosion {
 	private int frame = 0;
@@ -37,7 +37,7 @@ public class YellowBigExplosion extends BaseExplosion {
 	public void render(Graphics2D g) {
 		if (frame<imageArray.length) {
 			if (frame == 0) {
-				Sound.playSound(soundEnum.BIGEXPLOSION);
+				SoundPlayer.playSound(SoundType.BIGEXPLOSION);
 			}
 			
 			if (frame<15) {

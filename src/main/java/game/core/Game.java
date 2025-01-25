@@ -1,4 +1,5 @@
 package game.core;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -24,14 +25,13 @@ public class Game extends JPanel implements KeyListener, Runnable {
 	private Thread game;
 	private boolean running;
 	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-	// private BufferedImage purpImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage yellowImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage greenImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	private Space space;
 	private Menu menu;
-	public static int Health = 100*2;
+	public static int Health = 100 * 2;
 	private MouseInput mouseInput;
-	
+
 	private int currUpdates;
 	private int currFrames;
 
@@ -52,9 +52,9 @@ public class Game extends JPanel implements KeyListener, Runnable {
 		menu = new Menu(this, mouseInput);
 		this.addMouseMotionListener(mouseInput);
 	}
-		
+
 	public void startLevels(int levelNumber) {
-		space = new Space(WIDTH/2 - Space.WIDTH/2, HEIGHT/2-Space.HEIGHT/2, levelNumber);	
+		space = new Space(WIDTH / 2 - Space.WIDTH / 2, HEIGHT / 2 - Space.HEIGHT / 2, levelNumber);
 	}
 
 	private void update() {
@@ -89,8 +89,8 @@ public class Game extends JPanel implements KeyListener, Runnable {
 	public void run() {
 		long lastTime = System.nanoTime();
 		final double amountOfTicks = 60.0;
-		double ns = 1000000000/amountOfTicks;
-		double delta = 0; 
+		double ns = 1000000000 / amountOfTicks;
+		double delta = 0;
 
 		int updates = 0;
 		int frames = 0;
@@ -98,17 +98,17 @@ public class Game extends JPanel implements KeyListener, Runnable {
 
 		while (running) {
 			long now = System.nanoTime();
-			delta += (now-lastTime) / ns;
+			delta += (now - lastTime) / ns;
 			lastTime = now;
-			if (delta>1) {		
+			if (delta > 1) {
 				update();
 				delta--;
 				updates++;
 			}
 			render();
 			frames++;
-			if (System.currentTimeMillis()-timer>1000) {
-				timer+= 1000;
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
 				currUpdates = updates;
 				currFrames = frames;
 				updates = 0;
@@ -118,7 +118,8 @@ public class Game extends JPanel implements KeyListener, Runnable {
 	}
 
 	public synchronized void start() {
-		if (running) return;
+		if (running)
+			return;
 		running = true;
 		game = new Thread(this, "game");
 		state = STATE.MENU;
@@ -126,7 +127,8 @@ public class Game extends JPanel implements KeyListener, Runnable {
 	}
 
 	public synchronized void stop() {
-		if (running) return;
+		if (running)
+			return;
 		running = false;
 		System.exit(0);
 	}
@@ -146,57 +148,56 @@ public class Game extends JPanel implements KeyListener, Runnable {
 	}
 
 	private void renderHealthBar(Graphics2D g) {
-		g.setColor(new Color(220,220,220, 127));
+		g.setColor(new Color(220, 220, 220, 127));
 		g.fillRect(5, 5, 200, 20);
-		
+
 		Color color;
-		if (StatsTracker.playerHealth>= 120) {
-			color = new Color(127, 255, 0, 127); //green
-		}	else if (StatsTracker.playerHealth<120 && StatsTracker.playerHealth>=60) {
-			color = new Color(255, 255, 0, 127); //yellow
+		if (StatsTracker.playerHealth >= 120) {
+			color = new Color(127, 255, 0, 127); // green
+		} else if (StatsTracker.playerHealth < 120 && StatsTracker.playerHealth >= 60) {
+			color = new Color(255, 255, 0, 127); // yellow
 
 		} else {
-			color = new Color(255, 0, 0, 127); //red
+			color = new Color(255, 0, 0, 127); // red
 		}
 		g.setColor(color);
 		g.fillRect(5, 5, StatsTracker.playerHealth, 20);
 		g.setColor(Color.white);
-		g.drawRect(5,  5, 200, 20);
+		g.drawRect(5, 5, 200, 20);
 	}
-	
 
 	@SuppressWarnings("unused")
 	private void drawFPS(Graphics2D g) {
 		g.setFont(new Font("arial", Font.BOLD, 10));
-		g.drawString("Updates: "+currUpdates+" FPS: "+currFrames, WIDTH-107, HEIGHT-5);
+		g.drawString("Updates: " + currUpdates + " FPS: " + currFrames, WIDTH - 107, HEIGHT - 5);
 	}
-	
+
 	private void loadImages() {
 		// purpImage = ImageLoader.purpImageSmall;
 		yellowImage = ImageLoader.yellowImageSmall;
 		greenImage = ImageLoader.greenImageSmall;
 	}
-	
+
 	private void drawInventory(Graphics2D g) {
 		Color color = new Color(0, 0, 128, 127);
 		g.setColor(color);
-		g.fillRect(0, HEIGHT-33, 270, 70);
+		g.fillRect(0, HEIGHT - 33, 270, 70);
 		g.setColor(Color.lightGray);
-		
+
 		g.setFont(new Font("arial", Font.BOLD, 12));
-		g.drawString("Speed       :", 10, HEIGHT-20);
-		g.drawString("Fire Rate  :", 10, HEIGHT-6);
-		for (int i=1; i <= StatsTracker.movementUpgs; i++) {
-			g.drawImage(yellowImage,70+12*i, HEIGHT-27, null);
+		g.drawString("Speed       :", 10, HEIGHT - 20);
+		g.drawString("Fire Rate  :", 10, HEIGHT - 6);
+		for (int i = 1; i <= StatsTracker.movementUpgs; i++) {
+			g.drawImage(yellowImage, 70 + 12 * i, HEIGHT - 27, null);
 		}
-		
-		for (int i=1; i<=StatsTracker.gunRateUpgs; i++) {
-			g.drawImage(greenImage,70+12*i, HEIGHT-13, null);
+
+		for (int i = 1; i <= StatsTracker.gunRateUpgs; i++) {
+			g.drawImage(greenImage, 70 + 12 * i, HEIGHT - 13, null);
 		}
 		g.setColor(Color.BLACK);
-		g.drawRect(0, HEIGHT-33, 270, 70);
-		
+		g.drawRect(0, HEIGHT - 33, 270, 70);
+
 		g.setColor(Color.lightGray);
-		g.drawString("Level "+StatsTracker.level, 423, HEIGHT-10);
-	}	
+		g.drawString("Level " + StatsTracker.level, 423, HEIGHT - 10);
+	}
 }

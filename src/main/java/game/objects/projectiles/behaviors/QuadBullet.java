@@ -5,8 +5,8 @@ import game.objects.interfaces.FireBehavior.FrontFireBehavior;
 import game.objects.interfaces.Projectile;
 import game.objects.interfaces.Projectile.Team;
 import game.objects.projectiles.Bullet;
-import game.utils.Sound;
-import game.utils.Sound.soundEnum;
+import game.utils.SoundPlayer;
+import game.utils.SoundPlayer.SoundType;
 
 public class QuadBullet implements FrontFireBehavior {
 
@@ -17,7 +17,7 @@ public class QuadBullet implements FrontFireBehavior {
 		bullets.add(new Bullet(x, y, 2, Vy, team));
 		bullets.add(new Bullet(x, y, -1, Vy, team));
 		bullets.add(new Bullet(x, y, -2, Vy, team));
-		Sound.playSound(soundEnum.MULTISHOOT);
+		SoundPlayer.playSound(SoundType.MULTISHOOT);
 		
 		return bullets;
 	}

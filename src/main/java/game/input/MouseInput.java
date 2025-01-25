@@ -4,9 +4,9 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import game.core.Game;
-import game.utils.LoadAndSaver;
-import game.utils.Sound;
-import game.utils.Sound.soundEnum;
+import game.utils.SaveManager;
+import game.utils.SoundPlayer;
+import game.utils.SoundPlayer.SoundType;
 
 public class MouseInput implements MouseListener, MouseMotionListener  {
 
@@ -40,22 +40,22 @@ public class MouseInput implements MouseListener, MouseMotionListener  {
 			int x = e.getX();
 			int y = e.getY();
 			if (x>100&&x<200&&y>150&&y<200) {
-				Sound.playSound(soundEnum.BUTTONSELECT);
+				SoundPlayer.playSound(SoundType.BUTTONSELECT);
 				game.startLevels(1);
 				Game.state = Game.STATE.GAME;
-				Sound.playBackgroundMusic();
+				SoundPlayer.startBackgroundMusic();
 			}
 
 			if (x>100&&x<200&&y>250&&y<300) {
-				Sound.playSound(soundEnum.BUTTONSELECT);
-				int levelNumber = LoadAndSaver.Load();
+				SoundPlayer.playSound(SoundType.BUTTONSELECT);
+				int levelNumber = SaveManager.Load();
 				game.startLevels(levelNumber);
 				Game.state = Game.STATE.GAME;
-				Sound.playBackgroundMusic();
+				SoundPlayer.startBackgroundMusic();
 			}
 
 			if (x>100&&x<200&&y>350&&y<400) {
-				Sound.playSound(soundEnum.BUTTONSELECT);
+				SoundPlayer.playSound(SoundType.BUTTONSELECT);
 				try {
 					Thread.sleep(400);
 				} catch (InterruptedException e1) {
@@ -82,7 +82,7 @@ public class MouseInput implements MouseListener, MouseMotionListener  {
 
 			if (x>100&&x<200&&y>150&&y<200) {
 				if (inStart == false) {
-					Sound.playSound(soundEnum.BUTTONHOVER);
+					SoundPlayer.playSound(SoundType.BUTTONHOVER);
 				}
 				inStart = true;
 			} else {
@@ -91,7 +91,7 @@ public class MouseInput implements MouseListener, MouseMotionListener  {
 
 			if (x>100&&x<200&&y>250&&y<300) {
 				if (inLoad == false) {
-					Sound.playSound(soundEnum.BUTTONHOVER);
+					SoundPlayer.playSound(SoundType.BUTTONHOVER);
 				}
 				inLoad = true;
 			} else {
@@ -100,7 +100,7 @@ public class MouseInput implements MouseListener, MouseMotionListener  {
 
 			if (x>100&&x<200&&y>350&&y<400) {
 				if (inQuit == false) {
-					Sound.playSound(soundEnum.BUTTONHOVER);
+					SoundPlayer.playSound(SoundType.BUTTONHOVER);
 				}
 				inQuit = true;
 			} else {
