@@ -2,6 +2,9 @@ package game.utils;
 
 import javax.sound.sampled.*;
 
+import java.io.InputStream;
+import java.io.BufferedInputStream;
+
 public class SoundPlayer {
 	private static Clip backgroundMusicClip;
 
@@ -27,10 +30,15 @@ public class SoundPlayer {
 		String filePath = se.getFilePath();
 
 		try {
-			AudioInputStream audioInputstream = AudioSystem
-					.getAudioInputStream(SoundPlayer.class.getClassLoader().getResourceAsStream(filePath));
+			InputStream audioSrc = SoundPlayer.class.getClassLoader().getResourceAsStream(filePath);
+			if (audioSrc == null) {
+				throw new IllegalArgumentException("Sound file not found: " + filePath);
+			}
+
+			InputStream bufferedIn = new BufferedInputStream(audioSrc);
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
 			Clip clip = AudioSystem.getClip();
-			clip.open(audioInputstream);
+			clip.open(audioStream);
 			clip.start();
 		} catch (Throwable e) {
 			System.out.println("Error in playing audio.  Check that speakers are turned on.");
@@ -41,14 +49,21 @@ public class SoundPlayer {
 		String filePath = "sound/backgroundMusic.wav";
 
 		try {
-			AudioInputStream audioInputstream = AudioSystem
-					.getAudioInputStream(SoundPlayer.class.getClassLoader().getResourceAsStream(filePath));
+			InputStream audioSrc = SoundPlayer.class.getClassLoader().getResourceAsStream(filePath);
+			if (audioSrc == null) {
+				throw new IllegalArgumentException("Sound file not found: " + filePath);
+			}
+
+			InputStream bufferedIn = new BufferedInputStream(audioSrc);
+			AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedIn);
 			backgroundMusicClip = AudioSystem.getClip();
-			backgroundMusicClip.open(audioInputstream);
+			backgroundMusicClip.open(audioStream);
 			backgroundMusicClip.loop(Clip.LOOP_CONTINUOUSLY);
+
 		} catch (Throwable e) {
 			System.out.println("Error in playing audio.  Check that speakers are turned on.");
 		}
+
 	}
 
 	public static void stopBackgroundMusic() {
