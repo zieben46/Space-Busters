@@ -12,28 +12,24 @@ public class Space {
 
 	private int x;
 	private int y;
-	private BufferedImage spaceImage;
-	private BufferedImage foregroundImage;
+	private BufferedImage background;
+	private BufferedImage canvas;  //draws onto this
 	private Controller controller;
 
 	public Space(int x, int y, int levelNumber) {
 		this.x = x;
 		this.y = y;
-		spaceImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		foregroundImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		background = ImageLoader.spaceBackground;	
+		canvas = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 		controller = new Controller(levelNumber);
-		createBackground();
 	}
 
-	private void createBackground() {
-		spaceImage = ImageLoader.spaceBackground;	
-	}
 
 	public void render(Graphics2D g) {
-		Graphics2D g2 = (Graphics2D) foregroundImage.getGraphics();
-		g2.drawImage(spaceImage, 0, 0, null);		
+		Graphics2D g2 = (Graphics2D) canvas.getGraphics();
+		g2.drawImage(background, 0, 0, null);		
 		controller.render(g2);	
-		g.drawImage(foregroundImage, x, y, null);
+		g.drawImage(canvas, x, y, null);
 		g2.dispose();
 	}
 

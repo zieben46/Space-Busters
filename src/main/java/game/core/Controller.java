@@ -184,11 +184,18 @@ public class Controller {
 	}
 
 	private void renderKillCounter(Graphics2D g) {
-		g.setFont(new Font("AR DESTINE",Font.BOLD, 45 ));
+		g.setFont(new Font("AR DESTINE", Font.BOLD, 45));
 		g.setColor(Color.white);
-		g.drawString(enemiesKilled+"/"+totalEnemies, Game.WIDTH-130, Game.HEIGHT-20);
-	}
+		String text = enemiesKilled + "/" + totalEnemies;
 
+		//right justified
+		int textWidth = (g.getFontMetrics()).stringWidth(text);
+		int xPosition = Game.WIDTH - textWidth - 5;
+		int yPosition = Game.HEIGHT - 5;
+
+		g.drawString(text, xPosition, yPosition);
+	}
+	
 	private void randomShoot(Enemy enemy) {
 		ArrayList<Projectile> newProjectiles = enemy.randomBullet();
 		if (newProjectiles!= null) {

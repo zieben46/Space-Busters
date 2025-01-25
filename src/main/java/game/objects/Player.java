@@ -13,11 +13,7 @@ import game.utils.ImageLoader;
 
 public class Player extends BaseObject {
 
-	//default velocity
-	protected static int Vx = 4;
-	protected static int Vy = 4;
-
-	//default bullet behavior
+	//default gun behavior
 	private static double coolDownTime = 0.5*1000;  //half second
 	private static int bulletSpeed = 0;
 	private static FrontFireBehavior frontGunBehavior = new SingleBullet();
@@ -29,7 +25,10 @@ public class Player extends BaseObject {
 	private static int gunSpeedUps = 0;
 	private static int bulletSpeedUps = 0;
 
-	//default new object fields
+	//default velocity
+	protected static int Vx = 4;
+	protected static int Vy = 4;
+
 	private int health = 200;
 	private boolean dead = false;
 	protected BufferedImage[] image;
@@ -56,8 +55,6 @@ public class Player extends BaseObject {
 		};
 	}
 	
-
-
 	@Override
 	public void render(Graphics2D g) {
 		if (!dead) {

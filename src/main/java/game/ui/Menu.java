@@ -32,7 +32,7 @@ public class Menu {
 		GradientPaint gradient = new GradientPaint(100, 150,Color.red, 800, 200, Color.black);
 		g.setPaint(gradient);
 		g.setFont(new Font("AR DESTINE",Font.BOLD, 80));
-		g.drawString("SPACE BUSTERS", 50, 90);
+		g.drawString("SPACE-BUSTERS", 50, 90);
 		
 		gradient = new GradientPaint(100, 150, setStartColor(), 200, 200, Color.gray);
 		g.setPaint(gradient);

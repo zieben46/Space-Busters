@@ -152,7 +152,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
 		Color color;
 		if (StatsTracker.playerHealth>= 120) {
 			color = new Color(127, 255, 0, 127); //green
-		}	else if (StatsTracker.playerHealth<120&&StatsTracker.playerHealth>= 60) {
+		}	else if (StatsTracker.playerHealth<120 && StatsTracker.playerHealth>=60) {
 			color = new Color(255, 255, 0, 127); //yellow
 
 		} else {
@@ -197,6 +197,6 @@ public class Game extends JPanel implements KeyListener, Runnable {
 		g.drawRect(0, HEIGHT-33, 270, 70);
 		
 		g.setColor(Color.lightGray);
-		g.drawString("Level "+StatsTracker.level, 400, HEIGHT-10);
+		g.drawString("Level "+StatsTracker.level, 423, HEIGHT-10);
 	}	
 }
