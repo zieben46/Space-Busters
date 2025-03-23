@@ -1,4 +1,4 @@
-**download:  https://zieben46.itch.io/space-busters**
+**download .jar here:  https://zieben46.itch.io/space-busters**
 
 **screeshot 1** <br>
 
